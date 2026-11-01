@@ -56,7 +56,10 @@ export async function authenticateUser(username, password) {
     // If the server answered and said no (wrong password, throttled, etc.), show that error instead:
     // a local session has no real token, so the server rejects it on the next check and sends the
     // user straight back to the home page.
-    if (serverErr?.code !== 'NETWORK' && serverErr?.code !== 'NON_JSON') throw serverErr;
+    // (A non-JSON answer with a success status is a static host with no backend; a 404/500 page means the
+    // API is deployed but misrouted, so that is reported instead of hidden.)
+    const noBackend = serverErr?.code === 'NETWORK' || (serverErr?.code === 'NON_JSON' && serverErr?.status < 400);
+    if (!noBackend) throw serverErr;
 
     // If backend is unreachable or during static hosting, authenticate sacred admin locally
     if (cleanUser === 'admin' && (cleanPass === 'admin2027' || cleanPass === 'admin')) {
