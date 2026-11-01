@@ -1,0 +1,631 @@
+/* CBT Exam Interface Specific Styling */
+
+.cbt-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+  user-select: none;
+}
+
+/* Exam Header */
+.cbt-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-medium);
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cbt-header-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.cbt-seal {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: 0 4px 10px rgba(4, 120, 87, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.cbt-exam-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.1rem;
+}
+
+.cbt-exam-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* Timer Display */
+.cbt-timer-box {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  transition: all var(--transition-normal);
+}
+
+.cbt-timer-normal {
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.2);
+}
+
+.cbt-timer-warning {
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.5);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.cbt-timer-critical {
+  color: #f87171;
+  border-color: #ef4444;
+  animation: pulseGlow 1.2s infinite ease-in-out;
+}
+
+/* Candidate Bar */
+.cbt-candidate-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.cbt-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--brand-emerald);
+  object-fit: cover;
+}
+
+/* Main Layout Grid */
+.cbt-main-grid {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  flex: 1;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (max-width: 1024px) {
+  .cbt-main-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Question Area */
+.cbt-question-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-md);
+  position: relative;
+}
+
+.cbt-question-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cbt-q-number {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.cbt-q-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.font-sm .cbt-q-text, .font-sm .cbt-option-text { font-size: 1rem; }
+.font-md .cbt-q-text, .font-md .cbt-option-text { font-size: 1.15rem; }
+.font-lg .cbt-q-text, .font-lg .cbt-option-text { font-size: 1.35rem; }
+
+/* Options */
+.cbt-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 2.5rem;
+}
+
+.cbt-option-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.1rem 1.35rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-tertiary);
+  border: 1.5px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.cbt-option-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--brand-primary);
+  transform: translateX(4px);
+}
+
+.cbt-option-item.selected {
+  background: rgba(37, 99, 235, 0.15);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 12px rgba(37, 99, 235, 0.25);
+}
+
+.cbt-option-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-main);
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+}
+
+.cbt-option-item.selected .cbt-option-key {
+  background: var(--brand-primary);
+  color: #ffffff;
+  border-color: var(--brand-primary);
+}
+
+.cbt-option-text {
+  font-size: 1.05rem;
+  color: var(--text-main);
+  line-height: 1.5;
+  margin-top: 0.15rem;
+}
+
+/* Exam Action Controls */
+.cbt-action-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Question Palette Sidebar */
+.cbt-palette-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.cbt-palette-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-md);
+}
+
+.cbt-palette-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.cbt-stat-pill {
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.stat-answered {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.stat-unanswered {
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  border-color: var(--border-medium);
+}
+
+.stat-flagged {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+/* Palette Filters */
+.cbt-filter-tabs {
+  display: flex;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+  background: var(--bg-tertiary);
+  padding: 0.25rem;
+  border-radius: var(--radius-sm);
+}
+
+.cbt-filter-tab {
+  flex: 1;
+  padding: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all var(--transition-fast);
+}
+
+.cbt-filter-tab.active {
+  background: var(--brand-primary);
+  color: #ffffff;
+}
+
+/* Question Grid */
+.cbt-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.5rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 0.35rem;
+}
+
+.cbt-grid-btn {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-medium);
+  background: var(--bg-tertiary);
+  color: var(--text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: all var(--transition-fast);
+}
+
+.cbt-grid-btn:hover {
+  border-color: var(--brand-primary);
+  color: var(--text-main);
+  transform: scale(1.05);
+}
+
+.cbt-grid-btn.answered {
+  background: #065f46;
+  border-color: #10b981;
+  color: #ffffff;
+}
+
+.cbt-grid-btn.flagged::after {
+  content: '🚩';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  font-size: 0.65rem;
+}
+
+.cbt-grid-btn.current {
+  border: 2px solid #3b82f6 !important;
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+  transform: scale(1.08);
+}
+
+/* Anti-Cheat & Security Bar */
+.cbt-security-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8rem;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  margin-top: 0.75rem;
+}
+
+/* Calculator floating popover */
+.calc-modal {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  width: 280px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  z-index: 999;
+  overflow: hidden;
+}
+
+.calc-header {
+  padding: 0.65rem 1rem;
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.calc-screen {
+  background: var(--bg-input);
+  padding: 1rem;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--brand-emerald);
+  border-bottom: 1px solid var(--border-subtle);
+  overflow-x: auto;
+}
+
+.calc-pad {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-subtle);
+  padding: 1px;
+}
+
+.calc-btn {
+  background: var(--bg-secondary);
+  border: none;
+  padding: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.calc-btn:hover {
+  background: var(--bg-tertiary);
+}
+
+.calc-btn.op {
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
+.calc-btn.equal {
+  background: var(--brand-emerald);
+  color: white;
+  grid-column: span 2;
+  font-weight: 700;
+}
+
+/* =========================================================================
+   MOBILE & TOUCH-RESPONSIVE CBT STYLES
+   ========================================================================= */
+
+/* Mobile Matrix Trigger Pill */
+.mobile-matrix-pill {
+  display: none;
+  align-items: center;
+  gap: 0.45rem;
+  background: var(--bg-tertiary);
+  border-color: rgba(59, 130, 246, 0.4);
+  color: var(--text-main);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+@media (max-width: 1024px) {
+  .mobile-matrix-pill {
+    display: inline-flex;
+  }
+  .cbt-palette-sidebar {
+    display: none; /* Hide heavy sidebar on mobile/tablets; replaced by drawer */
+  }
+  .cbt-header {
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0.75rem 1rem;
+  }
+  .cbt-main-grid {
+    padding: 1rem 0.75rem;
+  }
+  .cbt-question-card {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* Mobile Question Palette Drawer Modal */
+.mobile-palette-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 9999;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.mobile-palette-modal {
+  background: var(--bg-card);
+  border-top-left-radius: var(--radius-lg);
+  border-top-right-radius: var(--radius-lg);
+  border: 1px solid var(--border-medium);
+  border-bottom: none;
+  width: 100%;
+  max-width: 640px;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1.25rem;
+  box-shadow: var(--shadow-xl);
+  overflow: hidden;
+}
+
+.mobile-palette-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 0.65rem;
+}
+
+.mobile-palette-grid-scroll {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0.25rem 0.5rem 0;
+  max-height: 52vh;
+}
+
+.mobile-palette-grid-scroll .cbt-palette-grid {
+  grid-template-columns: repeat(auto-fill, minmax(44px, 1fr));
+  gap: 0.45rem;
+  max-height: none;
+}
+
+.mobile-palette-grid-scroll .palette-num-btn {
+  height: 44px;
+  min-width: 44px;
+  font-size: 0.875rem;
+}
+
+/* Touch & Mobile Optimizations for Questions & Options */
+@media (max-width: 768px) {
+  .cbt-header-brand .cbt-exam-subtitle {
+    display: none;
+  }
+  .cbt-exam-title {
+    font-size: 0.85rem;
+  }
+  .cbt-timer-box {
+    padding: 0.4rem 0.85rem;
+    font-size: 1.05rem;
+  }
+  .cbt-candidate-bar {
+    gap: 0.4rem;
+  }
+  .cbt-candidate-bar .cbt-avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cbt-question-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .cbt-q-number {
+    font-size: 1.15rem;
+  }
+
+  .cbt-q-text {
+    font-size: 1.05rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  .cbt-option-item {
+    min-height: 52px;
+    padding: 0.85rem 1rem;
+    gap: 0.75rem;
+    touch-action: manipulation;
+  }
+
+  .cbt-option-key {
+    width: 28px;
+    height: 28px;
+    font-size: 0.85rem;
+  }
+
+  .cbt-option-text {
+    font-size: 0.95rem;
+  }
+
+  /* Sticky Action Bar at Bottom of Phone Viewport */
+  .cbt-action-bar {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border-medium);
+    padding: 0.75rem 0.5rem;
+    margin-top: 1rem;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .cbt-action-bar .btn {
+    padding: 0.65rem 0.9rem;
+    font-size: 0.875rem;
+  }
+
+  .cbt-action-bar span {
+    font-size: 0.825rem;
+  }
+}
+
