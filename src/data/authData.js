@@ -59,6 +59,9 @@ export async function authenticateUser(username, password) {
     // (A non-JSON answer with a success status is a static host with no backend; a 404/500 page means the
     // API is deployed but misrouted, so that is reported instead of hidden.)
     const noBackend = serverErr?.code === 'NETWORK' || (serverErr?.code === 'NON_JSON' && serverErr?.status < 400);
+    if ([502, 503, 504].includes(serverErr?.status)) {
+      throw new Error('The server is not running or not reachable. Start the backend (npm start) and try again.');
+    }
     if (!noBackend) throw serverErr;
 
     // If backend is unreachable or during static hosting, authenticate sacred admin locally

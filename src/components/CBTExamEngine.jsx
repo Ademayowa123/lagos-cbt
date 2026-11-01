@@ -23,6 +23,25 @@ import { api } from '../api';
 import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { get100ExamQuestionsForCategory } from '../data/defaultQuestions';
 
+// Unbiased shuffle (Fisher-Yates with crypto randomness)
+const shuffleList = (list) => {
+  const a = [...list];
+  for (let i = a.length - 1; i > 0; i--) {
+    const buf = new Uint32Array(1);
+    crypto.getRandomValues(buf);
+    const j = buf[0] % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+};
+
+// Offline fallback: random question order AND random option order, with the correct answer moved to match
+const buildLocalExam = (category) =>
+  shuffleList(get100ExamQuestionsForCategory(category)).map((q) => {
+    const order = shuffleList(q.options.map((_, i) => i));
+    return { ...q, options: order.map((i) => q.options[i]), correctAnswer: order.indexOf(q.correctAnswer) };
+  });
+
 export default function CBTExamEngine({
   candidate,
   category: categoryProp,
@@ -95,7 +114,7 @@ export default function CBTExamEngine({
       .catch((err) => {
         // Resilient fallback: initialize local 100-question session so exam starts even if offline
         if (!cancelled) {
-          const rawQ = get100ExamQuestionsForCategory(safeCategory.id);
+          const rawQ = buildLocalExam(safeCategory);
           const now = Date.now();
           const durationSec = (safeCategory.timeLimitMinutes || 90) * 60;
           const fallbackSession = {
@@ -138,7 +157,7 @@ export default function CBTExamEngine({
       return;
     } catch (err) {
       // Local scoring fallback
-      const pool = session?.rawQuestions || get100ExamQuestionsForCategory(category?.id);
+      const pool = session?.rawQuestions || get100ExamQuestionsForCategory(category);
       const answers = answersRef.current || {};
       let totalCorrect = 0;
       const sectionalScores = {};

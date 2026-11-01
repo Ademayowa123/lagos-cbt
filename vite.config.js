@@ -7,6 +7,6 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
-    proxy: { '/api': 'http://localhost:3001' }, // dev: forward API calls to the CBT server
+    proxy: { '/api': 'http://127.0.0.1:3001' }, // dev: forward API calls to the CBT server
   },
 })
