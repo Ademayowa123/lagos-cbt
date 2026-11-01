@@ -50,26 +50,40 @@ if (isSupabaseConfigured) {
   });
   console.log(`[Database] Connected to Supabase Cloud PostgreSQL (${url})`);
 } else {
-  const { DatabaseSync } = await import('node:sqlite');
-  const DB_PATH = process.env.DB_PATH || path.join(here, 'data', 'cbt.db');
-  fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
-  sqliteDb = new DatabaseSync(DB_PATH);
-  sqliteDb.exec(`
-    PRAGMA journal_mode=WAL;
-    CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY, username TEXT UNIQUE COLLATE NOCASE, pass_hash TEXT NOT NULL,
-      role TEXT NOT NULL, is_demo INTEGER NOT NULL DEFAULT 0, data TEXT NOT NULL, created_at INTEGER NOT NULL);
-    CREATE TABLE IF NOT EXISTS tokens(token TEXT PRIMARY KEY, user_id TEXT NOT NULL, expires_at INTEGER NOT NULL, revoked TEXT);
-    CREATE TABLE IF NOT EXISTS categories(id TEXT PRIMARY KEY, data TEXT NOT NULL);
-    CREATE TABLE IF NOT EXISTS questions(id TEXT PRIMARY KEY, data TEXT NOT NULL);
-    CREATE TABLE IF NOT EXISTS resources(id TEXT PRIMARY KEY, data TEXT NOT NULL);
-    CREATE TABLE IF NOT EXISTS exams(id TEXT PRIMARY KEY, user_id TEXT NOT NULL, category_id TEXT NOT NULL,
-      status TEXT NOT NULL, started_at INTEGER NOT NULL, ends_at INTEGER NOT NULL, snapshot TEXT NOT NULL,
-      answers TEXT NOT NULL DEFAULT '{}', flagged TEXT NOT NULL DEFAULT '{}', strikes INTEGER NOT NULL DEFAULT 0,
-      submitted_at INTEGER, result TEXT);
-    CREATE INDEX IF NOT EXISTS idx_exams_user ON exams(user_id, status);
-  `);
-  console.log(`[Database] Using local SQLite (${DB_PATH})`);
+  try {
+    const { DatabaseSync } = await import('node:sqlite');
+    const DB_PATH = process.env.DB_PATH || path.join(here, 'data', 'cbt.db');
+    fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
+    sqliteDb = new DatabaseSync(DB_PATH);
+    sqliteDb.exec(`
+      PRAGMA journal_mode=WAL;
+      CREATE TABLE IF NOT EXISTS users(id TEXT PRIMARY KEY, username TEXT UNIQUE COLLATE NOCASE, pass_hash TEXT NOT NULL,
+        role TEXT NOT NULL, is_demo INTEGER NOT NULL DEFAULT 0, data TEXT NOT NULL, created_at INTEGER NOT NULL);
+      CREATE TABLE IF NOT EXISTS tokens(token TEXT PRIMARY KEY, user_id TEXT NOT NULL, expires_at INTEGER NOT NULL, revoked TEXT);
+      CREATE TABLE IF NOT EXISTS categories(id TEXT PRIMARY KEY, data TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS questions(id TEXT PRIMARY KEY, data TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS resources(id TEXT PRIMARY KEY, data TEXT NOT NULL);
+      CREATE TABLE IF NOT EXISTS exams(id TEXT PRIMARY KEY, user_id TEXT NOT NULL, category_id TEXT NOT NULL,
+        status TEXT NOT NULL, started_at INTEGER NOT NULL, ends_at INTEGER NOT NULL, snapshot TEXT NOT NULL,
+        answers TEXT NOT NULL DEFAULT '{}', flagged TEXT NOT NULL DEFAULT '{}', strikes INTEGER NOT NULL DEFAULT 0,
+        submitted_at INTEGER, result TEXT);
+      CREATE INDEX IF NOT EXISTS idx_exams_user ON exams(user_id, status);
+    `);
+    console.log(`[Database] Using local SQLite (${DB_PATH})`);
+  } catch (err) {
+    console.warn(`[Database] SQLite (node:sqlite) not available in this runtime (${process.version}): ${err.message}. Using memory store.`);
+  }
 }
+
+// In-memory fallback store when neither Supabase nor SQLite is available
+const memStore = {
+  users: new Map(),
+  tokens: new Map(),
+  categories: new Map(),
+  questions: new Map(),
+  resources: new Map(),
+  exams: new Map()
+};
 
 const parseJson = (val) => {
   if (val === null || val === undefined) return null;

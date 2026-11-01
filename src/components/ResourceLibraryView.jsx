@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { createPortal } from 'react-dom';
 import { BookOpen, Layers, Search, FileText, CheckCircle2, ArrowRight } from 'lucide-react';
+import { DEFAULT_RESOURCES } from '../data/defaultResources';
 
 export default function ResourceLibraryView({ 
   resources, 
@@ -11,11 +12,18 @@ export default function ResourceLibraryView({
   const [selectedFilter, setSelectedFilter] = useState('all');
   const [activeReadingModal, setActiveReadingModal] = useState(null);
 
-  const filtered = resources.filter(res => {
-    const matchSearch = res.title.toLowerCase().includes(search.toLowerCase()) ||
-                        res.summary.toLowerCase().includes(search.toLowerCase()) ||
-                        res.type.toLowerCase().includes(search.toLowerCase());
-    const matchCat = selectedFilter === 'all' || res.gradeBand.toLowerCase().includes(selectedFilter.toLowerCase());
+  const safeResources = Array.isArray(resources) && resources.length > 0 ? resources : DEFAULT_RESOURCES;
+
+  const filtered = safeResources.filter(res => {
+    if (!res) return false;
+    const title = String(res.title || '').toLowerCase();
+    const summary = String(res.summary || '').toLowerCase();
+    const type = String(res.type || '').toLowerCase();
+    const gradeBand = String(res.gradeBand || '').toLowerCase();
+    const q = search.toLowerCase();
+
+    const matchSearch = title.includes(q) || summary.includes(q) || type.includes(q);
+    const matchCat = selectedFilter === 'all' || gradeBand.includes(selectedFilter.toLowerCase());
     return matchSearch && matchCat;
   });
 
@@ -53,7 +61,7 @@ export default function ResourceLibraryView({
             className={`btn btn-sm ${selectedFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
             onClick={() => setSelectedFilter('all')}
           >
-            All Resources ({resources.length})
+            All Resources ({safeResources.length})
           </button>
           <button 
             className={`btn btn-sm ${selectedFilter === 'GL 04' ? 'btn-primary' : 'btn-secondary'}`}

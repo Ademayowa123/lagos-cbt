@@ -23,7 +23,7 @@ import {
   registerCandidate,
   authenticateUser
 } from '../data/authData';
-import { MINISTRIES_DEPARTMENTS } from '../data/gradeLevelCategories';
+import { MINISTRIES_DEPARTMENTS, DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import CandidateAvatar from './CandidateAvatar';
 
 export default function CandidateAuth({ 
@@ -36,6 +36,8 @@ export default function CandidateAuth({
   onAdminLogin,
   initialAuthTab = 'demo'
 }) {
+  const safeCategory = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
+
   // Tabs: 'demo' (DEFAULT / FIRST), 'login', 'register'
   const [activeTab, setActiveTab] = useState(initialAuthTab === 'admin' ? 'login' : (initialAuthTab || 'demo'));
 
@@ -77,10 +79,10 @@ export default function CandidateAuth({
     surname: '',
     customNumber: '',
     password: '',
-    cadre: selectedCategory.cadres[0] || 'Administrative Officer I',
+    cadre: safeCategory?.cadres?.[0] || 'Administrative Officer I',
     ministry: MINISTRIES_DEPARTMENTS[0],
-    targetGrade: selectedCategory.gradeLevels[0] || 'GL 09 to 10',
-    categoryId: selectedCategory.id
+    targetGrade: safeCategory?.gradeLevels?.[0] || 'GL 09 to 10',
+    categoryId: safeCategory?.id || 'group-gl-06-10'
   });
 
   // Live auto-generated username for registration
@@ -98,13 +100,15 @@ export default function CandidateAuth({
 
   // Keep category in sync with registration category selection
   useEffect(() => {
+    const activeCat = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
+    if (!activeCat) return;
     setRegForm(prev => ({
       ...prev,
-      categoryId: selectedCategory.id,
-      cadre: selectedCategory.cadres[0] || prev.cadre,
-      targetGrade: selectedCategory.gradeLevels[0] || prev.targetGrade
+      categoryId: activeCat.id,
+      cadre: activeCat.cadres?.[0] || prev.cadre || 'Administrative Officer I',
+      targetGrade: activeCat.gradeLevels?.[0] || prev.targetGrade || 'GL 10'
     }));
-  }, [selectedCategory]);
+  }, [selectedCategory, gradeCategories]);
 
   // Handle Demo Mode 1-Click Launch
   const handleLaunchDemo = async (demoUser) => {
@@ -192,7 +196,7 @@ export default function CandidateAuth({
         cadre: regForm.cadre,
         ministry: regForm.ministry,
         targetGrade: regForm.targetGrade,
-        categoryId: selectedCategory.id
+        categoryId: safeCategory?.id || 'group-gl-06-10'
       });
 
       setActiveCandidate(newCandidate);
@@ -719,7 +723,7 @@ export default function CandidateAuth({
                     value={regForm.cadre}
                     onChange={(e) => setRegForm({ ...regForm, cadre: e.target.value })}
                   >
-                    {selectedCategory.cadres.map((c, i) => (
+                    {(safeCategory?.cadres || ['Administrative Officer I']).map((c, i) => (
                       <option key={i} value={c}>{c}</option>
                     ))}
                   </select>
@@ -734,7 +738,7 @@ export default function CandidateAuth({
                   value={regForm.targetGrade}
                   onChange={(e) => setRegForm({ ...regForm, targetGrade: e.target.value })}
                 >
-                  {selectedCategory.gradeLevels.map((gl, i) => (
+                  {(safeCategory?.gradeLevels || ['GL 09 to 10']).map((gl, i) => (
                     <option key={i} value={gl}>{gl}</option>
                   ))}
                 </select>

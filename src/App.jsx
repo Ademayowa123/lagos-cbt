@@ -17,7 +17,22 @@ import CBTExamEngine from './components/CBTExamEngine';
 import ExamResultView from './components/ExamResultView';
 import AdminPortal from './components/AdminPortal';
 import ResourceLibraryView from './components/ResourceLibraryView';
+import ErrorBoundary from './components/ErrorBoundary';
 import { ShieldAlert, ArrowLeft, LogIn, UserPlus } from 'lucide-react';
+
+function getRouteFromLocation() {
+  if (typeof window === 'undefined') return null;
+  const hash = (window.location.hash || '').replace(/^#\/?/, '').split('?')[0].toLowerCase();
+  const path = (window.location.pathname || '').replace(/^\/+/, '').split('/')[0].toLowerCase();
+  const r = hash || path;
+  if (['demo', 'login', 'register', 'auth'].includes(r)) {
+    return { view: 'auth', tab: r === 'auth' ? 'demo' : r };
+  }
+  if (['home', 'dashboard', 'settings', 'instructions', 'exam', 'result', 'admin', 'resources'].includes(r)) {
+    return { view: r, tab: 'demo' };
+  }
+  return null;
+}
 
 function App() {
   // Theme state
@@ -50,11 +65,19 @@ function App() {
   useEffect(() => {
     api('/categories', { auth: false })
       .then((list) => {
-        setGradeCategories(list);
-        setSelectedCategory((prev) => list.find((c) => c.id === prev?.id) || list[0]);
+        if (Array.isArray(list) && list.length > 0) {
+          setGradeCategories(list);
+          setSelectedCategory((prev) => list.find((c) => c.id === prev?.id) || list[0]);
+        }
       })
-      .catch(() => { /* server unreachable: keep the built-in list */ });
-    api('/resources', { auth: false }).then(setResources).catch(() => {});
+      .catch(() => { /* server unreachable: keep the built-in DEFAULT_GRADE_CATEGORIES */ });
+    api('/resources', { auth: false })
+      .then((list) => {
+        if (Array.isArray(list) && list.length > 0) {
+          setResources(list);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   // Candidate State (Loads from authData store or null for guest)
@@ -101,13 +124,32 @@ function App() {
   }, [activeCandidate?.id]);
 
   // Navigation View: 'home', 'dashboard', 'settings', 'auth', 'instructions', 'exam', 'result', 'admin', 'resources'
+  const initialRoute = getRouteFromLocation();
   const [currentView, setCurrentView] = useState(() => {
+    if (initialRoute?.view) return initialRoute.view;
     const savedUser = getCurrentUser();
     return savedUser ? 'dashboard' : 'home';
   });
 
   // Sub-tab for Auth view: 'demo', 'login', 'register', 'admin'
-  const [authTab, setAuthTab] = useState('demo');
+  const [authTab, setAuthTab] = useState(() => initialRoute?.tab || 'demo');
+
+  // URL Hash synchronization
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const route = getRouteFromLocation();
+      if (route) {
+        setCurrentView(route.view);
+        if (route.tab) setAuthTab(route.tab);
+      }
+    };
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, []);
 
   // Exam Result State
   const [lastExamResult, setLastExamResult] = useState(null);
@@ -146,6 +188,7 @@ function App() {
   };
 
   const isExamActive = currentView === 'exam';
+  const safeSelectedCategory = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
 
   return (
     <div className="app-root">
@@ -161,14 +204,15 @@ function App() {
         onNavigateAuth={handleNavigateAuth}
       />
 
-      {/* Main Body View Switcher */}
+      {/* Main Body View Switcher wrapped in ErrorBoundary */}
+      <ErrorBoundary onReset={() => setCurrentView('home')}>
       
       {/* 1. OFFICER DASHBOARD: Default view when logged in (Name, Level, Ministry, Cadre) */}
       {currentView === 'dashboard' && (
         activeCandidate ? (
           <CandidateDashboard 
             candidate={activeCandidate}
-            category={selectedCategory}
+            category={safeSelectedCategory}
             onStartExam={() => setCurrentView('instructions')}
             onNavigateResources={() => setCurrentView('resources')}
             onNavigateSettings={() => setCurrentView('settings')}
@@ -270,7 +314,7 @@ function App() {
       {currentView === 'auth' && (
         <CandidateAuth 
           gradeCategories={gradeCategories}
-          selectedCategory={selectedCategory}
+          selectedCategory={safeSelectedCategory}
           setSelectedCategory={setSelectedCategory}
           activeCandidate={activeCandidate}
           setActiveCandidate={setActiveCandidate}
@@ -284,7 +328,7 @@ function App() {
       {currentView === 'instructions' && (
         <ExamInstructions 
           candidate={activeCandidate}
-          category={selectedCategory}
+          category={safeSelectedCategory}
           onStartExam={() => setCurrentView('exam')}
           onBack={() => setCurrentView('dashboard')}
         />
@@ -294,7 +338,7 @@ function App() {
       {currentView === 'exam' && (
         <CBTExamEngine 
           candidate={activeCandidate}
-          category={selectedCategory}
+          category={safeSelectedCategory}
           onExamSubmit={handleExamSubmit}
           onExit={() => setCurrentView('dashboard')}
         />
@@ -424,6 +468,7 @@ function App() {
           />
         )
       )}
+      </ErrorBoundary>
 
       {/* 8. SINGLE ACTIVE SESSION KICK-OUT MODAL */}
       {showKickedOutModal && createPortal(

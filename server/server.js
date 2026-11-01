@@ -232,7 +232,11 @@ route('GET', '/api/health', 'public', async () => ({
   time: new Date().toISOString()
 }));
 
-route('GET', '/api/categories', 'public', async () => await db.allCategories());
+route('GET', '/api/categories', 'public', async () => {
+  await ensureSeeded();
+  const list = await db.allCategories();
+  return list && list.length ? list : DEFAULT_GRADE_CATEGORIES;
+});
 
 route('POST', '/api/auth/login', 'public', async ({ body, req }) => {
   await ensureSeeded();
@@ -251,7 +255,7 @@ route('POST', '/api/auth/login', 'public', async ({ body, req }) => {
 route('GET', '/api/demo-users', 'public', async () => {
   await ensureSeeded();
   const list = await db.demoUsers();
-  return list.map(publicUser);
+  return list && list.length ? list.map(publicUser) : INITIAL_USERS.filter((u) => u.isDemo).map(publicUser);
 });
 
 route('POST', '/api/auth/demo', 'public', async ({ body }) => {
@@ -545,17 +549,24 @@ export async function handleRequest(req, res) {
   }
 
   const url = new URL(req.url, 'http://x');
-  if (!url.pathname.startsWith('/api/')) {
-    return serveStatic(req, res, url.pathname);
+  let pathname = url.pathname;
+
+  // Normalize path if rewritten or missing /api prefix in serverless environment
+  if (!pathname.startsWith('/api/') && pathname !== '/api') {
+    if (routes.some((x) => x.re.test('/api' + pathname))) {
+      pathname = '/api' + pathname;
+    } else {
+      return serveStatic(req, res, pathname);
+    }
   }
 
   try {
-    const r = routes.find((x) => x.method === req.method && x.re.test(url.pathname));
+    const r = routes.find((x) => x.method === req.method && x.re.test(pathname));
     if (!r) throw new HttpError(404, 'Endpoint not found.');
     const ctx = {
       req,
       url,
-      params: r.re.exec(url.pathname).groups || {},
+      params: r.re.exec(pathname).groups || {},
       body: req.method === 'GET' || req.method === 'DELETE' ? {} : (req.body || await readBody(req))
     };
     if (r.access !== 'public') {

@@ -43,13 +43,29 @@ export async function api(path, { method = 'GET', body, auth = true } = {}) {
 
   let res;
   try {
-    res = await fetch(`${API_BASE}/api${path}`, { method, headers, body: body !== undefined ? JSON.stringify(body) : undefined });
+    res = await fetch(`${API_BASE}/api${path}`, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined
+    });
   } catch {
     throw new ApiError('Cannot reach the server. Check your connection and try again.', 0, 'NETWORK');
   }
 
+  const contentType = res.headers.get('content-type') || '';
   let data = null;
-  try { data = await res.json(); } catch { /* empty body */ }
+
+  // Protect against static host SPA rewrites returning index.html for unknown /api/* routes
+  if (contentType.includes('application/json')) {
+    try {
+      data = await res.json();
+    } catch {
+      data = null;
+    }
+  } else {
+    // If the response is HTML or text, it is not a valid API endpoint
+    throw new ApiError(`Unexpected response format from server (${res.status})`, res.status, 'NON_JSON');
+  }
 
   if (!res.ok) {
     if (res.status === 401 && auth && getToken()) {
@@ -58,5 +74,6 @@ export async function api(path, { method = 'GET', body, auth = true } = {}) {
     }
     throw new ApiError(data?.error || `Request failed (${res.status})`, res.status, data?.code || '');
   }
+
   return data;
 }

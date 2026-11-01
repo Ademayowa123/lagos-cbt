@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import CandidateAvatar from './CandidateAvatar';
 import { getRegisteredCandidates, resetCandidatePassword } from '../data/authData';
+import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { api } from '../api';
 
 export default function AdminPortal({
@@ -75,8 +76,9 @@ export default function AdminPortal({
   const [questionSearch, setQuestionSearch] = useState('');
   const [selectedCatFilter, setSelectedCatFilter] = useState('all');
   const [showAddQuestionModal, setShowAddQuestionModal] = useState(false);
+  const safeCategories = Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES;
   const [newQuestionForm, setNewQuestionForm] = useState({
-    categoryId: gradeCategories[0]?.id || '',
+    categoryId: safeCategories[0]?.id || 'group-gl-06-10',
     gradeLevel: 'GL 06 to 10',
     question: '',
     optionA: '',

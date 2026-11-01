@@ -14,7 +14,7 @@ import {
   ShieldCheck,
   RefreshCw
 } from 'lucide-react';
-import { MINISTRIES_DEPARTMENTS } from '../data/gradeLevelCategories';
+import { MINISTRIES_DEPARTMENTS, DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { updateUserProfile, changeUserPassword } from '../data/authData';
 import CandidateAvatar from './CandidateAvatar';
 
@@ -49,6 +49,8 @@ export default function CandidateSettings({
     );
   }
 
+  const safeCategory = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
+
   // Profile Information State
   const [firstName, setFirstName] = useState(
     candidate?.firstName || candidate?.fullName?.split(' ')[0] || ''
@@ -60,10 +62,10 @@ export default function CandidateSettings({
     candidate?.ministry || MINISTRIES_DEPARTMENTS[0]
   );
   const [cadre, setCadre] = useState(
-    candidate?.cadre || selectedCategory?.cadres[0] || 'Administrative Officer I'
+    candidate?.cadre || safeCategory?.cadres?.[0] || 'Administrative Officer I'
   );
   const [targetGrade, setTargetGrade] = useState(
-    candidate?.targetGrade || selectedCategory?.gradeLevels[0] || 'GL 10'
+    candidate?.targetGrade || safeCategory?.gradeLevels?.[0] || 'GL 10'
   );
 
   // Security & Password State
@@ -96,9 +98,10 @@ export default function CandidateSettings({
       setIsSaving(true);
 
       // Determine matching category for chosen grade level
-      const matchingCat = gradeCategories.find(c => 
-        c.gradeLevels.includes(targetGrade) || c.id === candidate?.categoryId
-      ) || selectedCategory;
+      const categoriesList = Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES;
+      const matchingCat = categoriesList.find(c => 
+        (c.gradeLevels || []).includes(targetGrade) || c.id === candidate?.categoryId
+      ) || safeCategory;
 
       const updated = await updateUserProfile(candidate.id, {
         firstName: firstName.trim(),
@@ -106,7 +109,7 @@ export default function CandidateSettings({
         ministry: ministry.trim(),
         cadre: cadre.trim(),
         targetGrade: targetGrade.trim(),
-        categoryId: matchingCat.id
+        categoryId: matchingCat?.id || 'group-gl-06-10'
       });
 
       if (setSelectedCategory && matchingCat) {
@@ -346,9 +349,11 @@ export default function CandidateSettings({
                 disabled
                 title="Your target grade was fixed at registration. Contact the Commission to change it."
               >
-                {gradeCategories.flatMap(c => c.gradeLevels).map((gl, idx) => (
-                  <option key={idx} value={gl}>{gl}</option>
-                ))}
+                {(Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES)
+                  .flatMap(c => c.gradeLevels || [])
+                  .map((gl, idx) => (
+                    <option key={idx} value={gl}>{gl}</option>
+                  ))}
               </select>
             </div>
           </div>

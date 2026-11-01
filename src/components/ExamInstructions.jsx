@@ -11,6 +11,7 @@ import {
   Award,
   BookOpen
 } from 'lucide-react';
+import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import CandidateAvatar from './CandidateAvatar';
 
 export default function ExamInstructions({ 
@@ -20,7 +21,17 @@ export default function ExamInstructions({
   onBack 
 }) {
   const [pledgeChecked, setPledgeChecked] = useState(false);
-  const matrix = category.assessmentMatrix;
+  const safeCategory = category || DEFAULT_GRADE_CATEGORIES[0];
+  const safeCandidate = candidate || {
+    fullName: 'Candidate Officer',
+    serviceNumber: 'LASG/CSC/2027/0001',
+    cadre: 'Administrative Officer I',
+    ministry: 'Lagos State Civil Service Commission',
+    spadevScore: 80,
+    targetGrade: 'GL 10',
+    assignedCenter: 'State Secretariat CBT Arena, Alausa, Ikeja'
+  };
+  const matrix = safeCategory.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
 
   return (
     <div className="instructions-container animate-fade-in" style={{ maxWidth: '980px' }}>
@@ -40,28 +51,28 @@ export default function ExamInstructions({
       {/* Candidate Verification Docket */}
       <div className="card" style={{ marginBottom: '2rem', background: 'var(--bg-tertiary)', borderColor: 'var(--border-medium)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', flexWrap: 'wrap' }}>
-          <CandidateAvatar name={candidate.fullName} size={80} />
+          <CandidateAvatar name={safeCandidate.fullName} size={80} />
           <div style={{ flex: 1, minWidth: '260px', textAlign: 'left' }}>
             <div style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.2rem' }}>
-              {candidate.fullName}
+              {safeCandidate.fullName}
             </div>
             <div style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-              Service No: <strong style={{ color: 'var(--text-main)' }}>{candidate.serviceNumber}</strong> | Cadre: <strong style={{ color: 'var(--text-main)' }}>{candidate.cadre}</strong>
+              Service No: <strong style={{ color: 'var(--text-main)' }}>{safeCandidate.serviceNumber}</strong> | Cadre: <strong style={{ color: 'var(--text-main)' }}>{safeCandidate.cadre}</strong>
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-              Ministry: <strong>{candidate.ministry}</strong> • SPADEV Score: <strong style={{ color: 'var(--brand-emerald)' }}>{candidate.spadevScore}%</strong>
+              Ministry: <strong>{safeCandidate.ministry}</strong> • SPADEV Score: <strong style={{ color: 'var(--brand-emerald)' }}>{safeCandidate.spadevScore}%</strong>
             </div>
           </div>
 
           <div style={{ textAlign: 'right', minWidth: '220px' }}>
             <div className="badge badge-blue" style={{ marginBottom: '0.35rem' }}>
-              {category.code}
+              {safeCategory.code}
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-              Target Grade: <strong style={{ color: 'var(--brand-emerald)', fontSize: '1.05rem' }}>{candidate.targetGrade}</strong>
+              Target Grade: <strong style={{ color: 'var(--brand-emerald)', fontSize: '1.05rem' }}>{safeCandidate.targetGrade}</strong>
             </div>
             <div style={{ fontSize: '0.78rem', color: 'var(--text-subtle)', marginTop: '0.25rem' }}>
-              Venue: {candidate.assignedCenter}
+              Venue: {safeCandidate.assignedCenter}
             </div>
           </div>
         </div>
@@ -102,7 +113,7 @@ export default function ExamInstructions({
           <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-emerald)' }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>SPADEV Appraisal</div>
             <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-emerald)' }}>{matrix?.spadevWeight}%</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Candidate Record: {candidate.spadevScore}%</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Candidate Record: {safeCandidate.spadevScore}%</div>
           </div>
         </div>
       </div>
@@ -111,7 +122,7 @@ export default function ExamInstructions({
       <div className="card" style={{ textAlign: 'left', marginBottom: '2rem' }}>
         <h4 style={{ marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
           <BookOpen size={18} color="var(--brand-primary)" />
-          Prescribed Study Chapters for {category.title} (Circular Section 8):
+          Prescribed Study Chapters for {safeCategory.title || safeCategory.code} (Circular Section 8):
         </h4>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1rem' }}>
@@ -120,7 +131,7 @@ export default function ExamInstructions({
               Public Service Rules (PSR 2015):
             </div>
             <ul style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.825rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              {category.psrChapters?.map((p, idx) => (
+              {safeCategory.psrChapters?.map((p, idx) => (
                 <li key={idx}><strong style={{ color: 'var(--text-main)' }}>{p.name}</strong></li>
               ))}
             </ul>
@@ -131,7 +142,7 @@ export default function ExamInstructions({
               Financial Regulations (FR 2009):
             </div>
             <ul style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.825rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
-              {category.frChapters?.map((f, idx) => (
+              {safeCategory.frChapters?.map((f, idx) => (
                 <li key={idx}><strong style={{ color: 'var(--text-main)' }}>{f.name}</strong></li>
               ))}
             </ul>

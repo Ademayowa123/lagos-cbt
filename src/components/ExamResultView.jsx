@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import CandidateAvatar from './CandidateAvatar';
+import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 
 export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
   // Enabled by default so candidates immediately see their complete question-by-question feedback
@@ -37,19 +38,28 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
     userAnswers = {},
     examQuestions = [],
     sectionalScores = {}
-  } = resultData;
+  } = resultData || {};
 
-  const matrix = category.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
+  const safeCategory = category || DEFAULT_GRADE_CATEGORIES[0];
+  const safeCandidate = candidate || {
+    fullName: 'Candidate Officer',
+    serviceNumber: 'LASG/CSC/2027/0001',
+    cadre: 'Administrative Officer I',
+    targetGrade: 'GL 10',
+    ministry: 'Lagos State Civil Service Commission'
+  };
+
+  const matrix = safeCategory.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
 
   // Calculate composite score based on circular parameters
-  const spadevScore = candidate.spadevScore || 75;
-  const writtenScore = candidate.writtenScore || 70;
-  const interviewScore = candidate.interviewScore || 75;
+  const spadevScore = safeCandidate.spadevScore || 75;
+  const writtenScore = safeCandidate.writtenScore || 70;
+  const interviewScore = safeCandidate.interviewScore || 75;
 
   let compositeScore = 0;
   let componentsEligible = true;
 
-  if (category.code === "GL 06 - 10") {
+  if (safeCategory.code === "GL 06 - 10") {
     const cbtContribution = (cbtPercentage * matrix.cbtWeight) / 100;
     const spadevContribution = (spadevScore * matrix.spadevWeight) / 100;
     compositeScore = Math.round(cbtContribution + spadevContribution);
@@ -151,31 +161,31 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
           marginBottom: '1.75rem'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-            <CandidateAvatar name={candidate.fullName} size={42} />
+            <CandidateAvatar name={safeCandidate.fullName} size={42} />
             <div>
               <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Candidate Name:</div>
-              <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '1rem' }}>{candidate.fullName}</div>
+              <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '1rem' }}>{safeCandidate.fullName}</div>
             </div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Service / Reg No:</div>
-            <div style={{ fontWeight: 700, color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>{candidate.serviceNumber}</div>
+            <div style={{ fontWeight: 700, color: 'var(--text-main)', fontFamily: 'var(--font-mono)' }}>{safeCandidate.serviceNumber}</div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Cadre:</div>
-            <div style={{ fontWeight: 700, color: 'var(--text-main)' }}>{candidate.cadre}</div>
+            <div style={{ fontWeight: 700, color: 'var(--text-main)' }}>{safeCandidate.cadre}</div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Target Promotion Grade:</div>
-            <div style={{ fontWeight: 700, color: 'var(--brand-emerald)', fontSize: '1.05rem' }}>{candidate.targetGrade}</div>
+            <div style={{ fontWeight: 700, color: 'var(--brand-emerald)', fontSize: '1.05rem' }}>{safeCandidate.targetGrade}</div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Ministry / MDA:</div>
-            <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.85rem' }}>{candidate.ministry}</div>
+            <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.85rem' }}>{safeCandidate.ministry}</div>
           </div>
           <div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Exam Group:</div>
-            <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.85rem' }}>{category.title}</div>
+            <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '0.85rem' }}>{safeCategory.title || safeCategory.code}</div>
           </div>
         </div>
 
