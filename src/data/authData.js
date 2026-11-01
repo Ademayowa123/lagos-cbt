@@ -52,6 +52,12 @@ export async function authenticateUser(username, password) {
     saveSession(token, user);
     return user;
   } catch (serverErr) {
+    // Only fall back to a local (offline) session when the server could not be reached at all.
+    // If the server answered and said no (wrong password, throttled, etc.), show that error instead:
+    // a local session has no real token, so the server rejects it on the next check and sends the
+    // user straight back to the home page.
+    if (serverErr?.code !== 'NETWORK' && serverErr?.code !== 'NON_JSON') throw serverErr;
+
     // If backend is unreachable or during static hosting, authenticate sacred admin locally
     if (cleanUser === 'admin' && (cleanPass === 'admin2027' || cleanPass === 'admin')) {
       const adminUser = {
