@@ -91,67 +91,47 @@ export default function CandidateDashboard({
       
       {/* 1. TOP WELCOME & IDENTITY BANNER */}
       <div className="dashboard-hero">
-        <div style={{
-          position: 'absolute',
-          right: '-20px',
-          top: '-20px',
-          width: '240px',
-          height: '240px',
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)',
-          pointerEvents: 'none'
-        }} />
+        <div className="dashboard-hero-glow" />
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1.5rem', position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+        <div className="dashboard-hero-header">
+          <div className="dashboard-hero-identity">
             <CandidateAvatar 
               name={candidate?.fullName} 
-              size={72} 
-              fontSize="1.75rem"
-              style={{ border: '3px solid rgba(255, 255, 255, 0.25)', boxShadow: '0 4px 14px rgba(0,0,0,0.3)' }}
+              size={64} 
+              fontSize="1.5rem"
+              className="dashboard-hero-avatar"
             />
-            <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '0.35rem' }}>
-                <span className={`badge ${isAdmin ? 'badge-amber' : 'badge-emerald'}`} style={{ fontSize: '0.725rem', padding: '0.2rem 0.65rem' }}>
-                  {isAdmin ? 'Commission Administrator' : 'Verified Promotion Candidate'}
+            <div className="dashboard-hero-details">
+              <div className="dashboard-hero-meta">
+                <span className={`badge ${isAdmin ? 'badge-amber' : 'badge-emerald'} dashboard-role-badge`}>
+                  {isAdmin ? 'Commission Administrator' : 'Verified Candidate'}
                 </span>
-                <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                <span className="dashboard-hero-service-no">
                   {candidate?.serviceNumber || 'LASG/CSC/2027'}
                 </span>
               </div>
-              <h1 style={{ fontSize: 'clamp(1.35rem, 4vw, 1.85rem)', fontWeight: 800, color: '#ffffff', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.25 }}>
+              <h1 className="dashboard-hero-name">
                 {candidate?.fullName}
               </h1>
-              <p style={{ fontSize: '0.875rem', color: 'rgba(255, 255, 255, 0.8)', margin: '0.35rem 0 0' }}>
+              <p className="dashboard-hero-sub">
                 Year 2027 Lagos State Civil Service Promotion Exercise Portal
               </p>
             </div>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
+          <div className="dashboard-hero-actions">
             {!candidate?.isDemo ? (
               <button
                 id="dashboard-settings-btn"
-                className="btn btn-secondary"
+                className="btn btn-secondary dashboard-settings-btn"
                 onClick={onNavigateSettings}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.15rem' }}
               >
-                <Settings size={16} />
+                <Settings size={15} />
                 <span>Account Settings</span>
               </button>
             ) : (
               <div 
-                style={{ 
-                  display: 'flex', 
-                  alignItems: 'center', 
-                  gap: '0.4rem', 
-                  background: 'rgba(245, 158, 11, 0.15)', 
-                  border: '1px solid rgba(245, 158, 11, 0.3)', 
-                  padding: '0.5rem 0.85rem', 
-                  borderRadius: 'var(--radius-md)',
-                  color: 'var(--brand-amber)',
-                  fontSize: '0.8rem',
-                  fontWeight: 600
-                }}
+                className="dashboard-demo-badge"
                 title="Demo candidate accounts cannot modify name, ministry, cadre, or password"
               >
                 <span>Demo Mode (Read-Only)</span>
@@ -161,11 +141,10 @@ export default function CandidateDashboard({
             {isAdmin && (
               <button
                 id="dashboard-admin-btn"
-                className="btn btn-gold"
+                className="btn btn-gold dashboard-admin-btn"
                 onClick={onNavigateAdmin}
-                style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.65rem 1.15rem' }}
               >
-                <ShieldCheck size={16} />
+                <ShieldCheck size={15} />
                 <span>Admin Suite</span>
               </button>
             )}
@@ -175,111 +154,77 @@ export default function CandidateDashboard({
         {/* 4 PRIMARY PROFILE HIGHLIGHT CARDS (Name, Level, Ministry, Cadre) */}
         <div className="dashboard-profile-cards">
           {/* Card 1: Candidate Name */}
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1rem',
-            textAlign: 'left'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--brand-primary)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>
-              <User size={14} />
-              <span>Full Name</span>
+          <div className="dashboard-profile-card">
+            <div className="dashboard-card-header">
+              <div className="dashboard-card-label" style={{ color: 'var(--brand-primary)' }}>
+                <User size={13} />
+                <span>Full Name</span>
+              </div>
             </div>
-            <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div className="dashboard-card-val" title={candidate?.fullName}>
               {candidate?.fullName}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', marginTop: '0.2rem' }}>
+            <div className="dashboard-card-sub" style={{ fontFamily: 'var(--font-mono)' }}>
               @{candidate?.username}
             </div>
           </div>
 
           {/* Card 2: Promotion Grade Level */}
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1rem',
-            textAlign: 'left'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.3rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--brand-emerald)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase' }}>
-                <Award size={14} />
-                <span>Promotion Level</span>
+          <div className="dashboard-profile-card">
+            <div className="dashboard-card-header">
+              <div className="dashboard-card-label text-emerald">
+                <Award size={13} />
+                <span>Grade Level</span>
               </div>
               {!candidate?.isDemo && (
                 <button
                   type="button"
                   id="dashboard-change-grade-btn"
+                  className="dashboard-grade-change-btn"
                   onClick={handleOpenGradeModal}
-                  style={{
-                    background: 'rgba(16, 185, 129, 0.15)',
-                    border: '1px solid rgba(16, 185, 129, 0.35)',
-                    borderRadius: 'var(--radius-sm)',
-                    color: 'var(--brand-emerald)',
-                    fontSize: '0.72rem',
-                    fontWeight: 600,
-                    padding: '0.2rem 0.55rem',
-                    cursor: 'pointer',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.25rem'
-                  }}
                   title="Change Target Promotion Grade"
                 >
-                  <Edit3 size={11} />
-                  <span>Change Grade</span>
+                  <Edit3 size={10} />
+                  <span>Change</span>
                 </button>
               )}
             </div>
-            <div style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--brand-emerald)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            <div className="dashboard-card-val text-emerald">
               {candidate?.targetGrade || 'GL 09 to 10'}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-              Category: {category?.code || 'GL 06 - 10'} (Cut-off: {category?.passScorePercentage || 50}%)
+            <div className="dashboard-card-sub">
+              {category?.code || 'GL 06 - 10'} • Pass: {category?.passScorePercentage || 50}%
             </div>
           </div>
 
           {/* Card 3: Ministry / MDA */}
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1rem',
-            textAlign: 'left'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--brand-gold)', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>
-              <Building2 size={14} />
-              <span>Ministry / MDA</span>
+          <div className="dashboard-profile-card">
+            <div className="dashboard-card-header">
+              <div className="dashboard-card-label text-gold">
+                <Building2 size={13} />
+                <span>Ministry / MDA</span>
+              </div>
             </div>
-            <div style={{ fontSize: '0.925rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={candidate?.ministry}>
+            <div className="dashboard-card-val" title={candidate?.ministry}>
               {candidate?.ministry || 'Lagos State Civil Service'}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
-              State Secretariat, Alausa, Ikeja
+            <div className="dashboard-card-sub">
+              State Secretariat, Alausa
             </div>
           </div>
 
           {/* Card 4: Cadre / Professional Track */}
-          <div style={{
-            background: 'rgba(15, 23, 42, 0.6)',
-            border: '1px solid rgba(255, 255, 255, 0.1)',
-            backdropFilter: 'blur(10px)',
-            borderRadius: 'var(--radius-md)',
-            padding: '1rem',
-            textAlign: 'left'
-          }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: '#a78bfa', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', marginBottom: '0.3rem' }}>
-              <Briefcase size={14} />
-              <span>Cadre / Track</span>
+          <div className="dashboard-profile-card">
+            <div className="dashboard-card-header">
+              <div className="dashboard-card-label text-purple">
+                <Briefcase size={13} />
+                <span>Cadre / Track</span>
+              </div>
             </div>
-            <div style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }} title={candidate?.cadre}>
+            <div className="dashboard-card-val" title={candidate?.cadre}>
               {candidate?.cadre || 'Administrative Officer'}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.2rem' }}>
+            <div className="dashboard-card-sub">
               Official Designation
             </div>
           </div>
@@ -289,161 +234,128 @@ export default function CandidateDashboard({
       {/* 2. MAIN DASHBOARD CONTENT GRID */}
       <div className="dashboard-main-grid">
         
-        {/* ACTION TILE: START CBT PROMOTION EXAM */}
-        <div style={{
-          background: 'var(--bg-card)',
-          border: '2px solid rgba(16, 185, 129, 0.4)',
-          borderRadius: 'var(--radius-lg)',
-          padding: '1.75rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          textAlign: 'left',
-          boxShadow: 'var(--shadow-md)',
-          position: 'relative'
-        }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <span className="badge badge-emerald" style={{ fontSize: '0.75rem' }}>
-                <Zap size={13} /> 100 QUESTIONS • TIMED SESSION
+        {/* ACTION TILE 1: START CBT PROMOTION EXAM */}
+        <div className="dashboard-action-card dashboard-exam-card">
+          <div className="dashboard-action-card-body">
+            <div className="dashboard-card-top-row">
+              <span className="badge badge-emerald dashboard-exam-badge">
+                <Zap size={12} /> 100 QUESTIONS • TIMED
               </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--brand-emerald)', fontWeight: 700 }}>
-                {category?.timeLimitMinutes || 90} Minutes
+              <span className="dashboard-time-limit-tag">
+                <Clock size={12} />
+                <span>{category?.timeLimitMinutes || 90} Minutes</span>
               </span>
             </div>
 
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
+            <h3 className="dashboard-action-title">
               Official Year 2027 CBT Promotion Examination
             </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+            <p className="dashboard-action-desc">
               Enter the computer-based test platform calibrated for <strong>{candidate?.targetGrade}</strong>. Exactly 100 questions covering your prescribed Lagos State PSR and Financial Regulations chapters, with full statutory rule citations upon completion.
             </p>
 
             {/* Prescribed Chapter Summary */}
-            <div style={{
-              background: 'var(--bg-tertiary)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-md)',
-              padding: '0.85rem 1rem',
-              marginBottom: '1.5rem'
-            }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--brand-emerald)', marginBottom: '0.4rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <BookOpen size={14} />
-                Prescribed Reading Scope for {category?.code}:
+            <div className="dashboard-scope-box">
+              <div className="dashboard-scope-header">
+                <BookOpen size={13} />
+                <span>Prescribed Reading Scope for {category?.code}:</span>
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--text-main)', lineHeight: 1.5 }}>
-                <div>• <strong>Public Service Rules:</strong> {category?.psrChapters?.map(p => `Ch.${p.chapter}`).join(', ') || 'Ch. 1-10'}</div>
-                <div style={{ marginTop: '0.2rem' }}>• <strong>Financial Regulations:</strong> {category?.frChapters?.map(f => `Ch.${f.chapter}`).join(', ') || 'Ch. 1-8'}</div>
+              <div className="dashboard-scope-content">
+                <div className="dashboard-scope-line">
+                  <span className="scope-bullet">📘</span>
+                  <span className="scope-label">Public Service Rules:</span>
+                  <span className="scope-val">{category?.psrChapters?.map(p => `Ch.${p.chapter}`).join(', ') || 'Ch. 1-10'}</span>
+                </div>
+                <div className="dashboard-scope-line">
+                  <span className="scope-bullet">📙</span>
+                  <span className="scope-label">Financial Regulations:</span>
+                  <span className="scope-val">{category?.frChapters?.map(f => `Ch.${f.chapter}`).join(', ') || 'Ch. 1-8'}</span>
+                </div>
               </div>
             </div>
           </div>
 
           <button
             id="dashboard-start-exam-btn"
-            className="btn btn-emerald btn-lg"
+            className="btn btn-emerald btn-lg dashboard-launch-exam-btn"
             onClick={onStartExam}
-            style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem', minHeight: '52px', fontWeight: 700, fontSize: '1rem' }}
           >
-            <Play size={18} fill="currentColor" />
+            <Play size={17} fill="currentColor" />
             <span>Launch 100-Question Exam</span>
-            <ChevronRight size={18} />
+            <ChevronRight size={17} />
           </button>
         </div>
 
-        {/* STUDY RESOURCES & ASSESSMENT MATRIX TILE */}
-        <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-medium)',
-          borderRadius: 'var(--radius-lg)',
-          padding: '1.75rem',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
-          textAlign: 'left',
-          boxShadow: 'var(--shadow-md)'
-        }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.75rem' }}>
-              <span className="badge badge-blue" style={{ fontSize: '0.75rem' }}>
-                <Layers size={13} /> CBT EXAMINATION STRUCTURE
+        {/* ACTION TILE 2: STUDY RESOURCES & CBT MATRIX */}
+        <div className="dashboard-action-card dashboard-study-card">
+          <div className="dashboard-action-card-body">
+            <div className="dashboard-card-top-row">
+              <span className="badge badge-blue dashboard-structure-badge">
+                <Layers size={12} /> CBT EXAM MATRIX
               </span>
-              <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <span className="dashboard-eval-tag">
                 100% CBT Evaluation
               </span>
             </div>
 
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.5rem' }}>
+            <h3 className="dashboard-action-title">
               Study Resources & CBT Format
             </h3>
-            <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+            <p className="dashboard-action-desc">
               Master the official Lagos State Public Service Rules (2015) and Financial Regulations before sitting for the CBT exercise.
             </p>
 
-            {/* CBT Assessment Breakdown Cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))', gap: '0.65rem', marginBottom: '1.25rem' }}>
-              <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--brand-primary)' }}>
+            {/* CBT Assessment Breakdown Cards - Clean 4-col or 2x2 grid */}
+            <div className="dashboard-metrics-grid">
+              <div className="dashboard-metric-box">
+                <div className="dashboard-metric-val text-primary">
                   100%
                 </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>CBT WEIGHT</div>
+                <div className="dashboard-metric-lbl">CBT WEIGHT</div>
               </div>
 
-              <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--brand-emerald)' }}>
+              <div className="dashboard-metric-box">
+                <div className="dashboard-metric-val text-emerald">
                   {category?.totalQuestions || 100}
                 </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>QUESTIONS</div>
+                <div className="dashboard-metric-lbl">QUESTIONS</div>
               </div>
 
-              <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--brand-gold)' }}>
+              <div className="dashboard-metric-box">
+                <div className="dashboard-metric-val text-gold">
                   {category?.timeLimitMinutes || 90}m
                 </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>TIME LIMIT</div>
+                <div className="dashboard-metric-lbl">TIME LIMIT</div>
               </div>
 
-              <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: 'var(--radius-sm)', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                <div style={{ fontSize: '1.35rem', fontWeight: 800, color: '#a78bfa' }}>
+              <div className="dashboard-metric-box">
+                <div className="dashboard-metric-val text-purple">
                   {category?.passScorePercentage || 50}%
                 </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)', fontWeight: 600 }}>PASS BENCHMARK</div>
+                <div className="dashboard-metric-lbl">PASS BENCHMARK</div>
               </div>
             </div>
 
-            <div style={{ 
-              background: 'rgba(59, 130, 246, 0.08)', 
-              border: '1px solid rgba(59, 130, 246, 0.25)', 
-              padding: '0.75rem', 
-              borderRadius: 'var(--radius-sm)',
-              fontSize: '0.775rem',
-              color: 'var(--text-muted)',
-              marginBottom: '1.25rem'
-            }}>
-              ⚖️ <strong>Promotion Benchmark:</strong> Candidates are graded strictly out of 100% on the Computer-Based Test (CBT). A score of 50% or above qualifies for promotion.
+            <div className="dashboard-benchmark-callout">
+              <span className="benchmark-icon">⚖️</span>
+              <div className="benchmark-text">
+                <strong>Promotion Benchmark:</strong> Candidates are graded strictly out of 100% on the Computer-Based Test (CBT). A score of 50% or above qualifies for promotion.
+              </div>
             </div>
           </div>
 
           {!candidate?.isDemo ? (
             <button
               id="dashboard-study-materials-btn"
-              className="btn btn-outline btn-lg"
+              className="btn btn-outline btn-lg dashboard-study-btn"
               onClick={onNavigateResources}
-              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.65rem', minHeight: '52px', fontWeight: 700 }}
             >
-              <BookOpen size={18} />
+              <BookOpen size={17} />
               <span>Open Study Materials & Digests</span>
-              <ChevronRight size={18} />
+              <ChevronRight size={17} />
             </button>
           ) : (
-            <div style={{
-              background: 'rgba(239, 68, 68, 0.08)',
-              border: '1px solid rgba(239, 68, 68, 0.25)',
-              borderRadius: 'var(--radius-md)',
-              padding: '0.85rem 1rem',
-              fontSize: '0.82rem',
-              color: 'var(--text-muted)',
-              textAlign: 'center'
-            }}>
+            <div className="dashboard-demo-lock-box">
               <strong style={{ color: 'var(--brand-danger)' }}>🔒 Study Materials Locked:</strong> Demo accounts do not have access to study materials. Please register an official candidate account to view official compendiums.
             </div>
           )}
@@ -453,42 +365,35 @@ export default function CandidateDashboard({
 
       {/* 3. PERFORMANCE & PREVIOUS ATTEMPTS SECTION */}
       {latestAttempt && (
-        <div style={{
-          background: 'var(--bg-card)',
-          border: '1px solid var(--border-medium)',
-          borderRadius: 'var(--radius-lg)',
-          padding: '1.5rem',
-          textAlign: 'left',
-          boxShadow: 'var(--shadow-sm)'
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontWeight: 800, fontSize: '1.05rem', color: 'var(--text-main)' }}>
+        <div className="dashboard-performance-card">
+          <div className="dashboard-perf-header">
+            <div className="dashboard-perf-title">
               <BarChart3 size={18} color="var(--brand-primary)" />
               <span>Latest CBT Performance Record</span>
             </div>
-            <span style={{ fontSize: '0.775rem', color: 'var(--text-muted)' }}>
+            <span className="dashboard-perf-date">
               Submitted on: {new Date(latestAttempt.submittedAt).toLocaleDateString()}
             </span>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem', alignItems: 'center' }}>
-            <div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>CBT Score:</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: latestAttempt.percentage >= 50 ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
+          <div className="dashboard-perf-grid">
+            <div className="dashboard-perf-stat">
+              <div className="perf-label">CBT Score:</div>
+              <div className={`perf-value ${latestAttempt.percentage >= 50 ? 'text-emerald' : 'text-danger'}`}>
                 {latestAttempt.percentage}% ({latestAttempt.totalCorrect}/{latestAttempt.totalQuestions})
               </div>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Status:</div>
-              <span className={`badge ${latestAttempt.passed ? 'badge-emerald' : 'badge-red'}`} style={{ fontSize: '0.8rem', marginTop: '0.25rem' }}>
+            <div className="dashboard-perf-stat">
+              <div className="perf-label">Evaluation Status:</div>
+              <span className={`badge ${latestAttempt.passed ? 'badge-emerald' : 'badge-red'} perf-badge`}>
                 {latestAttempt.passed ? 'RECOMMENDED FOR PROMOTION' : 'BENCHMARK NOT MET (<50%)'}
               </span>
             </div>
 
-            <div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Target Grade:</div>
-              <div style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-main)' }}>
+            <div className="dashboard-perf-stat">
+              <div className="perf-label">Exam Grade Level:</div>
+              <div className="perf-value-text">
                 {latestAttempt.candidate?.targetGrade || candidate?.targetGrade}
               </div>
             </div>
@@ -512,20 +417,11 @@ export default function CandidateDashboard({
           zIndex: 9999,
           padding: '1rem'
         }}>
-          <div className="card" style={{
-            maxWidth: '520px',
-            width: '100%',
-            background: 'var(--bg-card)',
-            border: '1px solid var(--border-medium)',
-            borderRadius: 'var(--radius-lg)',
-            padding: '1.75rem',
-            boxShadow: 'var(--shadow-xl)',
-            textAlign: 'left'
-          }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.75rem' }}>
+          <div className="card dashboard-grade-modal-card">
+            <div className="dashboard-modal-header">
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Award size={22} color="var(--brand-emerald)" />
-                <h3 style={{ margin: 0, fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-main)' }}>
+                <Award size={20} color="var(--brand-emerald)" />
+                <h3 style={{ margin: 0, fontSize: '1.15rem', fontWeight: 800, color: 'var(--text-main)' }}>
                   Change Target Promotion Grade
                 </h3>
               </div>
@@ -540,13 +436,13 @@ export default function CandidateDashboard({
               </button>
             </div>
 
-            <p style={{ fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: 1.5, marginBottom: '1.25rem' }}>
-              Select the grade level you are seeking promotion to in the Year 2027 Promotion Exercise. Your CBT examination questions and regulatory syllabus will automatically update to match this category.
+            <p className="dashboard-modal-desc">
+              Select the grade level you are seeking promotion to in the Year 2027 Promotion Exercise. Your CBT questions and regulatory syllabus will automatically update to match this category.
             </p>
 
             {/* Grade Selector */}
-            <div className="form-group" style={{ marginBottom: '1.25rem' }}>
-              <label htmlFor="modal-target-grade-select" className="form-label" style={{ fontWeight: 700 }}>
+            <div className="form-group" style={{ marginBottom: '1.15rem' }}>
+              <label htmlFor="modal-target-grade-select" className="form-label" style={{ fontWeight: 700, fontSize: '0.85rem' }}>
                 Target Promotion Grade:
               </label>
               <select
@@ -554,7 +450,7 @@ export default function CandidateDashboard({
                 className="form-select"
                 value={modalSelectedGrade}
                 onChange={(e) => setModalSelectedGrade(e.target.value)}
-                style={{ width: '100%' }}
+                style={{ width: '100%', fontSize: '0.9rem' }}
               >
                 {categoriesList.map((cat) => (
                   <optgroup key={cat.id} label={`${cat.code} — ${cat.title}`}>
@@ -570,44 +466,28 @@ export default function CandidateDashboard({
 
             {/* Live Preview of Matching Exam Band */}
             {modalMatchingCat && (
-              <div style={{
-                padding: '0.85rem 1rem',
-                background: 'rgba(16, 185, 129, 0.08)',
-                border: '1px solid rgba(16, 185, 129, 0.25)',
-                borderRadius: 'var(--radius-md)',
-                marginBottom: '1.5rem',
-                fontSize: '0.825rem',
-                color: 'var(--text-main)'
-              }}>
+              <div className="dashboard-modal-preview">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: 700, color: 'var(--brand-emerald)', marginBottom: '0.35rem' }}>
                   <span className={`badge ${modalMatchingCat.badgeColor || 'badge-emerald'}`} style={{ fontSize: '0.7rem' }}>
                     {modalMatchingCat.code}
                   </span>
-                  <span>{modalMatchingCat.title}</span>
+                  <span style={{ fontSize: '0.85rem' }}>{modalMatchingCat.title}</span>
                 </div>
                 <div style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.5 }}>
-                  • Assessment Structure: 100 Questions ({modalMatchingCat.timeLimitMinutes || 90} Mins)<br/>
-                  • Minimum Pass Mark: {modalMatchingCat.passScorePercentage || 50}%<br/>
-                  • PSR & FR Scope: {modalMatchingCat.psrChapters?.length || 3} PSR Chapters, {modalMatchingCat.frChapters?.length || 3} Financial Regs Chapters
+                  • Assessment: 100 Questions ({modalMatchingCat.timeLimitMinutes || 90} Mins)<br/>
+                  • Pass Mark: {modalMatchingCat.passScorePercentage || 50}%<br/>
+                  • Syllabus: {modalMatchingCat.psrChapters?.length || 3} PSR Chapters, {modalMatchingCat.frChapters?.length || 3} Financial Regs Chapters
                 </div>
               </div>
             )}
 
             {modalError && (
-              <div style={{
-                padding: '0.65rem 0.85rem',
-                background: 'rgba(239, 68, 68, 0.12)',
-                border: '1px solid rgba(239, 68, 68, 0.35)',
-                color: '#f87171',
-                borderRadius: 'var(--radius-sm)',
-                fontSize: '0.825rem',
-                marginBottom: '1rem'
-              }}>
+              <div className="dashboard-modal-error">
                 {modalError}
               </div>
             )}
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', alignItems: 'center' }}>
+            <div className="dashboard-modal-actions">
               <button
                 type="button"
                 className="btn btn-secondary"
