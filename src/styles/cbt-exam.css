@@ -9,10 +9,9 @@
   user-select: none;
 }
 
-/* Exam Header */
+/* Exam Header (Non-fixed on examination page) */
 .cbt-header {
-  position: sticky;
-  top: 0;
+  position: static;
   z-index: 100;
   background: var(--bg-glass);
   backdrop-filter: blur(16px);

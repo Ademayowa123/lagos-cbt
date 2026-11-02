@@ -10,7 +10,7 @@ import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { db } from './db.js';
 import { INITIAL_USERS } from './seedUsers.js';
-import { DEFAULT_GRADE_CATEGORIES } from '../src/data/gradeLevelCategories.js';
+import { DEFAULT_GRADE_CATEGORIES, resolveQuestionSubjectId } from '../src/data/gradeLevelCategories.js';
 import { DEFAULT_RESOURCES } from '../src/data/defaultResources.js';
 import { get100ExamQuestionsForCategory } from '../src/data/defaultQuestions.js';
 
@@ -56,7 +56,7 @@ const publicUser = (r) => {
   const extra = parseData(r.data);
   return { id: r.id, username: r.username, role: r.role, isDemo: !!r.is_demo, ...extra };
 };
-const PROFILE_FIELDS = ['firstName', 'surname', 'ministry', 'cadre', 'avatar'];
+const PROFILE_FIELDS = ['firstName', 'surname', 'ministry', 'cadre', 'avatar', 'targetGrade', 'categoryId', 'gradeLevel'];
 const must = (v, msg) => {
   if (!v) throw new HttpError(400, msg);
   return v;
@@ -117,7 +117,7 @@ async function buildSnapshot(cat) {
       question: q.question,
       options: order.map((i) => q.options[i]),
       correctAnswer: order.indexOf(q.correctAnswer),
-      subjectId: q.subjectId || 'general',
+      subjectId: resolveQuestionSubjectId(q, cat.id),
       chapter: q.chapter,
       resourceMaterial: q.resourceMaterial || q.referenceRule,
       explanation: q.explanation,
@@ -132,9 +132,11 @@ async function finalize(ex, answers, strikes) {
   let totalCorrect = 0;
   const sectionalScores = {};
   for (const q of snap) {
-    const ok = ans[q.id] === q.correctAnswer;
+    const chosen = ans[q.id] !== undefined ? Number(ans[q.id]) : (ans[String(q.id)] !== undefined ? Number(ans[String(q.id)]) : undefined);
+    const ok = chosen !== undefined && chosen === Number(q.correctAnswer);
     if (ok) totalCorrect++;
-    const s = (sectionalScores[q.subjectId] ||= { total: 0, correct: 0, name: q.subjectId });
+    const sId = resolveQuestionSubjectId(q, cat?.id);
+    const s = (sectionalScores[sId] ||= { total: 0, correct: 0, name: sId });
     s.total++;
     if (ok) s.correct++;
   }
@@ -147,7 +149,7 @@ async function finalize(ex, answers, strikes) {
     totalQuestions: snap.length,
     totalCorrect,
     percentage,
-    passed: percentage >= (cat?.passScorePercentage || 60),
+    passed: percentage >= (cat?.passScorePercentage || 50),
     sectionalScores,
     securityStrikes: strikes ?? ex.strikes,
     timeSpentSeconds: Math.round((Math.min(now, ex.ends_at) - ex.started_at) / 1000),
@@ -291,7 +293,6 @@ route('POST', '/api/auth/register', 'public', async ({ body }) => {
     gradeLevel: `GL ${Math.max(6, parseInt(String(grade).replace(/\D/g, '') || 9, 10) - 1)}`,
     targetGrade: grade,
     categoryId: cat?.id || 'group-gl-06-10',
-    spadevScore: crypto.randomInt(72, 92),
     serviceNumber: `LASG/CSC/2027/${crypto.randomInt(1000, 9999)}`,
     assignedCenter: 'State Secretariat CBT Arena, Alausa, Ikeja',
   };
@@ -321,6 +322,19 @@ route('PUT', '/api/me', 'user', async ({ auth, body }) => {
   const data = parseData(auth.user.data);
   for (const k of PROFILE_FIELDS) {
     if (typeof body[k] === 'string' && body[k].trim()) data[k] = body[k].trim();
+  }
+  if (body.targetGrade && typeof body.targetGrade === 'string') {
+    const tg = body.targetGrade.trim();
+    data.targetGrade = tg;
+    const allCats = await db.allCategories();
+    const matchingCat = allCats.find(c => (c.gradeLevels || []).includes(tg)) || (body.categoryId ? await db.getCategory(body.categoryId) : null);
+    if (matchingCat) {
+      data.categoryId = matchingCat.id;
+    }
+    const parsedGL = parseInt(String(tg).replace(/\D/g, '') || '9', 10);
+    data.gradeLevel = `GL ${Math.max(6, parsedGL - 1)}`;
+  } else if (body.categoryId && typeof body.categoryId === 'string') {
+    data.categoryId = body.categoryId.trim();
   }
   data.fullName = `${data.firstName} ${data.surname}`;
   await db.updateUserData(auth.user.id, data);
@@ -374,11 +388,13 @@ route('PUT', '/api/exam/answers', 'candidate', async ({ auth, body }) => {
   const ex = await activeExam(auth.user);
   if (!ex) throw new HttpError(409, 'The examination has ended.', 'EXAM_ENDED');
   const snap = parseData(ex.snapshot);
-  const valid = new Map(snap.map((q) => [q.id, q.options.length]));
+  const valid = new Map(snap.map((q) => [String(q.id), q.options.length]));
   const answers = {};
-  for (const [qid, idx] of Object.entries(body.answers || {})) {
-    if (valid.has(qid) && Number.isInteger(idx) && idx >= 0 && idx < valid.get(qid)) {
-      answers[qid] = idx;
+  for (const [qid, rawIdx] of Object.entries(body.answers || {})) {
+    const sid = String(qid);
+    const idx = Number(rawIdx);
+    if (valid.has(sid) && Number.isInteger(idx) && idx >= 0 && idx < valid.get(sid)) {
+      answers[sid] = idx;
     }
   }
   const strikes = Math.max(ex.strikes || 0, Number(body.securityStrikes) || 0);
@@ -395,14 +411,16 @@ route('POST', '/api/exam/submit', 'candidate', async ({ auth, body }) => {
   }
   const inTime = Date.now() <= ex.ends_at + GRACE_MS;
   const snap = parseData(ex.snapshot);
-  const valid = new Set(snap.map((q) => q.id));
+  const valid = new Set(snap.map((q) => String(q.id)));
   const sent = {};
   if (inTime) {
-    for (const [qid, idx] of Object.entries(body.answers || {})) {
-      if (valid.has(qid) && Number.isInteger(idx)) sent[qid] = idx;
+    for (const [qid, rawIdx] of Object.entries(body.answers || {})) {
+      const sid = String(qid);
+      const idx = Number(rawIdx);
+      if (valid.has(sid) && Number.isInteger(idx)) sent[sid] = idx;
     }
   }
-  const prevAns = parseData(ex.answers);
+  const prevAns = parseData(ex.answers) || {};
   return await finalize(ex, inTime ? { ...prevAns, ...sent } : null, Math.max(ex.strikes || 0, Number(body.securityStrikes) || 0));
 });
 

@@ -238,16 +238,14 @@ export default function HomePage({
                   {cat.description}
                 </p>
 
-                {/* Circular Scoring Matrix Pill */}
+                {/* Scoring Format Pill */}
                 <div style={{ background: 'var(--bg-tertiary)', padding: '0.75rem', borderRadius: 'var(--radius-md)', marginBottom: '1rem' }}>
                   <div style={{ fontSize: '0.7rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
-                    ASSESSMENT MATRIX (CIRCULAR SEC. 7):
+                    EXAMINATION FORMAT:
                   </div>
                   <div style={{ fontSize: '0.78rem', color: 'var(--text-main)', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <span>CBT: <strong>{cat.assessmentMatrix?.cbtWeight}%</strong></span>
-                    {cat.assessmentMatrix?.writtenWeight > 0 && <span>• Written: <strong>{cat.assessmentMatrix.writtenWeight}%</strong></span>}
-                    {cat.assessmentMatrix?.interviewWeight > 0 && <span>• Interview: <strong>{cat.assessmentMatrix.interviewWeight}%</strong></span>}
-                    <span>• SPADEV: <strong>{cat.assessmentMatrix?.spadevWeight}%</strong></span>
+                    <span>CBT: <strong>100%</strong> (Graded over 100%)</span>
+                    <span>• Pass Benchmark: <strong>{cat.passScorePercentage || 50}%</strong></span>
                   </div>
                 </div>
 

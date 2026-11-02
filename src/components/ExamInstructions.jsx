@@ -27,11 +27,9 @@ export default function ExamInstructions({
     serviceNumber: 'LASG/CSC/2027/0001',
     cadre: 'Administrative Officer I',
     ministry: 'Lagos State Civil Service Commission',
-    spadevScore: 80,
     targetGrade: 'GL 10',
     assignedCenter: 'State Secretariat CBT Arena, Alausa, Ikeja'
   };
-  const matrix = safeCategory.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
 
   return (
     <div className="instructions-container animate-fade-in" style={{ maxWidth: '980px' }}>
@@ -60,7 +58,7 @@ export default function ExamInstructions({
               Service No: <strong style={{ color: 'var(--text-main)' }}>{safeCandidate.serviceNumber}</strong> | Cadre: <strong style={{ color: 'var(--text-main)' }}>{safeCandidate.cadre}</strong>
             </div>
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-              Ministry: <strong>{safeCandidate.ministry}</strong> • SPADEV Score: <strong style={{ color: 'var(--brand-emerald)' }}>{safeCandidate.spadevScore}%</strong>
+              Ministry: <strong>{safeCandidate.ministry}</strong>
             </div>
           </div>
 
@@ -78,42 +76,38 @@ export default function ExamInstructions({
         </div>
       </div>
 
-      {/* Assessment Scoring Matrix per Circular */}
+      {/* Assessment Scoring Matrix */}
       <div className="card" style={{ textAlign: 'left', marginBottom: '2rem', background: 'var(--bg-card)' }}>
         <h4 style={{ fontSize: '1rem', color: 'var(--brand-emerald)', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-          <Award size={18} /> Official Assessment & Scoring Parameters (Circular Section 7):
+          <Award size={18} /> Official Examination Parameters & Grading:
         </h4>
         <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>
-          Total obtainable score is <strong>100%</strong>. An officer who scores below <strong>50%</strong> in any component shall <strong>NOT</strong> be eligible for promotion.
+          Grading is strictly based on your Computer-Based Test (CBT) score over <strong>100%</strong>. A minimum score of <strong>50%</strong> is required to qualify for promotion.
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '1rem' }}>
           <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-primary)' }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>1. Computer-Based Test</div>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-primary)' }}>{matrix?.cbtWeight}%</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Minimum Pass: 50%</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Examination Format</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-primary)' }}>100% CBT</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Graded over 100%</div>
           </div>
 
-          {matrix?.writtenWeight > 0 && (
-            <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-purple)' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>2. Written Assessment</div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-purple)' }}>{matrix.writtenWeight}%</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Leadership & Cadre readiness</div>
-            </div>
-          )}
-
-          {matrix?.interviewWeight > 0 && (
-            <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-gold)' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>3. Competency Interview</div>
-              <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-gold)' }}>{matrix.interviewWeight}%</div>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Panel evaluation</div>
-            </div>
-          )}
-
           <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-emerald)' }}>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>SPADEV Appraisal</div>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-emerald)' }}>{matrix?.spadevWeight}%</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Candidate Record: {safeCandidate.spadevScore}%</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Total Questions</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-emerald)' }}>{safeCategory.totalQuestions || 100} Qs</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Standard Multiple Choice</div>
+          </div>
+
+          <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-gold)' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Time Allotted</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-gold)' }}>{safeCategory.timeLimitMinutes || 90} Mins</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Real-Time Clock</div>
+          </div>
+
+          <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid #a78bfa' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Pass Benchmark</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: '#a78bfa' }}>{safeCategory.passScorePercentage || 50}%</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Promotion Cut-Off</div>
           </div>
         </div>
       </div>
@@ -179,7 +173,7 @@ export default function ExamInstructions({
           </div>
           <h4 style={{ marginBottom: '0.5rem', fontSize: '1.05rem' }}>Qualifying Benchmark</h4>
           <p style={{ fontSize: '0.85rem', lineHeight: 1.5 }}>
-            Scoring below <strong>50%</strong> in the CBT or SPADEV disqualifies an officer from promotion eligibility.
+            Scoring below <strong>50%</strong> in the CBT disqualifies an officer from promotion eligibility.
           </p>
         </div>
 

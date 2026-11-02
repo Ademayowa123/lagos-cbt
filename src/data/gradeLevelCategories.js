@@ -12,13 +12,10 @@ export const DEFAULT_GRADE_CATEGORIES = [
     targetLevel: "Grade Level 06 - 10",
     description: "Assessment for junior-to-officer and senior officer advancement. Evaluates mastery of appointment rules, core discipline, leave entitlements, and foundational financial regulations.",
     timeLimitMinutes: 90,
-    passScorePercentage: 50, // Minimum 50% in any component per circular
+    passScorePercentage: 50, // Minimum 50% pass mark in CBT
     totalQuestions: 100,
     assessmentMatrix: {
-      cbtWeight: 60,
-      spadevWeight: 40,
-      writtenWeight: 0,
-      interviewWeight: 0
+      cbtWeight: 100
     },
     psrChapters: [
       { chapter: 2, name: "Chapter 2: Appointments, Confirmations, Promotions, Transfers & Conversions" },
@@ -66,10 +63,7 @@ export const DEFAULT_GRADE_CATEGORIES = [
     passScorePercentage: 50,
     totalQuestions: 100,
     assessmentMatrix: {
-      cbtWeight: 30,
-      writtenWeight: 30,
-      interviewWeight: 20,
-      spadevWeight: 20
+      cbtWeight: 100
     },
     psrChapters: [
       { chapter: 4, name: "Chapter 4: Disciplinary Procedures & Interdiction/Suspension" },
@@ -119,10 +113,7 @@ export const DEFAULT_GRADE_CATEGORIES = [
     passScorePercentage: 50,
     totalQuestions: 100,
     assessmentMatrix: {
-      cbtWeight: 30,
-      writtenWeight: 30,
-      interviewWeight: 20,
-      spadevWeight: 20
+      cbtWeight: 100
     },
     psrChapters: [
       { chapter: 2, name: "Chapter 2: Commission Appointments & Seniority Structures" },
@@ -179,3 +170,46 @@ export const MINISTRIES_DEPARTMENTS = [
   "Lagos State Public Procurement Agency (PPA)",
   "Lagos State Internal Revenue Service (LIRS)"
 ];
+
+/**
+ * Accurately maps any exam question to its official category subject / regulatory domain.
+ * Protects against missing, undefined or misclassified subjectId tags.
+ */
+export function resolveQuestionSubjectId(q, categoryId = 'group-gl-06-10') {
+  if (!q) return 'psr_ch2';
+  const rawSubject = q.subjectId;
+  const ch = String(q.chapter || q.resourceMaterial || '').toLowerCase();
+  const qText = String(q.question || '').toLowerCase();
+
+  if (categoryId === 'group-gl-06-10') {
+    if (ch.includes('financial') || ch.includes('fr') || ch.includes('vote book') || qText.includes('fr ') || qText.includes('financial regulation') || qText.includes('warrant') || qText.includes('vote book') || rawSubject === 'fr_ch1_3_4') {
+      return 'fr_ch1_3_4';
+    }
+    if (ch.includes('chapter 4') || ch.includes('rule 04') || ch.includes('discipline') || rawSubject === 'psr_ch4') {
+      return 'psr_ch4';
+    }
+    if (ch.includes('chapter 12') || ch.includes('rule 12') || ch.includes('leave') || rawSubject === 'psr_ch12') {
+      return 'psr_ch12';
+    }
+    if (ch.includes('chapter 2') || ch.includes('rule 02') || rawSubject === 'psr_ch2') {
+      return 'psr_ch2';
+    }
+    // Deep fallback by question text
+    if (qText.includes('leave') || qText.includes('maternity') || qText.includes('resumption')) return 'psr_ch12';
+    if (qText.includes('misconduct') || qText.includes('query') || qText.includes('surcharge') || qText.includes('dismissal')) return 'psr_ch4';
+    return 'psr_ch2';
+  }
+
+  if (categoryId === 'group-gl-12-14') {
+    if (ch.includes('procurement') || qText.includes('procurement') || rawSubject === 'procurement_law') return 'procurement_law';
+    if (ch.includes('leadership') || ch.includes('management') || qText.includes('leadership') || qText.includes('management') || rawSubject === 'leadership_mgmt') return 'leadership_mgmt';
+    if (ch.includes('financial') || ch.includes('fr') || rawSubject === 'fr_ch3_6_20') return 'fr_ch3_6_20';
+    return 'psr_ch4_8_10_12';
+  }
+
+  // group-gl-15-16
+  if (ch.includes('procurement') || qText.includes('procurement') || rawSubject === 'procurement_law') return 'procurement_law';
+  if (ch.includes('leadership') || ch.includes('management') || ch.includes('policy') || rawSubject === 'leadership_mgmt') return 'leadership_mgmt';
+  if (ch.includes('financial') || ch.includes('fr') || rawSubject === 'fr_ch1_3_20_25') return 'fr_ch1_3_20_25';
+  return 'psr_ch2_4_6_10_12';
+}

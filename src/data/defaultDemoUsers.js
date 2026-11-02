@@ -16,7 +16,6 @@ export const DEFAULT_DEMO_USERS = [
     gradeLevel: "GL 09",
     targetGrade: "GL 10",
     categoryId: "group-gl-06-10",
-    spadevScore: 82,
     serviceNumber: "LASG/CSC/2027/0482",
     assignedCenter: "Public Service Staff Development Centre (PSSDC), Magodo"
   },
@@ -33,9 +32,6 @@ export const DEFAULT_DEMO_USERS = [
     gradeLevel: "GL 13",
     targetGrade: "GL 14",
     categoryId: "group-gl-12-14",
-    spadevScore: 86,
-    writtenScore: 78,
-    interviewScore: 80,
     serviceNumber: "LASG/CSC/2027/1092",
     assignedCenter: "State Secretariat CBT Arena, Alausa, Ikeja"
   },
@@ -52,9 +48,6 @@ export const DEFAULT_DEMO_USERS = [
     gradeLevel: "GL 15",
     targetGrade: "GL 16",
     categoryId: "group-gl-15-16",
-    spadevScore: 90,
-    writtenScore: 84,
-    interviewScore: 85,
     serviceNumber: "LASG/CSC/2027/0015",
     assignedCenter: "Executive CBT Suite, Public Service Global Hall, Alausa"
   }

@@ -276,13 +276,10 @@ export default function AdminPortal({
   // 4. Export CSV
   const handleExportCSV = () => {
     const rows = [
-      ["Candidate Name", "Service Number", "Ministry", "Cadre", "Target Grade", "CBT (%)", "SPADEV (%)", "Composite Score (%)", "Status", "Date"]
+      ["Candidate Name", "Service Number", "Ministry", "Cadre", "Target Grade", "CBT Score (%)", "Score Breakdown", "Status", "Date"]
     ];
 
     meritHistory.forEach(m => {
-      const spadev = m.candidate.spadevScore || 75;
-      const composite = m.percentage ? Math.round((m.percentage * 0.6) + (spadev * 0.4)) : 75;
-
       rows.push([
         m.candidate.fullName,
         m.candidate.serviceNumber,
@@ -290,8 +287,7 @@ export default function AdminPortal({
         m.candidate.cadre,
         m.candidate.targetGrade,
         `${m.percentage}%`,
-        `${spadev}%`,
-        `${composite}%`,
+        `${m.totalCorrect}/${m.totalQuestions}`,
         m.passed ? "RECOMMENDED FOR PROMOTION" : "NOT QUALIFIED",
         new Date(m.submittedAt).toLocaleDateString()
       ]);
@@ -513,10 +509,8 @@ export default function AdminPortal({
                       ASSESSMENT & SCORING MATRIX:
                     </div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--text-main)', display: 'flex', flexWrap: 'wrap', gap: '0.4rem' }}>
-                      <span>CBT: <strong>{cat.assessmentMatrix?.cbtWeight}%</strong></span>
-                      {cat.assessmentMatrix?.writtenWeight > 0 && <span>• Written: <strong>{cat.assessmentMatrix.writtenWeight}%</strong></span>}
-                      {cat.assessmentMatrix?.interviewWeight > 0 && <span>• Interview: <strong>{cat.assessmentMatrix.interviewWeight}%</strong></span>}
-                      <span>• SPADEV: <strong>{cat.assessmentMatrix?.spadevWeight}%</strong></span>
+                      <span>CBT Assessment: <strong>100%</strong></span>
+                      <span>• Pass Benchmark: <strong>{cat.passScorePercentage || 50}%</strong></span>
                     </div>
                   </div>
 
@@ -830,17 +824,13 @@ export default function AdminPortal({
                     <th>Candidate & Service No</th>
                     <th>Cadre & Ministry</th>
                     <th>Target Grade</th>
-                    <th>CBT Score</th>
-                    <th>Composite Score</th>
+                    <th>CBT Score (%)</th>
                     <th>Status</th>
                     <th>Date</th>
                   </tr>
                 </thead>
                 <tbody>
                   {[...meritHistory].sort((a, b) => b.percentage - a.percentage).map((m, idx) => {
-                    const spadev = m.candidate.spadevScore || 75;
-                    const composite = m.percentage ? Math.round((m.percentage * 0.6) + (spadev * 0.4)) : 75;
-
                     return (
                       <tr key={idx} className={rowCls(`merit-${idx}`)}>
                         <td data-label="Rank" className="cell-head" onClick={() => toggleRow(`merit-${idx}`)} style={{ fontWeight: 800, fontFamily: 'var(--font-mono)' }}>
@@ -864,20 +854,12 @@ export default function AdminPortal({
                         <td data-label="Target Grade">
                           <strong style={{ color: 'var(--brand-emerald)' }}>{m.candidate.targetGrade}</strong>
                         </td>
-                        <td data-label="CBT Score">
-                          <div style={{ fontSize: '1rem', fontWeight: 700 }}>
+                        <td data-label="CBT Score (%)" className="cell-keep">
+                          <div style={{ fontSize: '1.15rem', fontWeight: 800, color: m.passed ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
                             {m.percentage}%
                           </div>
                           <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                            {m.totalCorrect}/{m.totalQuestions}
-                          </div>
-                        </td>
-                        <td data-label="Composite Score" className="cell-keep">
-                          <div style={{ fontSize: '1.1rem', fontWeight: 800, color: m.passed ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                            {composite}%
-                          </div>
-                          <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>
-                            SPADEV: {spadev}%
+                            {m.totalCorrect} / {m.totalQuestions}
                           </div>
                         </td>
                         <td data-label="Status" className="cell-keep">

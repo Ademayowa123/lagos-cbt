@@ -5,6 +5,7 @@ import './styles/admin.css';
 
 import { DEFAULT_GRADE_CATEGORIES } from './data/gradeLevelCategories';
 import { getCurrentUser, logoutUser } from './data/authData';
+import { getActiveExamSession, setActiveExamSession, clearActiveExamSession } from './data/examSession';
 import { api } from './api';
 
 import Navbar from './components/Navbar';
@@ -53,8 +54,20 @@ function App() {
   // The built-in grade groups are only shown for the instant before the server answers.
   const [gradeCategories, setGradeCategories] = useState(DEFAULT_GRADE_CATEGORIES);
 
-  // Selected Grade Category for candidate
-  const [selectedCategory, setSelectedCategory] = useState(DEFAULT_GRADE_CATEGORIES[0]);
+  // Selected Grade Category for candidate (synchronously restores active exam category on refresh)
+  const [selectedCategory, setSelectedCategory] = useState(() => {
+    const active = getActiveExamSession();
+    if (active?.categoryId) {
+      const match = DEFAULT_GRADE_CATEGORIES.find((c) => c.id === active.categoryId);
+      if (match) return match;
+    }
+    const savedUser = getCurrentUser();
+    if (savedUser?.categoryId) {
+      const match = DEFAULT_GRADE_CATEGORIES.find((c) => c.id === savedUser.categoryId);
+      if (match) return match;
+    }
+    return DEFAULT_GRADE_CATEGORIES[0];
+  });
 
   // Question Bank (administrators only; candidates never receive the question bank)
   const [questions, setQuestions] = useState([]);
@@ -85,6 +98,14 @@ function App() {
     return getCurrentUser();
   });
 
+  // Keep selectedCategory synchronized with the logged-in candidate's categoryId
+  useEffect(() => {
+    if (activeCandidate?.categoryId && Array.isArray(gradeCategories) && gradeCategories.length > 0) {
+      const match = gradeCategories.find((c) => c.id === activeCandidate.categoryId);
+      if (match) setSelectedCategory(match);
+    }
+  }, [activeCandidate?.categoryId, gradeCategories]);
+
   // Single Active Session State
   const [showKickedOutModal, setShowKickedOutModal] = useState(false);
 
@@ -108,7 +129,14 @@ function App() {
         if (!cur || cur.active === false) return;
         const cat = gradeCategories.find((c) => c.id === cur.category?.id) || cur.category;
         if (cat) setSelectedCategory(cat);
-        setCurrentView('exam');
+        setActiveExamSession({
+          candidateId: activeCandidate?.id,
+          categoryId: cat?.id || cur.category?.id,
+          endsAt: cur.endsAt,
+          startedAt: cur.startedAt
+        });
+        _setCurrentView('exam');
+        window.location.hash = 'exam';
       })
       .catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -125,21 +153,61 @@ function App() {
 
   // Navigation View: 'home', 'dashboard', 'settings', 'auth', 'instructions', 'exam', 'result', 'admin', 'resources'
   const initialRoute = getRouteFromLocation();
-  const [currentView, setCurrentView] = useState(() => {
+  const [currentView, _setCurrentView] = useState(() => {
+    // 1. Immediately resume active examination on browser refresh / page reload
+    const active = getActiveExamSession();
+    if (active?.active) {
+      return 'exam';
+    }
+    // 2. Check route from location hash
     if (initialRoute?.view) return initialRoute.view;
+    // 3. Fallback to dashboard if authenticated or home if visitor
     const savedUser = getCurrentUser();
     return savedUser ? 'dashboard' : 'home';
   });
 
+  // Guarded navigation setter: candidates can ONLY exit the examination by submitting (going to 'result')
+  const setCurrentView = (nextView) => {
+    const target = typeof nextView === 'function' ? nextView(currentView) : nextView;
+    const active = getActiveExamSession();
+    const isExamRunning = active?.active && currentView === 'exam';
+
+    if (isExamRunning && target !== 'exam' && target !== 'result') {
+      console.warn(`[Exam Lockdown] Navigation to '${target}' blocked. You can only exit by submitting the examination.`);
+      window.history.pushState(null, '', '#exam');
+      return;
+    }
+
+    _setCurrentView(target);
+
+    // Synchronize URL hash
+    if (target === 'exam') {
+      window.location.hash = 'exam';
+    } else if (target === 'home') {
+      window.history.replaceState(null, '', window.location.pathname);
+    } else {
+      window.location.hash = target;
+    }
+  };
+
   // Sub-tab for Auth view: 'demo', 'login', 'register', 'admin'
   const [authTab, setAuthTab] = useState(() => initialRoute?.tab || 'demo');
 
-  // URL Hash synchronization
+  // URL Hash synchronization and Back/Forward browser button trapping
   useEffect(() => {
     const handleLocationChange = () => {
+      const active = getActiveExamSession();
+      const isExamRunning = active?.active && currentView === 'exam';
       const route = getRouteFromLocation();
+
+      // If examination is in progress, Back/Forward browser navigation is strictly trapped
+      if (isExamRunning && route?.view !== 'exam' && route?.view !== 'result') {
+        window.history.pushState(null, '', '#exam');
+        return;
+      }
+
       if (route) {
-        setCurrentView(route.view);
+        _setCurrentView(route.view);
         if (route.tab) setAuthTab(route.tab);
       }
     };
@@ -149,7 +217,7 @@ function App() {
       window.removeEventListener('popstate', handleLocationChange);
       window.removeEventListener('hashchange', handleLocationChange);
     };
-  }, []);
+  }, [currentView]);
 
   // Exam Result State
   const [lastExamResult, setLastExamResult] = useState(null);
@@ -181,17 +249,19 @@ function App() {
     setCurrentView('home');
   };
 
-  // Exam Completion Handler
+  // Exam Completion Handler: submitting is the official and only authorized exit from the exam
   const handleExamSubmit = (resultData) => {
+    clearActiveExamSession(activeCandidate?.id, selectedCategory?.id);
     setLastExamResult(resultData);
-    setCurrentView('result');
+    _setCurrentView('result');
+    window.location.hash = 'result';
   };
 
   const isExamActive = currentView === 'exam';
   const safeSelectedCategory = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
 
   return (
-    <div className="app-root">
+    <div className={`app-root ${isExamActive ? 'view-exam' : 'has-fixed-navbar'}`}>
       {/* Universal Top Navigation Header */}
       <Navbar 
         currentView={currentView}
@@ -213,6 +283,9 @@ function App() {
           <CandidateDashboard 
             candidate={activeCandidate}
             category={safeSelectedCategory}
+            gradeCategories={gradeCategories}
+            onCandidateUpdated={(updated) => setActiveCandidate(updated)}
+            setSelectedCategory={setSelectedCategory}
             onStartExam={() => setCurrentView('instructions')}
             onNavigateResources={() => setCurrentView('resources')}
             onNavigateSettings={() => setCurrentView('settings')}
@@ -262,8 +335,13 @@ function App() {
             </div>
           ) : (
             <CandidateSettings 
+              key={`${activeCandidate?.id}-${activeCandidate?.targetGrade}`}
               candidate={activeCandidate}
-              onCandidateUpdated={(updated) => setActiveCandidate(updated)}
+              onCandidateUpdated={(updated) => {
+                setActiveCandidate(updated);
+                const cat = gradeCategories?.find(c => c.id === updated.categoryId);
+                if (cat) setSelectedCategory(cat);
+              }}
               gradeCategories={gradeCategories}
               selectedCategory={selectedCategory}
               setSelectedCategory={setSelectedCategory}
@@ -289,7 +367,10 @@ function App() {
         activeCandidate ? (
           <CandidateDashboard 
             candidate={activeCandidate}
-            category={selectedCategory}
+            category={safeSelectedCategory}
+            gradeCategories={gradeCategories}
+            onCandidateUpdated={(updated) => setActiveCandidate(updated)}
+            setSelectedCategory={setSelectedCategory}
             onStartExam={() => setCurrentView('instructions')}
             onNavigateResources={() => setCurrentView('resources')}
             onNavigateSettings={() => setCurrentView('settings')}
@@ -329,7 +410,14 @@ function App() {
         <ExamInstructions 
           candidate={activeCandidate}
           category={safeSelectedCategory}
-          onStartExam={() => setCurrentView('exam')}
+          onStartExam={() => {
+            setActiveExamSession({
+              candidateId: activeCandidate?.id || 'demo',
+              categoryId: safeSelectedCategory?.id,
+              startedAt: Date.now()
+            });
+            setCurrentView('exam');
+          }}
           onBack={() => setCurrentView('dashboard')}
         />
       )}
@@ -340,7 +428,11 @@ function App() {
           candidate={activeCandidate}
           category={safeSelectedCategory}
           onExamSubmit={handleExamSubmit}
-          onExit={() => setCurrentView('dashboard')}
+          onExit={() => {
+            clearActiveExamSession(activeCandidate?.id, safeSelectedCategory?.id);
+            _setCurrentView('dashboard');
+            window.location.hash = 'dashboard';
+          }}
         />
       )}
 

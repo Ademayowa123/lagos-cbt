@@ -70,16 +70,11 @@ const resCand = nullCandidateResult.candidate || {
   fullName: 'Candidate Officer',
   serviceNumber: 'LASG/CSC/2027/0001',
   cadre: 'Administrative Officer I',
-  targetGrade: 'GL 10',
-  spadevScore: 75
+  targetGrade: 'GL 10'
 };
-const resMatrix = resCat?.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
-const cbtPart = (nullCandidateResult.percentage * resMatrix.cbtWeight) / 100;
-const spadevPart = ((resCand.spadevScore || 75) * resMatrix.spadevWeight) / 100;
-const composite = Math.round(cbtPart + spadevPart);
-
-assert.equal(composite, 75);
-console.log('  ✓ ExamResultView calculation succeeds with null candidate and category fallbacks');
+const cbtScore = nullCandidateResult.percentage;
+assert.equal(cbtScore, 75);
+console.log('  ✓ ExamResultView pure 100% CBT scoring succeeds with null candidate and category fallbacks');
 
 // 6. Test ResourceLibraryView filtering with malformed resources
 const malformedResources = [

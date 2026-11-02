@@ -3,7 +3,6 @@ import {
   ShieldCheck, 
   UserCheck, 
   Zap, 
-  Lock, 
   UserPlus, 
   Layers, 
   BookOpen, 
@@ -12,9 +11,7 @@ import {
   AlertCircle,
   Hash,
   Eye,
-  EyeOff,
-  Building2,
-  Award
+  EyeOff
 } from 'lucide-react';
 import {
   fetchDemoUsers,
@@ -86,17 +83,9 @@ export default function CandidateAuth({
   });
 
   // Live auto-generated username for registration
-  const [previewUsername, setPreviewUsername] = useState('');
-
-  // Update live preview username whenever First Name, Surname, or Number changes
-  useEffect(() => {
-    if (regForm.firstName && regForm.surname) {
-      const generated = previewUsername(regForm.firstName, regForm.surname, regForm.customNumber);
-      setPreviewUsername(generated);
-    } else {
-      setPreviewUsername('');
-    }
-  }, [regForm.firstName, regForm.surname, regForm.customNumber]);
+  const generatedUsername = (regForm.firstName && regForm.surname)
+    ? previewUsername(regForm.firstName, regForm.surname, regForm.customNumber)
+    : '';
 
   // Keep category in sync with registration category selection
   useEffect(() => {
@@ -200,6 +189,10 @@ export default function CandidateAuth({
       });
 
       setActiveCandidate(newCandidate);
+
+      const cat = gradeCategories?.find(c => c.id === newCandidate.categoryId);
+      if (cat && setSelectedCategory) setSelectedCategory(cat);
+
       setSuccessMessage(`Account created successfully! Your username is: ${newCandidate.username}`);
       
       setTimeout(() => {
@@ -642,7 +635,7 @@ export default function CandidateAuth({
                   name="username"
                   id="reg-username-input"
                   className="form-input"
-                  value={previewUsername || (regForm.firstName && regForm.surname ? `${regForm.firstName.toLowerCase()}.${regForm.surname.toLowerCase()}` : '')}
+                  value={generatedUsername}
                   autoComplete="username"
                   readOnly
                   style={{
@@ -802,13 +795,11 @@ export default function CandidateAuth({
                     {/* Circular Scoring Matrix */}
                     <div style={{ background: 'var(--bg-primary)', padding: '0.45rem', borderRadius: 'var(--radius-sm)', marginBottom: '0.5rem' }}>
                       <div style={{ fontSize: '0.68rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.15rem' }}>
-                        SCORING MATRIX:
+                        EXAMINATION FORMAT:
                       </div>
                       <div style={{ fontSize: '0.725rem', color: 'var(--text-main)', display: 'flex', flexWrap: 'wrap', gap: '0.35rem' }}>
-                        <span>CBT: <strong>{cat.assessmentMatrix?.cbtWeight}%</strong></span>
-                        {cat.assessmentMatrix?.writtenWeight > 0 && <span>• Written: <strong>{cat.assessmentMatrix.writtenWeight}%</strong></span>}
-                        {cat.assessmentMatrix?.interviewWeight > 0 && <span>• Interview: <strong>{cat.assessmentMatrix.interviewWeight}%</strong></span>}
-                        <span>• SPADEV: <strong>{cat.assessmentMatrix?.spadevWeight}%</strong></span>
+                        <span>CBT: <strong>100%</strong></span>
+                        <span>• Cut-off: <strong>{cat.passScorePercentage || 50}%</strong></span>
                       </div>
                     </div>
 

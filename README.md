@@ -9,13 +9,13 @@
 
 ### 1. Year 2027 Promotion Exercise Circular Grade Groups (100 Questions / 90 Mins)
 - **GL 06 – 10 (Senior / Officer Group)**:
-  - **Assessment Weights**: CBT 60%, SPADEV 40% (Minimum 50% in each component).
+  - **Assessment Weight**: CBT 100% (Graded over 100%, 50% pass benchmark).
   - **Prescribed Regulations**: Public Service Rules (PSR) Chapters 2, 4, 12; Financial Regulations (FR) Chapters 1, 3, 4; Lagos State Public Procurement Law.
 - **GL 12 – 14 (Middle Management Group)**:
-  - **Assessment Weights**: CBT 30%, Written 30%, Interview 20%, SPADEV 20% (Minimum 50% in each component).
+  - **Assessment Weight**: CBT 100% (Graded over 100%, 50% pass benchmark).
   - **Prescribed Regulations**: PSR Chapters 4, 8, 10, 12; FR Chapters 3, 6, 20; Management & Leadership Principles.
 - **GL 15 – 16 (Directorate Group)**:
-  - **Assessment Weights**: CBT 30%, Written 30%, Interview 20%, SPADEV 20% (Minimum 50% in each component).
+  - **Assessment Weight**: CBT 100% (Graded over 100%, 50% pass benchmark).
   - **Prescribed Regulations**: PSR Chapters 2, 4, 6, 10, 12; FR Chapters 1, 3, 20, 25; Public Policy & Strategic Governance.
 
 ### 2. Candidate Onboarding & Authentication Rules

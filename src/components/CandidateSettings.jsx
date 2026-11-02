@@ -10,9 +10,7 @@ import {
   CheckCircle2, 
   AlertCircle, 
   Eye, 
-  EyeOff,
-  ShieldCheck,
-  RefreshCw
+  EyeOff
 } from 'lucide-react';
 import { MINISTRIES_DEPARTMENTS, DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { updateUserProfile, changeUserPassword } from '../data/authData';
@@ -26,30 +24,8 @@ export default function CandidateSettings({
   setSelectedCategory,
   onBackToDashboard
 }) {
-  // Demo Mode Guard: Demo accounts have no settings to change name or anything
-  if (candidate?.isDemo) {
-    return (
-      <div className="container animate-fade-in" style={{ padding: '4rem 1.25rem 5rem', textAlign: 'center' }}>
-        <div className="card" style={{ maxWidth: '520px', margin: '0 auto', padding: '2.5rem 1.5rem', background: 'var(--bg-card)', border: '1px solid var(--border-medium)' }}>
-          <div style={{ color: 'var(--brand-amber)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
-            <Lock size={48} />
-          </div>
-          <h2 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>
-            Settings Disabled for Demo Accounts
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
-            Demo candidate accounts are read-only demonstration accounts. Profile editing (names, cadre, ministry, grade level) and password changes are disabled. Please register your own official candidate account to customize your profile.
-          </p>
-          <button className="btn btn-primary" onClick={onBackToDashboard}>
-            <ArrowLeft size={16} />
-            <span>Return to Officer Dashboard</span>
-          </button>
-        </div>
-      </div>
-    );
-  }
-
   const safeCategory = selectedCategory || (gradeCategories && gradeCategories[0]) || DEFAULT_GRADE_CATEGORIES[0];
+  const categoriesList = Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES;
 
   // Profile Information State
   const [firstName, setFirstName] = useState(
@@ -67,6 +43,11 @@ export default function CandidateSettings({
   const [targetGrade, setTargetGrade] = useState(
     candidate?.targetGrade || safeCategory?.gradeLevels?.[0] || 'GL 10'
   );
+
+  // Derived matching category for current targetGrade
+  const matchingCatForDisplay = categoriesList.find(c => 
+    (c.gradeLevels || []).includes(targetGrade)
+  ) || categoriesList.find(c => c.id === candidate?.categoryId) || safeCategory;
 
   // Security & Password State
   const [currentPassword, setCurrentPassword] = useState('');
@@ -98,10 +79,9 @@ export default function CandidateSettings({
       setIsSaving(true);
 
       // Determine matching category for chosen grade level
-      const categoriesList = Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES;
       const matchingCat = categoriesList.find(c => 
-        (c.gradeLevels || []).includes(targetGrade) || c.id === candidate?.categoryId
-      ) || safeCategory;
+        (c.gradeLevels || []).includes(targetGrade)
+      ) || categoriesList.find(c => c.id === candidate?.categoryId) || safeCategory;
 
       const updated = await updateUserProfile(candidate.id, {
         firstName: firstName.trim(),
@@ -169,6 +149,29 @@ export default function CandidateSettings({
       setIsSaving(false);
     }
   };
+
+  // Demo Mode Guard: Demo accounts have no settings to change name or anything
+  if (candidate?.isDemo) {
+    return (
+      <div className="container animate-fade-in" style={{ padding: '4rem 1.25rem 5rem', textAlign: 'center' }}>
+        <div className="card" style={{ maxWidth: '520px', margin: '0 auto', padding: '2.5rem 1.5rem', background: 'var(--bg-card)', border: '1px solid var(--border-medium)' }}>
+          <div style={{ color: 'var(--brand-amber)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
+            <Lock size={48} />
+          </div>
+          <h2 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>
+            Settings Disabled for Demo Accounts
+          </h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
+            Demo candidate accounts are read-only demonstration accounts. Profile editing (names, cadre, ministry, grade level) and password changes are disabled. Please register your own official candidate account to customize your profile.
+          </p>
+          <button className="btn btn-primary" onClick={onBackToDashboard}>
+            <ArrowLeft size={16} />
+            <span>Return to Officer Dashboard</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="container animate-fade-in" style={{ padding: '2rem 1.25rem 5rem', maxWidth: '880px', margin: '0 auto' }}>
@@ -247,15 +250,7 @@ export default function CandidateSettings({
       )}
 
       {/* 1. EDIT PROFILE & CADRE FORM */}
-      <div style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-medium)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '1.75rem',
-        marginBottom: '2rem',
-        textAlign: 'left',
-        boxShadow: 'var(--shadow-md)'
-      }}>
+      <div className="settings-card">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem', paddingBottom: '0.85rem', borderBottom: '1px solid var(--border-subtle)' }}>
           <User size={20} color="var(--brand-primary)" />
           <div>
@@ -270,7 +265,7 @@ export default function CandidateSettings({
 
         <form onSubmit={handleSaveProfile}>
           {/* First Name & Surname */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.25rem' }}>
+          <div className="settings-form-grid">
             <div className="form-group">
               <label htmlFor="settings-firstname" className="form-label">First Name:</label>
               <input
@@ -318,7 +313,7 @@ export default function CandidateSettings({
           </div>
 
           {/* Cadre & Target Grade Level */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div className="settings-form-grid" style={{ marginBottom: '1.5rem' }}>
             <div className="form-group">
               <label htmlFor="settings-cadre" className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                 <Briefcase size={15} color="#a78bfa" />
@@ -327,18 +322,31 @@ export default function CandidateSettings({
               <input
                 type="text"
                 id="settings-cadre"
+                list="cadre-suggestions"
                 className="form-input"
                 value={cadre}
                 onChange={(e) => setCadre(e.target.value)}
                 placeholder="e.g. Administrative Officer I"
                 required
               />
+              <datalist id="cadre-suggestions">
+                {(matchingCatForDisplay?.cadres || []).map((c, idx) => (
+                  <option key={idx} value={c} />
+                ))}
+              </datalist>
             </div>
 
             <div className="form-group">
-              <label htmlFor="settings-target-grade" className="form-label" style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <Award size={15} color="var(--brand-emerald)" />
-                <span>Target Promotion Grade:</span>
+              <label htmlFor="settings-target-grade" className="form-label" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.4rem', flexWrap: 'wrap' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Award size={15} color="var(--brand-emerald)" />
+                  <span>Target Promotion Grade:</span>
+                </span>
+                {matchingCatForDisplay && (
+                  <span className={`badge ${matchingCatForDisplay.badgeColor || 'badge-emerald'}`} style={{ fontSize: '0.72rem', padding: '0.15rem 0.5rem' }}>
+                    {matchingCatForDisplay.code}
+                  </span>
+                )}
               </label>
               <select
                 id="settings-target-grade"
@@ -346,19 +354,40 @@ export default function CandidateSettings({
                 value={targetGrade}
                 onChange={(e) => setTargetGrade(e.target.value)}
                 required
-                disabled
-                title="Your target grade was fixed at registration. Contact the Commission to change it."
               >
-                {(Array.isArray(gradeCategories) && gradeCategories.length > 0 ? gradeCategories : DEFAULT_GRADE_CATEGORIES)
-                  .flatMap(c => c.gradeLevels || [])
-                  .map((gl, idx) => (
-                    <option key={idx} value={gl}>{gl}</option>
-                  ))}
+                {categoriesList.map((cat) => (
+                  <optgroup key={cat.id} label={`${cat.code} — ${cat.title}`}>
+                    {(cat.gradeLevels || []).map((gl, idx) => (
+                      <option key={`${cat.id}-${idx}`} value={gl}>
+                        {gl} ({cat.code})
+                      </option>
+                    ))}
+                  </optgroup>
+                ))}
               </select>
+              {matchingCatForDisplay && (
+                <div style={{
+                  marginTop: '0.6rem',
+                  padding: '0.65rem 0.85rem',
+                  background: 'rgba(16, 185, 129, 0.08)',
+                  border: '1px solid rgba(16, 185, 129, 0.25)',
+                  borderRadius: 'var(--radius-sm)',
+                  fontSize: '0.78rem',
+                  lineHeight: 1.5,
+                  color: 'var(--text-muted)'
+                }}>
+                  <div style={{ color: 'var(--brand-emerald)', fontWeight: 700, marginBottom: '0.2rem' }}>
+                    ✓ Exam Band: {matchingCatForDisplay.title}
+                  </div>
+                  <div>
+                    Syllabus: {matchingCatForDisplay.psrChapters?.length || 3} PSR Chapters, {matchingCatForDisplay.frChapters?.length || 3} Financial Regs Chapters • {matchingCatForDisplay.timeLimitMinutes || 90} Mins (100 Qs) • Cut-off: {matchingCatForDisplay.passScorePercentage || 50}%
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="settings-action-bar">
             <button
               type="submit"
               id="save-profile-btn"
@@ -374,14 +403,7 @@ export default function CandidateSettings({
       </div>
 
       {/* 2. CHANGE PASSWORD & SECURITY FORM */}
-      <div style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border-medium)',
-        borderRadius: 'var(--radius-lg)',
-        padding: '1.75rem',
-        textAlign: 'left',
-        boxShadow: 'var(--shadow-md)'
-      }}>
+      <div className="settings-card">
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '1.25rem', paddingBottom: '0.85rem', borderBottom: '1px solid var(--border-subtle)' }}>
           <Lock size={20} color="var(--brand-gold)" />
           <div>
@@ -443,7 +465,7 @@ export default function CandidateSettings({
           </div>
 
           {/* New Password & Confirmation */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div className="settings-form-grid" style={{ marginBottom: '1.5rem' }}>
             <div className="form-group">
               <label htmlFor="settings-new-password" className="form-label" style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span>New Password:</span>
@@ -500,7 +522,7 @@ export default function CandidateSettings({
             </div>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <div className="settings-action-bar">
             <button
               type="submit"
               id="change-password-btn"

@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import CandidateAvatar from './CandidateAvatar';
-import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
+import { DEFAULT_GRADE_CATEGORIES, resolveQuestionSubjectId } from '../data/gradeLevelCategories';
 
 export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
   // Enabled by default so candidates immediately see their complete question-by-question feedback
@@ -49,44 +49,49 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
     ministry: 'Lagos State Civil Service Commission'
   };
 
-  const matrix = safeCategory.assessmentMatrix || { cbtWeight: 60, spadevWeight: 40 };
-
-  // Calculate composite score based on circular parameters
-  const spadevScore = safeCandidate.spadevScore || 75;
-  const writtenScore = safeCandidate.writtenScore || 70;
-  const interviewScore = safeCandidate.interviewScore || 75;
-
-  let compositeScore = 0;
-  let componentsEligible = true;
-
-  if (safeCategory.code === "GL 06 - 10") {
-    const cbtContribution = (cbtPercentage * matrix.cbtWeight) / 100;
-    const spadevContribution = (spadevScore * matrix.spadevWeight) / 100;
-    compositeScore = Math.round(cbtContribution + spadevContribution);
-
-    // Circular: "An officer who scores below 50% in any of the components of the Exercise shall not be eligible for promotion"
-    if (cbtPercentage < 50 || spadevScore < 50) {
-      componentsEligible = false;
-    }
-  } else {
-    // GL 12-14 and GL 15-16
-    const cbtContribution = (cbtPercentage * matrix.cbtWeight) / 100;
-    const writtenContribution = (writtenScore * (matrix.writtenWeight || 30)) / 100;
-    const interviewContribution = (interviewScore * (matrix.interviewWeight || 20)) / 100;
-    const spadevContribution = (spadevScore * (matrix.spadevWeight || 20)) / 100;
-    compositeScore = Math.round(cbtContribution + writtenContribution + interviewContribution + spadevContribution);
-
-    if (cbtPercentage < 50 || writtenScore < 50 || interviewScore < 50 || spadevScore < 50) {
-      componentsEligible = false;
-    }
-  }
-
-  const isOverallPassed = componentsEligible && compositeScore >= 50;
+  // Pure 100% CBT Evaluation: Pass mark is 50%
+  const isOverallPassed = cbtPercentage >= (safeCategory.passScorePercentage || 50);
 
   // Breakdown statistics for questions
   const answeredCount = Object.keys(userAnswers).length;
   const unansweredCount = examQuestions.length - answeredCount;
   const incorrectCount = answeredCount - totalCorrect;
+
+  // Accurately compute and reconcile sectional scores across all 100 questions
+  const computedSectionalScores = React.useMemo(() => {
+    if (Array.isArray(examQuestions) && examQuestions.length > 0) {
+      const scores = {};
+      for (const q of examQuestions) {
+        const sId = resolveQuestionSubjectId(q, safeCategory?.id);
+        const sec = (scores[sId] ||= { total: 0, correct: 0, name: sId });
+        sec.total++;
+        const chosen = userAnswers[q.id] !== undefined ? Number(userAnswers[q.id]) : (userAnswers[String(q.id)] !== undefined ? Number(userAnswers[String(q.id)]) : undefined);
+        if (chosen !== undefined && chosen === Number(q.correctAnswer)) {
+          sec.correct++;
+        }
+      }
+      return scores;
+    }
+    return sectionalScores || {};
+  }, [examQuestions, safeCategory?.id, userAnswers, sectionalScores]);
+
+  // Stable docket reference and date for candidate
+  const docketRef = React.useMemo(() => {
+    const raw = String(safeCandidate?.serviceNumber || safeCandidate?.username || '2027');
+    let hash = 0;
+    for (let i = 0; i < raw.length; i++) {
+      hash = (hash * 31 + raw.charCodeAt(i)) % 900000;
+    }
+    return String(100000 + Math.abs(hash));
+  }, [safeCandidate?.serviceNumber, safeCandidate?.username]);
+
+  const certifiedDate = React.useMemo(() => {
+    try {
+      return new Date(submittedAt || Date.now()).toLocaleString();
+    } catch {
+      return new Date().toLocaleString();
+    }
+  }, [submittedAt]);
 
   useEffect(() => {
     if (isOverallPassed) {
@@ -134,32 +139,22 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
           <div style={{ display: 'inline-flex', padding: '0.65rem', borderRadius: 'var(--radius-md)', background: 'linear-gradient(135deg, #065f46 0%, #047857 100%)', color: '#ffffff', marginBottom: '0.75rem' }}>
             <span style={{ fontSize: '2rem' }}>🏛️</span>
           </div>
-          <h2 style={{ fontSize: '1.65rem', color: 'var(--text-main)', marginBottom: '0.2rem' }}>
+          <h2 className="result-slip-title">
             LAGOS STATE CIVIL SERVICE COMMISSION
           </h2>
-          <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '0.4rem', fontWeight: 600 }}>
+          <div className="result-slip-address">
             STATE SECRETARIAT COMPLEX, ALAUSA, IKEJA, LAGOS
           </div>
-          <div style={{ fontSize: '0.95rem', color: 'var(--brand-emerald)', fontWeight: 700, letterSpacing: '0.04em' }}>
+          <div className="result-slip-subtitle">
             YEAR 2027 PROMOTION EXERCISE - OFFICIAL CBT SCORECARD & FEEDBACK REPORT
           </div>
-          <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
-            Docket Ref: LSCSC/PRO/2027/CBT-{Math.floor(100000 + Math.random() * 900000)} • Certified: {new Date(submittedAt).toLocaleString()}
+          <div className="result-slip-docket">
+            Docket Ref: LSCSC/PRO/2027/CBT-{docketRef} • Certified: {certifiedDate}
           </div>
         </div>
 
         {/* Candidate Detail Matrix */}
-        <div style={{ 
-          background: 'var(--bg-tertiary)', 
-          border: '1px solid var(--border-subtle)', 
-          borderRadius: 'var(--radius-md)', 
-          padding: '1.25rem',
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-          gap: '1rem',
-          textAlign: 'left',
-          marginBottom: '1.75rem'
-        }}>
+        <div className="candidate-matrix-grid">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <CandidateAvatar name={safeCandidate.fullName} size={42} />
             <div>
@@ -191,160 +186,147 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
 
         {/* Big Score Presentation */}
         <div style={{ textAlign: 'center', margin: '2rem 0' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '2rem', flexWrap: 'wrap', alignItems: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             <div>
-              <div className={`result-score-circle ${cbtPercentage < 50 ? 'failed' : ''}`} style={{ width: '135px', height: '135px', fontSize: '2.4rem' }}>
+              <div className={`result-score-circle ${!isOverallPassed ? 'failed' : ''}`} style={{ width: '160px', height: '160px', fontSize: '3.2rem', margin: '0 auto' }}>
                 <span>{cbtPercentage}%</span>
               </div>
-              <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--brand-primary)', marginTop: '0.35rem' }}>
-                CBT Score ({totalCorrect} of {examQuestions.length} Questions)
+              <div style={{ fontSize: '1.15rem', fontWeight: 800, color: isOverallPassed ? 'var(--brand-emerald)' : 'var(--brand-danger)', marginTop: '0.65rem' }}>
+                Official CBT Score: {totalCorrect} / {examQuestions.length || totalQuestions}
               </div>
-            </div>
-
-            <div style={{ borderLeft: '1px solid var(--border-medium)', paddingLeft: '2rem' }}>
-              <div className={`result-score-circle ${!isOverallPassed ? 'failed' : ''}`} style={{ width: '150px', height: '150px', fontSize: '2.75rem' }}>
-                <span>{compositeScore}%</span>
-              </div>
-              <div style={{ fontSize: '0.85rem', fontWeight: 800, color: 'var(--brand-emerald)', marginTop: '0.35rem' }}>
-                Composite Promotion Score
+              <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                Graded strictly over 100% Computer-Based Testing
               </div>
             </div>
           </div>
 
-          <div style={{ marginTop: '1.25rem', marginBottom: '0.75rem' }}>
+          <div style={{ marginTop: '1.5rem', marginBottom: '0.75rem' }}>
             {isOverallPassed ? (
-              <span className="badge badge-emerald" style={{ fontSize: '1.05rem', padding: '0.55rem 1.65rem' }}>
-                <Award size={18} /> RECOMMENDED FOR PROMOTION TO {candidate.targetGrade}
+              <span className="badge badge-emerald result-benchmark-pill">
+                <Award size={18} style={{ flexShrink: 0 }} />
+                <span>RECOMMENDED FOR PROMOTION TO {safeCandidate.targetGrade}</span>
               </span>
             ) : (
-              <span className="badge badge-red" style={{ fontSize: '1.05rem', padding: '0.55rem 1.65rem' }}>
-                <XCircle size={18} /> PROMOTION BENCHMARK NOT MET (&lt;50% THRESHOLD)
+              <span className="badge badge-red result-benchmark-pill">
+                <XCircle size={18} style={{ flexShrink: 0 }} />
+                <span>PROMOTION BENCHMARK NOT MET (&lt;{safeCategory.passScorePercentage || 50}% THRESHOLD)</span>
               </span>
             )}
           </div>
 
-          <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)' }}>
-            Per Call Circular Section 7: An officer scoring below 50% in any exercise component is ineligible for promotion.
+          <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', maxWidth: '620px', margin: '0 auto' }}>
+            Per Commission Standard: Candidates must obtain a minimum score of {safeCategory.passScorePercentage || 50}% in the Computer-Based Test (CBT) to be recommended for promotion.
           </p>
-        </div>
-
-        {/* Circular Assessment Matrix Breakdown Card */}
-        <div style={{ 
-          background: 'var(--bg-tertiary)', 
-          border: '1px solid var(--border-subtle)', 
-          borderRadius: 'var(--radius-md)', 
-          padding: '1.25rem',
-          textAlign: 'left',
-          marginBottom: '2rem'
-        }}>
-          <h4 style={{ fontSize: '0.95rem', marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.45rem', color: 'var(--brand-primary)' }}>
-            <Layers size={17} /> Circular Assessment Components Breakdown:
-          </h4>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '0.75rem' }}>
-            <div style={{ padding: '0.75rem', background: 'var(--bg-card)', borderRadius: 'var(--radius-sm)' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>CBT ({matrix.cbtWeight}%)</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: cbtPercentage >= 50 ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                {cbtPercentage}%
-              </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-subtle)' }}>
-                Weighted: {Math.round((cbtPercentage * matrix.cbtWeight) / 100)}%
-              </div>
-            </div>
-
-            {matrix.writtenWeight > 0 && (
-              <div style={{ padding: '0.75rem', background: 'var(--bg-card)', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Written ({matrix.writtenWeight}%)</div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: writtenScore >= 50 ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                  {writtenScore}%
-                </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-subtle)' }}>
-                  Weighted: {Math.round((writtenScore * matrix.writtenWeight) / 100)}%
-                </div>
-              </div>
-            )}
-
-            {matrix.interviewWeight > 0 && (
-              <div style={{ padding: '0.75rem', background: 'var(--bg-card)', borderRadius: 'var(--radius-sm)' }}>
-                <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Interview ({matrix.interviewWeight}%)</div>
-                <div style={{ fontSize: '1.2rem', fontWeight: 800, color: interviewScore >= 50 ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                  {interviewScore}%
-                </div>
-                <div style={{ fontSize: '0.7rem', color: 'var(--text-subtle)' }}>
-                  Weighted: {Math.round((interviewScore * matrix.interviewWeight) / 100)}%
-                </div>
-              </div>
-            )}
-
-            <div style={{ padding: '0.75rem', background: 'var(--bg-card)', borderRadius: 'var(--radius-sm)' }}>
-              <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>SPADEV ({matrix.spadevWeight}%)</div>
-              <div style={{ fontSize: '1.2rem', fontWeight: 800, color: spadevScore >= 50 ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                {spadevScore}%
-              </div>
-              <div style={{ fontSize: '0.7rem', color: 'var(--text-subtle)' }}>
-                Weighted: {Math.round((spadevScore * matrix.spadevWeight) / 100)}%
-              </div>
-            </div>
-          </div>
         </div>
 
         {/* Sectional Performance Breakdown */}
         <div style={{ textAlign: 'left', marginBottom: '2rem' }}>
-          <h4 style={{ fontSize: '1rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <FileText size={17} color="var(--brand-primary)" />
-            Prescribed Regulatory Chapters Performance:
-          </h4>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.85rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+            <h4 style={{ fontSize: '1.05rem', margin: 0, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <FileText size={18} color="var(--brand-primary)" />
+              Prescribed Regulatory Chapters Performance:
+            </h4>
+            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              Pass Benchmark: ≥50%
+            </span>
+          </div>
 
-          <table className="breakdown-table">
-            <thead>
-              <tr>
-                <th>Regulatory Domain</th>
-                <th>Attempted</th>
-                <th>Score</th>
-                <th>Domain %</th>
-                <th>Evaluation</th>
-              </tr>
-            </thead>
-            <tbody>
-              {category.subjects.map((sub, idx) => {
-                const sec = sectionalScores[sub.id] || { total: 0, correct: 0 };
-                const subPerc = sec.total > 0 ? Math.round((sec.correct / sec.total) * 100) : 0;
-                const isPass = subPerc >= 50;
+          {/* 1. Desktop & Print Table View */}
+          <div className="breakdown-table-wrapper">
+            <table className="breakdown-table">
+              <thead>
+                <tr>
+                  <th className="breakdown-domain">Regulatory Domain</th>
+                  <th className="breakdown-attempted">Attempted</th>
+                  <th className="breakdown-score">Score</th>
+                  <th className="breakdown-percent">Domain %</th>
+                  <th className="breakdown-eval">Evaluation</th>
+                </tr>
+              </thead>
+              <tbody>
+                {(safeCategory?.subjects || []).map((sub, idx) => {
+                  const sec = computedSectionalScores[sub.id] || { total: 0, correct: 0 };
+                  const subPerc = sec.total > 0 ? Math.round((sec.correct / sec.total) * 100) : 0;
+                  const isPass = subPerc >= 50;
 
-                return (
-                  <tr key={idx}>
-                    <td>
-                      <div style={{ fontWeight: 600 }}>{sub.name}</div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Weight: {sub.weight}%</div>
-                    </td>
-                    <td>{sec.total} Questions</td>
-                    <td style={{ fontFamily: 'var(--font-mono)' }}>{sec.correct} / {sec.total}</td>
-                    <td style={{ fontWeight: 700, color: isPass ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
-                      {subPerc}%
-                    </td>
-                    <td>
-                      <span className={`badge ${isPass ? 'badge-emerald' : 'badge-amber'}`} style={{ fontSize: '0.7rem' }}>
-                        {isPass ? 'Competent (≥50%)' : 'Sub-Benchmark'}
-                      </span>
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  return (
+                    <tr key={idx}>
+                      <td className="breakdown-domain">
+                        <div style={{ fontWeight: 600 }}>{sub.name}</div>
+                        <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Weight: {sub.weight}%</div>
+                      </td>
+                      <td className="breakdown-attempted">{sec.total} Questions</td>
+                      <td className="breakdown-score" style={{ fontFamily: 'var(--font-mono)' }}>{sec.correct} / {sec.total}</td>
+                      <td className="breakdown-percent" style={{ fontWeight: 700, color: isPass ? 'var(--brand-emerald)' : 'var(--brand-danger)' }}>
+                        {subPerc}%
+                      </td>
+                      <td className="breakdown-eval">
+                        <span className={`badge ${isPass ? 'badge-emerald' : 'badge-amber'}`} style={{ fontSize: '0.7rem' }}>
+                          {isPass ? 'Competent (≥50%)' : 'Sub-Benchmark'}
+                        </span>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* 2. Mobile Responsive Cards View (Active on mobile viewports <= 768px) */}
+          <div className="breakdown-mobile-cards">
+            {(safeCategory?.subjects || []).map((sub, idx) => {
+              const sec = computedSectionalScores[sub.id] || { total: 0, correct: 0 };
+              const subPerc = sec.total > 0 ? Math.round((sec.correct / sec.total) * 100) : 0;
+              const isPass = subPerc >= 50;
+
+              return (
+                <div 
+                  key={idx} 
+                  className={`breakdown-card ${isPass ? 'passed' : 'failed'}`}
+                >
+                  <div className="breakdown-card-header">
+                    <div>
+                      <div className="breakdown-card-title">{sub.name}</div>
+                      <div className="breakdown-card-meta">
+                        <span className="badge-subtle">Weight: {sub.weight}%</span>
+                      </div>
+                    </div>
+                    <span className={`badge ${isPass ? 'badge-emerald' : 'badge-amber'} breakdown-card-status`}>
+                      {isPass ? 'Competent' : 'Sub-Benchmark'}
+                    </span>
+                  </div>
+
+                  {/* Visual Progress Bar */}
+                  <div className="breakdown-progress-track">
+                    <div 
+                      className={`breakdown-progress-fill ${isPass ? 'bg-emerald' : 'bg-danger'}`}
+                      style={{ width: `${Math.min(100, subPerc)}%` }}
+                    />
+                  </div>
+
+                  {/* 3 Stats Grid */}
+                  <div className="breakdown-card-stats">
+                    <div className="breakdown-stat-col">
+                      <span className="stat-label">ATTEMPTED</span>
+                      <span className="stat-value">{sec.total} Questions</span>
+                    </div>
+                    <div className="breakdown-stat-col">
+                      <span className="stat-label">SCORE</span>
+                      <span className="stat-value mono">{sec.correct} / {sec.total}</span>
+                    </div>
+                    <div className="breakdown-stat-col">
+                      <span className="stat-label">DOMAIN %</span>
+                      <span className={`stat-value perc ${isPass ? 'text-emerald' : 'text-danger'}`}>{subPerc}%</span>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Proctoring & Integrity Audit Docket */}
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-          gap: '1rem', 
-          background: 'var(--bg-tertiary)', 
-          padding: '1rem', 
-          borderRadius: 'var(--radius-md)',
-          textAlign: 'left',
-          marginBottom: '2rem'
-        }}>
+        <div className="result-audit-docket">
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <Clock size={20} color="var(--brand-primary)" />
             <div>
@@ -390,7 +372,7 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
       </div>
 
       {/* Action Buttons (Excluded from Print) */}
-      <div className="no-print" style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
+      <div className="result-actions-bar no-print">
         <button 
           id="print-slip-btn"
           className="btn btn-emerald btn-lg" 
@@ -435,7 +417,7 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
           </div>
 
           {/* Feedback Filter Tabs */}
-          <div style={{ display: 'flex', gap: '0.65rem', marginBottom: '1.5rem', flexWrap: 'wrap' }}>
+          <div className="review-filter-bar">
             <button 
               id="filter-all-questions-btn"
               className={`btn btn-sm ${reviewFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
@@ -550,7 +532,7 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
                   </p>
 
                   {/* 4 Options Grid with clear Candidate Choice vs Correct Answer */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.65rem', marginBottom: '1rem' }}>
+                  <div className="review-options-grid">
                     {q.options.map((opt, optIdx) => {
                       const isCandidateChoice = selectedIdx === optIdx;
                       const isRealAnswer = q.correctAnswer === optIdx;

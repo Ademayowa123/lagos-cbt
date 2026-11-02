@@ -20,8 +20,20 @@ import {
 import CalculatorModal from './CalculatorModal';
 import CandidateAvatar from './CandidateAvatar';
 import { api } from '../api';
-import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
+import { DEFAULT_GRADE_CATEGORIES, resolveQuestionSubjectId } from '../data/gradeLevelCategories';
 import { get100ExamQuestionsForCategory } from '../data/defaultQuestions';
+import { 
+  getActiveExamSession, 
+  setActiveExamSession, 
+  clearActiveExamSession, 
+  saveExamQuestionIndex, 
+  getExamQuestionIndex, 
+  getExamBackupKey,
+  saveCachedExamSession,
+  getCachedExamSession,
+  getCachedAnswers,
+  getCachedFlagged
+} from '../data/examSession';
 
 // Unbiased shuffle (Fisher-Yates with crypto randomness)
 const shuffleList = (list) => {
@@ -56,19 +68,47 @@ export default function CBTExamEngine({
     ministry: 'Lagos State Civil Service Commission'
   };
 
-  // The SERVER starts (or resumes) the exam, shuffles the questions, runs the clock and marks the answers.
-  // This screen only shows the questions and sends the candidate's answers back.
-  const [session, setSession] = useState(null);
+  const storageKey = getExamBackupKey(safeCandidate?.id, safeCategory?.id);
+
+  // Synchronously resume the exam session questions without flash or delay
+  const [session, setSession] = useState(() => {
+    return getCachedExamSession(safeCandidate?.id, safeCategory?.id);
+  });
   const [loadError, setLoadError] = useState('');
   const examQuestions = session?.questions || [];
   const category = session?.category || safeCategory;
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState({}); // { [qId]: optionIndex }
-  const [flaggedQuestions, setFlaggedQuestions] = useState({}); // { [qId]: boolean }
-  const [paletteFilter, setPaletteFilter] = useState('all'); // all, answered, unanswered, flagged
-  const [fontSize, setFontSize] = useState('md'); // sm, md, lg
-  const [isCalcOpen, setIsCalcOpen] = useState(false);
+  // Synchronously resume at the exact question index where candidate stopped
+  const [currentIndex, setCurrentIndex] = useState(() => {
+    return getExamQuestionIndex(safeCandidate?.id, safeCategory?.id);
+  });
+  const [userAnswers, setUserAnswers] = useState(() => {
+    return getCachedAnswers(safeCandidate?.id, safeCategory?.id);
+  });
+  const [flaggedQuestions, setFlaggedQuestions] = useState(() => {
+    return getCachedFlagged(safeCandidate?.id, safeCategory?.id);
+  });
+  const [paletteFilter, setPaletteFilter] = useState(() => {
+    try {
+      return localStorage.getItem('cbt_palette_filter') || 'all';
+    } catch (e) {
+      return 'all';
+    }
+  });
+  const [fontSize, setFontSize] = useState(() => {
+    try {
+      return localStorage.getItem('cbt_font_size') || 'md';
+    } catch (e) {
+      return 'md';
+    }
+  });
+  const [isCalcOpen, setIsCalcOpen] = useState(() => {
+    try {
+      return localStorage.getItem('cbt_calc_open') === 'true';
+    } catch (e) {
+      return false;
+    }
+  });
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [securityStrikes, setSecurityStrikes] = useState(0);
   const [showStrikeWarning, setShowStrikeWarning] = useState(false);
@@ -82,10 +122,24 @@ export default function CBTExamEngine({
   const [showFiveMinWarningModal, setShowFiveMinWarningModal] = useState(false);
   const [isAutoSubmitting, setIsAutoSubmitting] = useState(false);
 
-  // Time left comes from the server clock (ends-at time), so refreshing or changing the device clock cannot add time
-  const [timeLeft, setTimeLeft] = useState(0);
+  // Time left comes from the server clock (ends-at time); synchronously resumed on reload
+  const [timeLeft, setTimeLeft] = useState(() => {
+    const cached = getCachedExamSession(safeCandidate?.id, safeCategory?.id);
+    if (cached?.endsAt) {
+      return Math.max(0, Math.round((cached.endsAt - Date.now()) / 1000));
+    }
+    return (safeCategory?.timeLimitMinutes || 90) * 60;
+  });
   const endsAtRef = useRef(0);
   const clockOffsetRef = useRef(0);
+
+  // Initialize endsAt from cache immediately
+  useEffect(() => {
+    const cached = getCachedExamSession(safeCandidate?.id, safeCategory?.id);
+    if (cached?.endsAt) {
+      endsAtRef.current = cached.endsAt;
+    }
+  }, [safeCandidate?.id, safeCategory?.id]);
 
   // Latest values for the save/submit calls
   const answersRef = useRef({});
@@ -96,20 +150,75 @@ export default function CBTExamEngine({
   flaggedRef.current = flaggedQuestions;
   strikesRef.current = securityStrikes;
 
+  // Persist current question index whenever candidate navigates to another question
+  useEffect(() => {
+    saveExamQuestionIndex(safeCandidate?.id, safeCategory?.id, currentIndex);
+  }, [currentIndex, safeCandidate?.id, safeCategory?.id]);
+
+  // Exam Lockdown: trap browser Back/Forward navigation and warn on window close/reload
+  useEffect(() => {
+    if (window.location.hash !== '#exam') {
+      window.location.hash = 'exam';
+    }
+    window.history.pushState({ inExam: true }, '', '#exam');
+
+    const handlePopState = () => {
+      if (!submittingRef.current) {
+        window.history.pushState({ inExam: true }, '', '#exam');
+      }
+    };
+
+    const handleBeforeUnload = (e) => {
+      if (submittingRef.current) return;
+      e.preventDefault();
+      e.returnValue = 'Examination in progress. All answers are autosaved, but you cannot leave until you submit.';
+      return e.returnValue;
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   // Start the exam on the server, or resume it with the saved answers and the time really left
   useEffect(() => {
     let cancelled = false;
+    let cachedAnswers = getCachedAnswers(safeCandidate?.id, safeCategory?.id);
+    let cachedFlagged = getCachedFlagged(safeCandidate?.id, safeCategory?.id);
+
     api('/exam/start', { method: 'POST', body: { categoryId: safeCategory?.id } })
       .then((s) => {
         if (cancelled) return;
         endsAtRef.current = s.endsAt;
         clockOffsetRef.current = s.serverNow - Date.now();
         setSession(s);
-        setUserAnswers(s.answers || {});
-        setFlaggedQuestions(s.flagged || {});
+        saveCachedExamSession(safeCandidate?.id, safeCategory?.id, s);
+        setActiveExamSession({
+          candidateId: safeCandidate?.id,
+          categoryId: safeCategory?.id,
+          endsAt: s.endsAt,
+          startedAt: s.startedAt || Date.now(),
+          currentIndex
+        });
+        const mergedAnswers = { ...cachedAnswers, ...(s.answers || {}) };
+        const mergedFlagged = { ...cachedFlagged, ...(s.flagged || {}) };
+        setUserAnswers(mergedAnswers);
+        setFlaggedQuestions(mergedFlagged);
         setSecurityStrikes(s.securityStrikes || 0);
         setTimeLeft(s.remainingSeconds);
         if (s.remainingSeconds <= 300) setHasShown5MinWarning(true);
+
+        // Resume at saved question index
+        if (s.questions?.length > 0) {
+          const savedIdx = getExamQuestionIndex(safeCandidate?.id, safeCategory?.id);
+          if (savedIdx >= 0 && savedIdx < s.questions.length) {
+            setCurrentIndex(savedIdx);
+          }
+        }
       })
       .catch((err) => {
         // Resilient fallback: initialize local 100-question session so exam starts even if offline
@@ -128,19 +237,36 @@ export default function CBTExamEngine({
               id, question, options, subjectId, chapter, resourceMaterial
             })),
             rawQuestions: rawQ,
-            answers: {},
-            flagged: {},
+            answers: cachedAnswers,
+            flagged: cachedFlagged,
             securityStrikes: 0,
             isLocal: true
           };
           endsAtRef.current = fallbackSession.endsAt;
           clockOffsetRef.current = 0;
           setSession(fallbackSession);
+          saveCachedExamSession(safeCandidate?.id, safeCategory?.id, fallbackSession);
+          setActiveExamSession({
+            candidateId: safeCandidate?.id,
+            categoryId: safeCategory?.id,
+            endsAt: fallbackSession.endsAt,
+            startedAt: fallbackSession.startedAt,
+            currentIndex
+          });
+          setUserAnswers(cachedAnswers);
+          setFlaggedQuestions(cachedFlagged);
           setTimeLeft(durationSec);
+
+          if (fallbackSession.questions?.length > 0) {
+            const savedIdx = getExamQuestionIndex(safeCandidate?.id, safeCategory?.id);
+            if (savedIdx >= 0 && savedIdx < fallbackSession.questions.length) {
+              setCurrentIndex(savedIdx);
+            }
+          }
         }
       });
     return () => { cancelled = true; };
-  }, [safeCategory?.id]);
+  }, [safeCandidate?.id, safeCategory?.id, safeCategory?.timeLimitMinutes, storageKey]);
 
   // Final submission: the server marks the answers and returns the result (with local fallback)
   const handleFinalSubmit = useCallback(async () => {
@@ -148,23 +274,34 @@ export default function CBTExamEngine({
     submittingRef.current = true;
     setIsAutoSubmitting(true);
 
+    clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
+    const answersToSend = answersRef.current || {};
+
     try {
       const result = await api('/exam/submit', {
         method: 'POST',
-        body: { answers: answersRef.current, securityStrikes: strikesRef.current }
+        body: { answers: answersToSend, securityStrikes: strikesRef.current }
       });
+      clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
+      try {
+        localStorage.removeItem('cbt_font_size');
+        localStorage.removeItem('cbt_palette_filter');
+        localStorage.removeItem('cbt_calc_open');
+      } catch (e) {}
       onExamSubmit(result);
       return;
     } catch (err) {
       // Local scoring fallback
       const pool = session?.rawQuestions || get100ExamQuestionsForCategory(category);
-      const answers = answersRef.current || {};
+      const answers = answersToSend;
       let totalCorrect = 0;
       const sectionalScores = {};
       for (const q of pool) {
-        const ok = answers[q.id] === q.correctAnswer;
+        const chosen = answers[q.id] !== undefined ? Number(answers[q.id]) : (answers[String(q.id)] !== undefined ? Number(answers[String(q.id)]) : undefined);
+        const ok = chosen !== undefined && chosen === Number(q.correctAnswer);
         if (ok) totalCorrect++;
-        const s = (sectionalScores[q.subjectId] ||= { total: 0, correct: 0, name: q.subjectId });
+        const sId = q.subjectId || resolveQuestionSubjectId(q, category?.id);
+        const s = (sectionalScores[sId] ||= { total: 0, correct: 0, name: sId });
         s.total++;
         if (ok) s.correct++;
       }
@@ -183,10 +320,16 @@ export default function CBTExamEngine({
         userAnswers: answers,
         examQuestions: pool
       };
+      clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
+      try {
+        localStorage.removeItem('cbt_font_size');
+        localStorage.removeItem('cbt_palette_filter');
+        localStorage.removeItem('cbt_calc_open');
+      } catch (e) {}
       onExamSubmit(localResult);
       return;
     }
-  }, [category, onExamSubmit, safeCandidate, session]);
+  }, [category, onExamSubmit, safeCandidate, safeCategory?.id, session]);
 
   // 5-Minute Warning Trigger (at exactly 300 seconds)
   useEffect(() => {
@@ -223,21 +366,41 @@ export default function CBTExamEngine({
     return () => clearInterval(id);
   }, [session, handleFinalSubmit]);
 
-  // Autosave to the server
+  // Autosave to the server (with local backup persistence)
   const saveNow = useCallback(async () => {
     if (submittingRef.current) return;
+    const currentAns = answersRef.current || {};
+    const currentFlg = flaggedRef.current || {};
+    const currentStrikes = strikesRef.current || 0;
+
+    // Instantly save to local storage
+    try {
+      localStorage.setItem(`${storageKey}_answers`, JSON.stringify(currentAns));
+      localStorage.setItem(`${storageKey}_flagged`, JSON.stringify(currentFlg));
+    } catch (e) {}
+
+    if (session?.isLocal) {
+      setAutosaveFailed(false);
+      setLastAutoSaveTime(new Date().toLocaleTimeString());
+      return;
+    }
+
     try {
       await api('/exam/answers', {
         method: 'PUT',
-        body: { answers: answersRef.current, flagged: flaggedRef.current, securityStrikes: strikesRef.current }
+        body: { answers: currentAns, flagged: currentFlg, securityStrikes: currentStrikes }
       });
       setAutosaveFailed(false);
       setLastAutoSaveTime(new Date().toLocaleTimeString());
     } catch (err) {
-      if (err.code === 'EXAM_ENDED') handleFinalSubmit(); // time is up: the server already holds the saved answers
-      else setAutosaveFailed(true);
+      if (err.code === 'EXAM_ENDED') {
+        handleFinalSubmit();
+      } else {
+        // If server connection is temporarily down, answers are still safely stored locally
+        setAutosaveFailed(true);
+      }
     }
-  }, [handleFinalSubmit]);
+  }, [handleFinalSubmit, safeCandidate?.id, safeCategory?.id, session?.isLocal]);
 
   // Save a moment after every change...
   useEffect(() => {
@@ -306,26 +469,60 @@ export default function CBTExamEngine({
     }
   };
 
+  // UI Preference persistence handlers
+  const handleSetFontSize = (size) => {
+    setFontSize(size);
+    try { localStorage.setItem('cbt_font_size', size); } catch (e) {}
+  };
+
+  const handleToggleCalc = () => {
+    setIsCalcOpen(prev => {
+      const next = !prev;
+      try { localStorage.setItem('cbt_calc_open', String(next)); } catch (e) {}
+      return next;
+    });
+  };
+
+  const handleSetPaletteFilter = (filter) => {
+    setPaletteFilter(filter);
+    try { localStorage.setItem('cbt_palette_filter', filter); } catch (e) {}
+  };
+
   const handleSelectOption = (questionId, optionIdx) => {
-    setUserAnswers(prev => ({
-      ...prev,
-      [questionId]: optionIdx
-    }));
+    setUserAnswers(prev => {
+      const next = {
+        ...prev,
+        [questionId]: optionIdx
+      };
+      try {
+        localStorage.setItem(`${storageKey}_answers`, JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
   };
 
   const handleClearAnswer = (questionId) => {
     setUserAnswers(prev => {
       const copy = { ...prev };
       delete copy[questionId];
+      try {
+        localStorage.setItem(`${storageKey}_answers`, JSON.stringify(copy));
+      } catch (e) {}
       return copy;
     });
   };
 
   const handleToggleFlag = (questionId) => {
-    setFlaggedQuestions(prev => ({
-      ...prev,
-      [questionId]: !prev[questionId]
-    }));
+    setFlaggedQuestions(prev => {
+      const next = {
+        ...prev,
+        [questionId]: !prev[questionId]
+      };
+      try {
+        localStorage.setItem(`${storageKey}_flagged`, JSON.stringify(next));
+      } catch (e) {}
+      return next;
+    });
   };
 
   // Timer Formatting
@@ -342,8 +539,8 @@ export default function CBTExamEngine({
   };
 
   const currentQ = examQuestions[currentIndex] || examQuestions[0];
-  const isCurrentAnswered = userAnswers[currentQ?.id] !== undefined;
-  const isCurrentFlagged = !!flaggedQuestions[currentQ?.id];
+  const isCurrentAnswered = currentQ ? (userAnswers[currentQ.id] !== undefined || userAnswers[String(currentQ.id)] !== undefined) : false;
+  const isCurrentFlagged = currentQ ? (!!flaggedQuestions[currentQ.id] || !!flaggedQuestions[String(currentQ.id)]) : false;
 
   // Palette Counts
   const answeredCount = Object.keys(userAnswers).length;
@@ -352,8 +549,8 @@ export default function CBTExamEngine({
 
   // Filtered Question Grid
   const filteredQuestions = examQuestions.map((q, idx) => ({ q, originalIndex: idx })).filter(item => {
-    const isAns = userAnswers[item.q.id] !== undefined;
-    const isFlg = !!flaggedQuestions[item.q.id];
+    const isAns = userAnswers[item.q.id] !== undefined || userAnswers[String(item.q.id)] !== undefined;
+    const isFlg = !!flaggedQuestions[item.q.id] || !!flaggedQuestions[String(item.q.id)];
     if (paletteFilter === 'answered') return isAns;
     if (paletteFilter === 'unanswered') return !isAns;
     if (paletteFilter === 'flagged') return isFlg;
@@ -428,7 +625,7 @@ export default function CBTExamEngine({
             <button 
               className={`btn btn-sm ${fontSize === 'sm' ? 'btn-primary' : 'btn-outline'}`}
               style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}
-              onClick={() => setFontSize('sm')}
+              onClick={() => handleSetFontSize('sm')}
               title="Small text"
             >
               A-
@@ -436,7 +633,7 @@ export default function CBTExamEngine({
             <button 
               className={`btn btn-sm ${fontSize === 'md' ? 'btn-primary' : 'btn-outline'}`}
               style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}
-              onClick={() => setFontSize('md')}
+              onClick={() => handleSetFontSize('md')}
               title="Default text"
             >
               A
@@ -444,7 +641,7 @@ export default function CBTExamEngine({
             <button 
               className={`btn btn-sm ${fontSize === 'lg' ? 'btn-primary' : 'btn-outline'}`}
               style={{ padding: '0.2rem 0.5rem', fontSize: '0.75rem' }}
-              onClick={() => setFontSize('lg')}
+              onClick={() => handleSetFontSize('lg')}
               title="Large text"
             >
               A+
@@ -455,7 +652,7 @@ export default function CBTExamEngine({
           <button 
             id="cbt-calculator-toggle"
             className={`btn btn-sm ${isCalcOpen ? 'btn-emerald' : 'btn-secondary'}`}
-            onClick={() => setIsCalcOpen(!isCalcOpen)}
+            onClick={handleToggleCalc}
             title="Open Examination Calculator"
           >
             <Calculator size={16} />
@@ -547,7 +744,7 @@ export default function CBTExamEngine({
             <div className="cbt-options-list">
               {currentQ?.options.map((opt, optIdx) => {
                 const optKeys = ['A', 'B', 'C', 'D'];
-                const isSelected = userAnswers[currentQ?.id] === optIdx;
+                const isSelected = userAnswers[currentQ?.id] === optIdx || userAnswers[String(currentQ?.id)] === optIdx;
 
                 return (
                   <div 
@@ -635,25 +832,25 @@ export default function CBTExamEngine({
             <div className="cbt-filter-tabs">
               <button 
                 className={`cbt-filter-tab ${paletteFilter === 'all' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('all')}
+                onClick={() => handleSetPaletteFilter('all')}
               >
                 All ({examQuestions.length})
               </button>
               <button 
                 className={`cbt-filter-tab ${paletteFilter === 'answered' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('answered')}
+                onClick={() => handleSetPaletteFilter('answered')}
               >
                 Answered
               </button>
               <button 
                 className={`cbt-filter-tab ${paletteFilter === 'unanswered' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('unanswered')}
+                onClick={() => handleSetPaletteFilter('unanswered')}
               >
                 Unanswered
               </button>
               <button 
                 className={`cbt-filter-tab ${paletteFilter === 'flagged' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('flagged')}
+                onClick={() => handleSetPaletteFilter('flagged')}
               >
                 Flagged
               </button>
@@ -662,8 +859,8 @@ export default function CBTExamEngine({
             {/* Grid of Numbered Buttons */}
             <div className="cbt-palette-grid">
               {filteredQuestions.map(({ q, originalIndex }) => {
-                const isAns = userAnswers[q.id] !== undefined;
-                const isFlg = !!flaggedQuestions[q.id];
+                const isAns = userAnswers[q.id] !== undefined || userAnswers[String(q.id)] !== undefined;
+                const isFlg = !!flaggedQuestions[q.id] || !!flaggedQuestions[String(q.id)];
                 const isCurr = originalIndex === currentIndex;
 
                 let cls = 'cbt-grid-btn';
@@ -891,25 +1088,25 @@ export default function CBTExamEngine({
             <div className="cbt-palette-filters" style={{ marginBottom: '0.75rem' }}>
               <button 
                 className={`filter-btn ${paletteFilter === 'all' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('all')}
+                onClick={() => handleSetPaletteFilter('all')}
               >
                 All (100)
               </button>
               <button 
                 className={`filter-btn ${paletteFilter === 'answered' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('answered')}
+                onClick={() => handleSetPaletteFilter('answered')}
               >
                 Answered
               </button>
               <button 
                 className={`filter-btn ${paletteFilter === 'unanswered' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('unanswered')}
+                onClick={() => handleSetPaletteFilter('unanswered')}
               >
                 Unanswered
               </button>
               <button 
                 className={`filter-btn ${paletteFilter === 'flagged' ? 'active' : ''}`}
-                onClick={() => setPaletteFilter('flagged')}
+                onClick={() => handleSetPaletteFilter('flagged')}
               >
                 Flagged
               </button>
@@ -920,8 +1117,8 @@ export default function CBTExamEngine({
               <div className="cbt-palette-grid">
                 {examQuestions.map((q, idx) => {
                   const isCurrent = currentIndex === idx;
-                  const isAns = userAnswers[q.id] !== undefined;
-                  const isFlag = !!flaggedQuestions[q.id];
+                  const isAns = userAnswers[q.id] !== undefined || userAnswers[String(q.id)] !== undefined;
+                  const isFlag = !!flaggedQuestions[q.id] || !!flaggedQuestions[String(q.id)];
 
                   if (paletteFilter === 'answered' && !isAns) return null;
                   if (paletteFilter === 'unanswered' && isAns) return null;

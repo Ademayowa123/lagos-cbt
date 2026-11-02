@@ -55,7 +55,7 @@ export default function Navbar({
 
   return (
     <>
-      <header className="app-navbar no-print">
+      <header className={`app-navbar no-print ${isExamActive ? 'navbar-static' : 'navbar-fixed'}`}>
         <div className="container nav-wrapper" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           
           {/* Logo & Lagos State Branding - Clicking goes to Dashboard if logged in, or Home if guest */}

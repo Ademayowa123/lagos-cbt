@@ -10,6 +10,8 @@
  * with precise Resource Material Citations.
  */
 
+import { resolveQuestionSubjectId } from './gradeLevelCategories.js';
+
 // Base Authentic Question Items
 const RAW_QUESTIONS = [
   // ==========================================
@@ -1406,8 +1408,11 @@ export function get100ExamQuestionsForCategory(category) {
   const isGL1214 = categoryId === "group-gl-12-14";
   const isGL1516 = categoryId === "group-gl-15-16";
 
-  // Filter matching base questions
-  const basePool = RAW_QUESTIONS.filter(q => q.categories.includes(categoryId));
+  // Filter matching base questions and ensure every question has a valid subjectId
+  const basePool = RAW_QUESTIONS.filter(q => q.categories.includes(categoryId)).map(q => ({
+    ...q,
+    subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
+  }));
 
   // Comprehensive generator to fill out to exactly 100 questions using prescribed rules
   const full100 = [...basePool];
@@ -1487,9 +1492,7 @@ export function get100ExamQuestionsForCategory(category) {
       correctAnswer: t.ans,
       explanation: t.exp,
       categories: [categoryId],
-      subjectId: isGL0610 ? (t.ch.includes("FR") ? "fr_ch1_3_4" : t.ch.includes("Chapter 2") ? "psr_ch2" : t.ch.includes("Chapter 4") ? "psr_ch4" : "psr_ch12") :
-                 isGL1214 ? (t.ch.includes("Leadership") ? "leadership_mgmt" : t.ch.includes("FR") ? "fr_ch3_6_20" : "psr_ch4_8_10_12") :
-                 (t.ch.includes("FR") ? "fr_ch1_3_20_25" : t.ch.includes("Procurement") ? "procurement_law" : "psr_ch2_4_6_10_12")
+      subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
     });
     counter++;
     topicIdx++;
@@ -1498,4 +1501,7 @@ export function get100ExamQuestionsForCategory(category) {
   return full100.slice(0, 100);
 }
 
-export const DEFAULT_QUESTIONS = RAW_QUESTIONS;
+export const DEFAULT_QUESTIONS = RAW_QUESTIONS.map(q => ({
+  ...q,
+  subjectId: q.subjectId || resolveQuestionSubjectId(q, q.categories?.[0] || 'group-gl-06-10')
+}));

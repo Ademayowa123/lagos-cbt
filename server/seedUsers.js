@@ -14,7 +14,6 @@ export const INITIAL_USERS = [
     gradeLevel: "GL 17",
     targetGrade: "GL 17",
     categoryId: "group-gl-15-16",
-    spadevScore: 95,
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80"
   },
   {
@@ -31,7 +30,6 @@ export const INITIAL_USERS = [
     gradeLevel: "GL 09",
     targetGrade: "GL 10",
     categoryId: "group-gl-06-10",
-    spadevScore: 82,
     serviceNumber: "LASG/CSC/2027/0482",
     assignedCenter: "Public Service Staff Development Centre (PSSDC), Magodo",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80"
@@ -50,9 +48,6 @@ export const INITIAL_USERS = [
     gradeLevel: "GL 13",
     targetGrade: "GL 14",
     categoryId: "group-gl-12-14",
-    spadevScore: 86,
-    writtenScore: 78,
-    interviewScore: 80,
     serviceNumber: "LASG/CSC/2027/1092",
     assignedCenter: "State Secretariat CBT Arena, Alausa, Ikeja",
     avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80"
@@ -71,9 +66,6 @@ export const INITIAL_USERS = [
     gradeLevel: "GL 15",
     targetGrade: "GL 16",
     categoryId: "group-gl-15-16",
-    spadevScore: 90,
-    writtenScore: 84,
-    interviewScore: 85,
     serviceNumber: "LASG/CSC/2027/0015",
     assignedCenter: "Executive CBT Suite, Public Service Global Hall, Alausa",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80"

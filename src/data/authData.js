@@ -78,8 +78,7 @@ export async function authenticateUser(username, password) {
         cadre: 'Directorate Examination Board',
         gradeLevel: 'GL 17',
         targetGrade: 'GL 17',
-        categoryId: 'group-gl-15-16',
-        spadevScore: 95
+        categoryId: 'group-gl-15-16'
       };
       saveSession('local_admin_session_' + Date.now(), adminUser);
       return adminUser;
@@ -122,7 +121,6 @@ export async function registerCandidate(fields) {
       gradeLevel: 'GL 09',
       targetGrade: fields.targetGrade || 'GL 10',
       categoryId: fields.categoryId || 'group-gl-06-10',
-      spadevScore: 84,
       serviceNumber: `LASG/CSC/2027/${Math.floor(1000 + Math.random() * 9000)}`,
       assignedCenter: 'State Secretariat CBT Arena, Alausa, Ikeja'
     };
