@@ -50,6 +50,27 @@ export default function CandidateSettings({
     (c.gradeLevels || []).includes(targetGrade)
   ) || categoriesList.find(c => c.id === candidate?.categoryId) || safeCategory;
 
+  // Curated list of cadres across matching category and all grade categories
+  const cadreOptions = React.useMemo(() => {
+    const list = [];
+    if (matchingCatForDisplay?.cadres) {
+      for (const c of matchingCatForDisplay.cadres) {
+        if (!list.includes(c)) list.push(c);
+      }
+    }
+    for (const cat of categoriesList) {
+      if (cat.cadres) {
+        for (const c of cat.cadres) {
+          if (!list.includes(c)) list.push(c);
+        }
+      }
+    }
+    if (cadre && !list.includes(cadre)) {
+      list.unshift(cadre);
+    }
+    return list;
+  }, [matchingCatForDisplay, categoriesList, cadre]);
+
   // Security & Password State
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -151,28 +172,7 @@ export default function CandidateSettings({
     }
   };
 
-  // Demo Mode Guard: Demo accounts have no settings to change name or anything
-  if (candidate?.isDemo) {
-    return (
-      <div className="container animate-fade-in" style={{ padding: '4rem 1.25rem 5rem', textAlign: 'center' }}>
-        <div className="card" style={{ maxWidth: '520px', margin: '0 auto', padding: '2.5rem 1.5rem', background: 'var(--bg-card)', border: '1px solid var(--border-medium)' }}>
-          <div style={{ color: 'var(--brand-amber)', marginBottom: '1rem', display: 'flex', justifyContent: 'center' }}>
-            <Lock size={48} />
-          </div>
-          <h2 style={{ fontSize: '1.35rem', color: 'var(--text-main)', marginBottom: '0.5rem' }}>
-            Settings Disabled for Demo Accounts
-          </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
-            Demo candidate accounts are read-only demonstration accounts. Profile editing (names, cadre, ministry, grade level) and password changes are disabled. Please register your own official candidate account to customize your profile.
-          </p>
-          <button className="btn btn-primary" onClick={onBackToDashboard}>
-            <ArrowLeft size={16} />
-            <span>Return to Officer Dashboard</span>
-          </button>
-        </div>
-      </div>
-    );
-  }
+
 
   return (
     <div className="container animate-fade-in" style={{ padding: '2rem 1.25rem 5rem', maxWidth: '880px', margin: '0 auto' }}>
@@ -210,6 +210,25 @@ export default function CandidateSettings({
           </div>
         </div>
       </div>
+
+      {/* Demo Notice Banner */}
+      {candidate?.isDemo && (
+        <div style={{
+          padding: '0.85rem 1rem',
+          background: 'rgba(245, 158, 11, 0.08)',
+          border: '1px solid rgba(245, 158, 11, 0.3)',
+          borderRadius: 'var(--radius-md)',
+          marginBottom: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '0.65rem',
+          fontSize: '0.875rem',
+          color: '#d97706'
+        }}>
+          <AlertCircle size={18} style={{ flexShrink: 0 }} />
+          <span><strong>Demonstration Account:</strong> Profile and cadre updates are fully operational and will apply to your active session.</span>
+        </div>
+      )}
 
       {/* Success & Error Banner Alerts */}
       {successMessage && (
@@ -319,21 +338,16 @@ export default function CandidateSettings({
                 <Briefcase size={15} color="#a78bfa" />
                 <span>Cadre / Professional Track:</span>
               </label>
-              <input
-                type="text"
+              <ModernSelect
                 id="settings-cadre"
-                list="cadre-suggestions"
-                className="form-input"
+                name="cadre"
                 value={cadre}
                 onChange={(e) => setCadre(e.target.value)}
-                placeholder="e.g. Administrative Officer I"
-                required
+                options={cadreOptions}
+                placeholder="Select Cadre / Professional Track"
+                title="Cadre / Professional Track"
+                searchable={true}
               />
-              <datalist id="cadre-suggestions">
-                {(matchingCatForDisplay?.cadres || []).map((c, idx) => (
-                  <option key={idx} value={c} />
-                ))}
-              </datalist>
             </div>
 
             <div className="form-group">

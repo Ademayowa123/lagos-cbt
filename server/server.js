@@ -109,7 +109,20 @@ async function buildSnapshot(cat) {
   const allQ = await db.allQuestions();
   const pool = allQ.filter((q) => q.categories?.includes(cat.id));
   if (!pool.length) throw new HttpError(409, 'No questions have been uploaded for this grade group yet.', 'NO_QUESTIONS');
-  const picked = shuffle(pool).slice(0, cat.totalQuestions || 100);
+  
+  // Strict text deduplication so no duplicate questions ever appear in an exam session
+  const normalize = (txt) => String(txt || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+  const seen = new Set();
+  const uniquePool = [];
+  for (const q of shuffle(pool)) {
+    const norm = normalize(q.question);
+    if (!seen.has(norm)) {
+      seen.add(norm);
+      uniquePool.push(q);
+    }
+  }
+
+  const picked = uniquePool.slice(0, cat.totalQuestions || 100);
   return picked.map((q) => {
     const order = shuffle(q.options.map((_, i) => i));
     return {
@@ -268,6 +281,24 @@ route('POST', '/api/auth/demo', 'public', async ({ body }) => {
   return { token, user: publicUser(u) };
 });
 
+route('GET', '/api/auth/check-username', 'public', async ({ query }) => {
+  const firstName = String(query.firstName || '').trim();
+  const surname = String(query.surname || '').trim();
+  const customNumber = String(query.customNumber || '').trim();
+  if (!firstName || !surname) return { available: true, username: '' };
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const base = customNumber ? `${slug(firstName)}.${slug(surname)}${slug(customNumber)}` : `${slug(firstName)}.${slug(surname)}`;
+  let username = base;
+  let n = 1;
+  let isIncremented = false;
+  while (await db.getUserByUsername(username)) {
+    username = `${base}${n}`;
+    n++;
+    isIncremented = true;
+  }
+  return { available: !isIncremented, username, isIncremented, base };
+});
+
 route('POST', '/api/auth/register', 'public', async ({ body }) => {
   await ensureSeeded();
   const firstName = must(String(body.firstName || '').trim(), 'First name is required.');
@@ -277,9 +308,11 @@ route('POST', '/api/auth/register', 'public', async ({ body }) => {
   const cat = (await db.getCategory(body.categoryId)) || allCats[0];
   const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
   const base = body.customNumber ? `${slug(firstName)}.${slug(surname)}${slug(String(body.customNumber))}` : `${slug(firstName)}.${slug(surname)}`;
-  let username = base, n = 1;
+  let username = base;
+  let n = 1;
   while (await db.getUserByUsername(username)) {
-    username = `${base}${++n}`;
+    username = `${base}${n}`;
+    n++;
   }
   const grade = body.targetGrade || 'GL 10';
   const id = rid('usr');
@@ -318,8 +351,7 @@ route('POST', '/api/auth/logout', 'user', async ({ auth }) => {
 route('GET', '/api/me', 'user', async ({ auth }) => publicUser(auth.user));
 
 route('PUT', '/api/me', 'user', async ({ auth, body }) => {
-  if (auth.user.is_demo) throw new HttpError(403, 'Demo accounts cannot edit their profile.');
-  const data = parseData(auth.user.data);
+  const data = parseData(auth.user.data) || {};
   for (const k of PROFILE_FIELDS) {
     if (typeof body[k] === 'string' && body[k].trim()) data[k] = body[k].trim();
   }
@@ -336,7 +368,10 @@ route('PUT', '/api/me', 'user', async ({ auth, body }) => {
   } else if (body.categoryId && typeof body.categoryId === 'string') {
     data.categoryId = body.categoryId.trim();
   }
-  data.fullName = `${data.firstName} ${data.surname}`;
+  if (body.cadre && typeof body.cadre === 'string' && body.cadre.trim()) {
+    data.cadre = body.cadre.trim();
+  }
+  data.fullName = `${data.firstName || ''} ${data.surname || ''}`.trim() || data.fullName || 'Candidate';
   await db.updateUserData(auth.user.id, data);
   const updated = await db.getUserById(auth.user.id);
   return publicUser(updated);
@@ -479,6 +514,24 @@ route('GET', '/api/candidates', 'admin', async () => {
   return list.map(publicUser);
 });
 
+route('DELETE', '/api/admin/candidates/:id', 'admin', async ({ params }) => {
+  const target = await db.getUserById(params.id);
+  if (!target) throw new HttpError(404, 'Candidate not found.');
+  if (target.role === 'admin' || target.username === 'admin') {
+    throw new HttpError(403, 'Administrator accounts cannot be deleted.');
+  }
+  await db.deleteUser(params.id);
+  return { ok: true, deletedId: params.id };
+});
+
+route('POST', '/api/admin/questions/import', 'admin', async ({ body }) => {
+  const list = Array.isArray(body) ? body : (body && Array.isArray(body.questions) ? body.questions : []);
+  if (!list.length) throw new HttpError(400, 'No questions provided for import.');
+  const items = list.map(normalizeQuestion);
+  await db.upsertQuestions(items);
+  return { ok: true, count: items.length };
+});
+
 route('POST', '/api/candidates/:id/reset-password', 'admin', async ({ params, body }) => {
   const u = must(await db.getUserById(params.id), 'Candidate not found.');
   if (u.role !== 'candidate') throw new HttpError(403, 'Only candidate accounts can be reset here.');
@@ -584,6 +637,7 @@ export async function handleRequest(req, res) {
     const ctx = {
       req,
       url,
+      query: Object.fromEntries(url.searchParams.entries()),
       params: r.re.exec(pathname).groups || {},
       body: req.method === 'GET' || req.method === 'DELETE' ? {} : (req.body || await readBody(req))
     };

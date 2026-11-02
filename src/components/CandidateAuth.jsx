@@ -17,6 +17,7 @@ import {
   fetchDemoUsers,
   loginDemo,
   previewUsername,
+  checkAvailableUsername,
   registerCandidate,
   authenticateUser
 } from '../data/authData';
@@ -83,10 +84,35 @@ export default function CandidateAuth({
     categoryId: safeCategory?.id || 'group-gl-06-10'
   });
 
+  const [assignedUsername, setAssignedUsername] = useState('');
+  const [isUsernameIncremented, setIsUsernameIncremented] = useState(false);
+
+  // Debounced check for username availability and auto-increment
+  useEffect(() => {
+    if (!regForm.firstName.trim() || !regForm.surname.trim()) {
+      setAssignedUsername('');
+      setIsUsernameIncremented(false);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      try {
+        const info = await checkAvailableUsername(regForm.firstName, regForm.surname, regForm.customNumber);
+        setAssignedUsername(info.username || previewUsername(regForm.firstName, regForm.surname, regForm.customNumber));
+        setIsUsernameIncremented(!!info.isIncremented);
+      } catch (e) {
+        setAssignedUsername(previewUsername(regForm.firstName, regForm.surname, regForm.customNumber));
+        setIsUsernameIncremented(false);
+      }
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [regForm.firstName, regForm.surname, regForm.customNumber]);
+
   // Live auto-generated username for registration
-  const generatedUsername = (regForm.firstName && regForm.surname)
-    ? previewUsername(regForm.firstName, regForm.surname, regForm.customNumber)
-    : '';
+  const generatedUsername = assignedUsername || (
+    (regForm.firstName && regForm.surname)
+      ? previewUsername(regForm.firstName, regForm.surname, regForm.customNumber)
+      : ''
+  );
 
   // Keep category in sync with registration category selection
   useEffect(() => {
@@ -631,13 +657,19 @@ export default function CandidateAuth({
                   style={{
                     fontFamily: 'var(--font-mono)',
                     fontWeight: 700,
-                    color: 'var(--brand-emerald)',
-                    background: 'rgba(16, 185, 129, 0.08)',
-                    borderColor: 'rgba(16, 185, 129, 0.35)'
+                    color: isUsernameIncremented ? 'var(--brand-gold)' : 'var(--brand-emerald)',
+                    background: isUsernameIncremented ? 'rgba(245, 158, 11, 0.08)' : 'rgba(16, 185, 129, 0.08)',
+                    borderColor: isUsernameIncremented ? 'rgba(245, 158, 11, 0.35)' : 'rgba(16, 185, 129, 0.35)'
                   }}
                   placeholder="Enter First Name & Surname above"
                   required
                 />
+                {isUsernameIncremented && (
+                  <div style={{ marginTop: '0.45rem', fontSize: '0.78rem', color: 'var(--brand-gold)', display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                    <AlertCircle size={13} />
+                    <span>Username was already taken — number automatically added for unique service record.</span>
+                  </div>
+                )}
               </div>
 
               {/* Password with min 4 characters check */}

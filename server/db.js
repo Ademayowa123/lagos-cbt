@@ -378,6 +378,23 @@ export const db = {
     }
   },
 
+  async deleteUser(id) {
+    if (isSupabaseConfigured) {
+      await supabase.from('sessions').delete().eq('user_id', id);
+      await supabase.from('exams').delete().eq('user_id', id);
+      await supabase.from('exam_attempts').delete().eq('user_id', id);
+      const { error } = await supabase.from('users').delete().eq('id', id);
+      return { deleted: error ? 0 : 1 };
+    } else {
+      try { sqliteDb.prepare('DELETE FROM tokens WHERE user_id=?').run(id); } catch(e) {}
+      try { sqliteDb.prepare('DELETE FROM sessions WHERE user_id=?').run(id); } catch(e) {}
+      try { sqliteDb.prepare('DELETE FROM exams WHERE user_id=?').run(id); } catch(e) {}
+      try { sqliteDb.prepare('DELETE FROM exam_attempts WHERE user_id=?').run(id); } catch(e) {}
+      const res = sqliteDb.prepare('DELETE FROM users WHERE id=?').run(id);
+      return { deleted: res.changes };
+    }
+  },
+
   // --- Study Resources ---
   async allResources() {
     if (isSupabaseConfigured) {

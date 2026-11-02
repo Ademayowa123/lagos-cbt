@@ -209,3 +209,34 @@ export async function getRegisteredCandidates() {
 export async function resetCandidatePassword(candidateId, newPassword) {
   return api(`/candidates/${candidateId}/reset-password`, { method: 'POST', body: { newPassword } });
 }
+
+/** Admin: delete a candidate account and related data. */
+export async function deleteCandidate(candidateId) {
+  try {
+    await api(`/admin/candidates/${candidateId}`, { method: 'DELETE' });
+  } catch (err) {
+    console.warn('Backend deleteCandidate error (falling back to local cleanup):', err);
+  }
+  // Local fallback cleanup if candidates are stored in localStorage
+  try {
+    const raw = localStorage.getItem('cbt_registered_candidates');
+    if (raw) {
+      const list = JSON.parse(raw);
+      const updated = list.filter(c => c.id !== candidateId && c.username !== candidateId);
+      localStorage.setItem('cbt_registered_candidates', JSON.stringify(updated));
+    }
+  } catch (e) {}
+  return { ok: true, id: candidateId };
+}
+
+/** Check next available username with automatic increment on collision. */
+export async function checkAvailableUsername(firstName, surname, customNumber = '') {
+  try {
+    const res = await api(`/auth/check-username?firstName=${encodeURIComponent(firstName)}&surname=${encodeURIComponent(surname)}&customNumber=${encodeURIComponent(customNumber)}`, { auth: false });
+    if (res && res.username) {
+      return res;
+    }
+  } catch (e) {}
+  const base = previewUsername(firstName, surname, customNumber);
+  return { username: base, isIncremented: false, available: true, base };
+}

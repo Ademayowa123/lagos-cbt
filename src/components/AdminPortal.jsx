@@ -25,10 +25,14 @@ import {
   EyeOff,
   RefreshCw,
   Copy,
-  ChevronUp
+  ChevronUp,
+  FileSpreadsheet,
+  AlertTriangle,
+  CheckCircle2
 } from 'lucide-react';
+import * as XLSX from 'xlsx';
 import CandidateAvatar from './CandidateAvatar';
-import { getRegisteredCandidates, resetCandidatePassword } from '../data/authData';
+import { getRegisteredCandidates, resetCandidatePassword, deleteCandidate } from '../data/authData';
 import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { api } from '../api';
 
@@ -71,6 +75,16 @@ export default function AdminPortal({
   const [adminResetSuccess, setAdminResetSuccess] = useState('');
   const [adminResetError, setAdminResetError] = useState('');
   const [copiedUser, setCopiedUser] = useState('');
+
+  // Candidate Deletion State
+  const [candidateToDelete, setCandidateToDelete] = useState(null);
+  const [isDeletingCandidate, setIsDeletingCandidate] = useState(false);
+  const [candidateDeleteNotice, setCandidateDeleteNotice] = useState('');
+
+  // Question Bank Excel Import/Export State
+  const excelFileInputRef = React.useRef(null);
+  const [isImportingQuestions, setIsImportingQuestions] = useState(false);
+  const [excelImportResult, setExcelImportResult] = useState(null);
   
   // Question Bank State
   const [questionSearch, setQuestionSearch] = useState('');
@@ -271,6 +285,279 @@ export default function AdminPortal({
     navigator.clipboard?.writeText(uname);
     setCopiedUser(uname);
     setTimeout(() => setCopiedUser(''), 2000);
+  };
+
+  // 4. Candidate Deletion Handler
+  const handleExecuteDeleteCandidate = async () => {
+    if (!candidateToDelete) return;
+    try {
+      setIsDeletingCandidate(true);
+      await deleteCandidate(candidateToDelete.id);
+      setRegisteredCandidates(prev => prev.filter(c => c.id !== candidateToDelete.id));
+      setCandidateDeleteNotice(`Candidate "${candidateToDelete.fullName}" (${candidateToDelete.username}) was permanently removed from the system.`);
+      setCandidateToDelete(null);
+      setTimeout(() => setCandidateDeleteNotice(''), 5000);
+    } catch (err) {
+      alert(err.message || "Failed to delete candidate.");
+    } finally {
+      setIsDeletingCandidate(false);
+    }
+  };
+
+  // 5. Excel Template Download Handler
+  const handleDownloadExcelTemplate = () => {
+    const wb = XLSX.utils.book_new();
+
+    // Sheet 1: Questions Template with sample civil service questions across all grade bands
+    const headers = [
+      "Question Text",
+      "Option A",
+      "Option B",
+      "Option C",
+      "Option D",
+      "Correct Answer (A/B/C/D)",
+      "Grade Category (GL 06-10 / GL 12-14 / GL 15-16 / All)",
+      "Chapter / Subject",
+      "Reference Rule",
+      "Explanation"
+    ];
+
+    const sampleRows = [
+      [
+        "According to Public Service Rules Chapter 2, recruitment into the Civil Service must be strictly anchored on what principle?",
+        "Merit, equality, and demonstrable service needs",
+        "Personal recommendations and family ties",
+        "Informal verbal interviews alone",
+        "Commercial contracting history",
+        "A",
+        "GL 06-10",
+        "PSR Chapter 2",
+        "PSR Rule 020101",
+        "Rule 020101 requires recruitment based on merit, gender equality, and demonstrable service needs."
+      ],
+      [
+        "Under Financial Regulation 114, who is officially tasked with maintaining proper main and subsidiary ledgers in an MDA?",
+        "The Head of Finance and Accounts",
+        "The Storekeeper",
+        "The Transport Officer",
+        "The Internal Audit Messenger",
+        "A",
+        "GL 06-10",
+        "Financial Regulations Chapter 1",
+        "FR 114",
+        "FR 114 designates the Head of Finance and Accounts as responsible for accounting books and ledgers."
+      ],
+      [
+        "When an officer successfully exculpates himself against a formal written query, what action follows under PSR Rule 040402?",
+        "The officer is formally notified in writing and no further disciplinary action is taken",
+        "A disciplinary fine is deducted from salary",
+        "The officer is demoted by one grade step",
+        "The query is forwarded to external law enforcement",
+        "A",
+        "GL 12-14",
+        "PSR Chapter 4",
+        "PSR Rule 040402",
+        "Rule 040402 provides that upon successful exculpation, the matter is formally closed in writing."
+      ],
+      [
+        "Under Financial Regulation 314, what is the mandatory rule regarding unspent recurrent expenditure votes at financial year-end?",
+        "Unspent recurrent balances lapse and cannot be revoted in the subsequent year",
+        "They roll over automatically into next year's budget",
+        "They are distributed to officers as year-end bonuses",
+        "They are transferred into private commercial accounts",
+        "A",
+        "GL 12-14",
+        "Financial Regulations Chapter 3",
+        "FR 314",
+        "FR 314 specifies that unspent recurrent balances lapse and cannot be revoted."
+      ],
+      [
+        "Under Lagos State Public Procurement Law, what statutory penalty applies to an officer convicted of collusive bid-rigging?",
+        "Imprisonment of not less than 5 years without option of fine, plus summary dismissal",
+        "A verbal reprimand from the supervisor",
+        "A nominal fine of N5,000",
+        "Lateral redeployment to another ministry",
+        "A",
+        "GL 15-16",
+        "Public Procurement Law",
+        "Lagos Procurement Law Sec. 3126",
+        "Corrupt procurement practices carry a mandatory minimum 5-year prison sentence and summary dismissal."
+      ],
+      [
+        "Under Financial Regulation 2505, when MUST a formal Board of Enquiry be convened following a loss of public funds?",
+        "Where fraud is probable, the loss is substantial, or collusion among officers is suspected",
+        "For any loss under N1,000",
+        "Whenever a routine file is misfiled",
+        "Only when authorized by a commercial bank",
+        "A",
+        "All",
+        "Financial Regulations Chapter 25",
+        "FR 2505",
+        "FR 2505 mandates a formal Board of Enquiry when fraud or collusion is suspected."
+      ]
+    ];
+
+    const wsQuestions = XLSX.utils.aoa_to_sheet([headers, ...sampleRows]);
+    wsQuestions['!cols'] = [
+      { wch: 60 },
+      { wch: 35 },
+      { wch: 35 },
+      { wch: 35 },
+      { wch: 35 },
+      { wch: 26 },
+      { wch: 35 },
+      { wch: 25 },
+      { wch: 25 },
+      { wch: 55 }
+    ];
+
+    XLSX.utils.book_append_sheet(wb, wsQuestions, "Questions_Template");
+
+    // Sheet 2: Guide & Instructions
+    const guideRows = [
+      ["LAGOS STATE CIVIL SERVICE COMMISSION — CBT QUESTION IMPORT SPECIFICATION"],
+      [""],
+      ["COLUMN", "REQUIRED?", "ALLOWED VALUES / INSTRUCTIONS"],
+      ["Question Text", "YES", "The full, clear statement of the examination question."],
+      ["Option A", "YES", "Choice A text."],
+      ["Option B", "YES", "Choice B text."],
+      ["Option C", "OPTIONAL", "Choice C text (optional for true/false)."],
+      ["Option D", "OPTIONAL", "Choice D text."],
+      ["Correct Answer (A/B/C/D)", "YES", "Enter 'A', 'B', 'C', or 'D' corresponding to the correct option."],
+      ["Grade Category", "YES", "Enter: 'GL 06-10', 'GL 12-14', 'GL 15-16', or 'All'."],
+      ["Chapter / Subject", "RECOMMENDED", "e.g. PSR Chapter 2, Financial Regulations Chapter 3, Procurement Law."],
+      ["Reference Rule", "RECOMMENDED", "e.g. PSR 020101, FR 114, Section 3126."],
+      ["Explanation", "RECOMMENDED", "Official rationale shown to candidate in results breakdown."],
+      [""],
+      ["GRADE CATEGORIES KEY:"],
+      ["• GL 06-10: Pool of Executive and Clerical Officers (GL 06, 07, 08, 09, 10)"],
+      ["• GL 12-14: Middle Management and Senior Officers (GL 12, 13, 14)"],
+      ["• GL 15-16: Directorate Cadre and Executive Leadership (GL 15, 16)"],
+      ["• All: Universal questions applied across all three promotion categories"]
+    ];
+
+    const wsGuide = XLSX.utils.aoa_to_sheet(guideRows);
+    wsGuide['!cols'] = [{ wch: 30 }, { wch: 15 }, { wch: 80 }];
+    XLSX.utils.book_append_sheet(wb, wsGuide, "Instructions_Guide");
+
+    XLSX.writeFile(wb, "LAGOS_CBT_Questions_Template.xlsx");
+  };
+
+  // 6. Excel File Upload & Ingestion Handler
+  const handleExcelFileUpload = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsImportingQuestions(true);
+    setExcelImportResult(null);
+
+    try {
+      const buffer = await file.arrayBuffer();
+      const wb = XLSX.read(buffer, { type: 'array' });
+      const firstSheetName = wb.SheetNames[0];
+      const sheet = wb.Sheets[firstSheetName];
+      const rawRows = XLSX.utils.sheet_to_json(sheet, { defval: '' });
+
+      if (!rawRows || rawRows.length === 0) {
+        throw new Error("The selected file contains no readable data rows.");
+      }
+
+      const parsedQuestions = [];
+      let skippedCount = 0;
+
+      for (let i = 0; i < rawRows.length; i++) {
+        const row = rawRows[i];
+
+        const getCol = (patterns) => {
+          for (const key of Object.keys(row)) {
+            const cleanKey = key.toLowerCase().replace(/[^a-z0-9]/g, '');
+            for (const p of patterns) {
+              if (cleanKey.includes(p.toLowerCase().replace(/[^a-z0-9]/g, ''))) {
+                return String(row[key] || '').trim();
+              }
+            }
+          }
+          return '';
+        };
+
+        const questionText = getCol(['Question Text', 'question', 'prompt', 'text']);
+        const optA = getCol(['Option A', 'optionA', 'optA', 'choiceA', 'a']);
+        const optB = getCol(['Option B', 'optionB', 'optB', 'choiceB', 'b']);
+        const optC = getCol(['Option C', 'optionC', 'optC', 'choiceC', 'c']);
+        const optD = getCol(['Option D', 'optionD', 'optD', 'choiceD', 'd']);
+        const answerRaw = getCol(['Correct Answer', 'correct', 'answer', 'ans']);
+        const gradeCatRaw = getCol(['Grade Category', 'category', 'grade', 'group']);
+        const chapter = getCol(['Chapter', 'subject', 'topic']) || 'Civil Service Regulations';
+        const refRule = getCol(['Reference Rule', 'rule', 'citation', 'resourceMaterial']) || 'Civil Service Rule';
+        const explanation = getCol(['Explanation', 'exp', 'rationale', 'reason']) || 'Refer to official civil service regulations.';
+
+        if (!questionText || !optA || !optB) {
+          skippedCount++;
+          continue;
+        }
+
+        const options = [optA, optB];
+        if (optC) options.push(optC);
+        if (optD) options.push(optD);
+
+        let correctAnswerIdx = 0;
+        const ansClean = answerRaw.toUpperCase().trim();
+        if (ansClean === 'B' || ansClean === '1') correctAnswerIdx = 1;
+        else if (ansClean === 'C' || ansClean === '2') correctAnswerIdx = Math.min(2, options.length - 1);
+        else if (ansClean === 'D' || ansClean === '3') correctAnswerIdx = Math.min(3, options.length - 1);
+
+        const catClean = gradeCatRaw.toLowerCase();
+        let categories = [];
+        if (catClean.includes('all') || catClean.includes('universal') || !catClean) {
+          categories = ['group-gl-06-10', 'group-gl-12-14', 'group-gl-15-16'];
+        } else {
+          if (catClean.includes('06') || catClean.includes('10')) categories.push('group-gl-06-10');
+          if (catClean.includes('12') || catClean.includes('14')) categories.push('group-gl-12-14');
+          if (catClean.includes('15') || catClean.includes('16')) categories.push('group-gl-15-16');
+        }
+        if (categories.length === 0) categories = ['group-gl-06-10'];
+
+        parsedQuestions.push({
+          question: questionText,
+          options,
+          correctAnswer: correctAnswerIdx,
+          categories,
+          categoryId: categories[0],
+          chapter,
+          referenceRule: refRule,
+          resourceMaterial: `${chapter} (${refRule})`,
+          explanation
+        });
+      }
+
+      if (parsedQuestions.length === 0) {
+        throw new Error("No valid questions found in file. Ensure Question Text, Option A, Option B, and Correct Answer columns are populated.");
+      }
+
+      // Ingest via API
+      const res = await api('/questions', { method: 'POST', body: parsedQuestions });
+      const addedQuestions = res.questions || parsedQuestions;
+
+      setQuestions(prev => [...addedQuestions, ...prev]);
+      setExcelImportResult({
+        success: true,
+        count: parsedQuestions.length,
+        skipped: skippedCount,
+        categories: {
+          gl0610: parsedQuestions.filter(q => q.categories.includes('group-gl-06-10')).length,
+          gl1214: parsedQuestions.filter(q => q.categories.includes('group-gl-12-14')).length,
+          gl1516: parsedQuestions.filter(q => q.categories.includes('group-gl-15-16')).length,
+        }
+      });
+    } catch (err) {
+      setExcelImportResult({
+        success: false,
+        error: err.message || "Failed to process question file."
+      });
+    } finally {
+      setIsImportingQuestions(false);
+      if (e.target) e.target.value = '';
+    }
   };
 
   // 4. Export CSV
@@ -652,14 +939,98 @@ export default function AdminPortal({
               </select>
             </div>
 
-            <button 
-              className="btn btn-primary"
-              onClick={() => setShowAddQuestionModal(true)}
-            >
-              <Plus size={16} />
-              <span>Add New Question</span>
-            </button>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexWrap: 'wrap' }}>
+              <button 
+                id="download-excel-template-btn"
+                type="button"
+                className="btn btn-outline"
+                onClick={handleDownloadExcelTemplate}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem' }}
+                title="Download formatted Excel (.xlsx) template for importing questions across Grade Levels"
+              >
+                <Download size={15} />
+                <span>Download Excel Template</span>
+              </button>
+
+              <input 
+                ref={excelFileInputRef}
+                type="file" 
+                accept=".xlsx,.xls,.csv" 
+                onChange={handleExcelFileUpload} 
+                style={{ display: 'none' }} 
+              />
+
+              <button 
+                id="import-excel-questions-btn"
+                type="button"
+                className="btn btn-emerald"
+                onClick={() => excelFileInputRef.current?.click()}
+                disabled={isImportingQuestions}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem' }}
+                title="Import questions from Excel (.xlsx/.xls) or CSV file"
+              >
+                <FileSpreadsheet size={15} />
+                <span>{isImportingQuestions ? 'Importing Questions...' : 'Import Excel / CSV'}</span>
+              </button>
+
+              <button 
+                className="btn btn-primary"
+                onClick={() => setShowAddQuestionModal(true)}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.825rem' }}
+              >
+                <Plus size={15} />
+                <span>Add Question</span>
+              </button>
+            </div>
           </div>
+
+          {/* Excel Import Feedback Banner */}
+          {excelImportResult && (
+            <div style={{
+              padding: '0.9rem 1.25rem',
+              borderRadius: 'var(--radius-md)',
+              marginBottom: '1.5rem',
+              background: excelImportResult.success ? 'rgba(16, 185, 129, 0.1)' : 'rgba(239, 68, 68, 0.1)',
+              border: `1px solid ${excelImportResult.success ? 'var(--brand-emerald)' : 'var(--brand-danger)'}`,
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'space-between',
+              gap: '1rem'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem' }}>
+                {excelImportResult.success ? (
+                  <CheckCircle2 size={20} color="var(--brand-emerald)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                ) : (
+                  <AlertCircle size={20} color="var(--brand-danger)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                )}
+                <div>
+                  <div style={{ fontWeight: 700, color: excelImportResult.success ? 'var(--brand-emerald)' : 'var(--brand-danger)', marginBottom: '0.2rem' }}>
+                    {excelImportResult.success ? 'Questions Successfully Imported!' : 'Excel Question Import Failed'}
+                  </div>
+                  {excelImportResult.success ? (
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-main)', lineHeight: 1.5 }}>
+                      Ingested <strong>{excelImportResult.count}</strong> question(s) into CBT examination pool.
+                      <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                        GL 06-10: <strong>{excelImportResult.categories.gl0610}</strong> • GL 12-14: <strong>{excelImportResult.categories.gl1214}</strong> • GL 15-16: <strong>{excelImportResult.categories.gl1516}</strong>
+                        {excelImportResult.skipped > 0 && ` • Skipped ${excelImportResult.skipped} incomplete row(s).`}
+                      </div>
+                    </div>
+                  ) : (
+                    <div style={{ fontSize: '0.85rem', color: 'var(--text-main)' }}>
+                      {excelImportResult.error}
+                    </div>
+                  )}
+                </div>
+              </div>
+              <button 
+                type="button"
+                onClick={() => setExcelImportResult(null)}
+                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1.1rem' }}
+              >
+                ✕
+              </button>
+            </div>
+          )}
 
           {/* Questions Table */}
           <div className="data-table-container">
@@ -907,6 +1278,25 @@ export default function AdminPortal({
             </div>
           </div>
 
+          {/* Candidate Delete Notification Toast */}
+          {candidateDeleteNotice && (
+            <div className="animate-fade-in" style={{
+              padding: '0.85rem 1.25rem',
+              background: 'rgba(16, 185, 129, 0.1)',
+              border: '1px solid var(--brand-emerald)',
+              borderRadius: 'var(--radius-md)',
+              marginBottom: '1.25rem',
+              color: 'var(--brand-emerald)',
+              fontSize: '0.875rem',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem'
+            }}>
+              <CheckCircle2 size={16} />
+              <span>{candidateDeleteNotice}</span>
+            </div>
+          )}
+
           {/* Search bar & filter */}
           <div style={{ marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap' }}>
             <div style={{ position: 'relative', flex: 1, minWidth: '260px' }}>
@@ -1006,24 +1396,49 @@ export default function AdminPortal({
                         {cand.serviceNumber || 'LASG/CSC/2027'}
                       </td>
                       <td data-label="Admin Action" style={{ textAlign: 'center' }}>
-                        <button
-                          id={`reset-pass-btn-${cand.username}`}
-                          className="btn btn-sm btn-outline"
-                          onClick={() => handleOpenResetModal(cand)}
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            gap: '0.4rem',
-                            fontSize: '0.775rem',
-                            padding: '0.35rem 0.75rem',
-                            borderColor: 'var(--brand-primary)',
-                            color: 'var(--brand-primary)'
-                          }}
-                          title={`Reset password for ${cand.fullName}`}
-                        >
-                          <KeyRound size={13} />
-                          <span>Reset Password</span>
-                        </button>
+                        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                          <button
+                            id={`reset-pass-btn-${cand.username}`}
+                            className="btn btn-sm btn-outline"
+                            onClick={() => handleOpenResetModal(cand)}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              fontSize: '0.75rem',
+                              padding: '0.35rem 0.65rem',
+                              borderColor: 'var(--brand-primary)',
+                              color: 'var(--brand-primary)'
+                            }}
+                            title={`Reset password for ${cand.fullName}`}
+                          >
+                            <KeyRound size={13} />
+                            <span>Reset Pass</span>
+                          </button>
+
+                          <button
+                            id={`delete-cand-btn-${cand.username}`}
+                            type="button"
+                            className="btn btn-sm"
+                            onClick={() => setCandidateToDelete(cand)}
+                            style={{
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              gap: '0.35rem',
+                              fontSize: '0.75rem',
+                              padding: '0.35rem 0.65rem',
+                              background: 'rgba(239, 68, 68, 0.1)',
+                              border: '1px solid rgba(239, 68, 68, 0.3)',
+                              color: 'var(--brand-danger)',
+                              borderRadius: 'var(--radius-sm)',
+                              cursor: 'pointer'
+                            }}
+                            title={`Permanently delete candidate account ${cand.fullName}`}
+                          >
+                            <Trash2 size={13} />
+                            <span>Delete</span>
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
@@ -1444,6 +1859,89 @@ export default function AdminPortal({
                 </button>
               </div>
             </form>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Modal: Delete Candidate Confirmation */}
+      {candidateToDelete && createPortal(
+        <div className="modal-overlay animate-fade-in" style={{ zIndex: 9999 }}>
+          <div className="modal-dialog" style={{ maxWidth: '480px' }}>
+            <div className="modal-header">
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--brand-danger)' }}>
+                <AlertTriangle size={22} />
+                <h3 style={{ margin: 0, color: 'var(--brand-danger)' }}>Confirm Candidate Deletion</h3>
+              </div>
+              <button 
+                onClick={() => setCandidateToDelete(null)}
+                style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '1.2rem' }}
+              >
+                ✕
+              </button>
+            </div>
+
+            <div style={{ textAlign: 'left', marginTop: '1rem' }}>
+              <div style={{
+                background: 'var(--bg-tertiary)',
+                border: '1px solid var(--border-medium)',
+                borderRadius: 'var(--radius-md)',
+                padding: '0.85rem 1rem',
+                marginBottom: '1.25rem',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.75rem'
+              }}>
+                <CandidateAvatar name={candidateToDelete.fullName} size={44} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 700, color: 'var(--text-main)', fontSize: '0.95rem' }}>
+                    {candidateToDelete.fullName}
+                  </div>
+                  <div style={{ fontSize: '0.775rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
+                    Username: <strong>{candidateToDelete.username}</strong>
+                  </div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>
+                    {candidateToDelete.cadre} • {candidateToDelete.ministry}
+                  </div>
+                </div>
+              </div>
+
+              <div style={{
+                padding: '0.85rem 1rem',
+                background: 'rgba(239, 68, 68, 0.08)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
+                borderRadius: 'var(--radius-md)',
+                color: 'var(--text-main)',
+                fontSize: '0.85rem',
+                lineHeight: 1.5,
+                marginBottom: '1.5rem'
+              }}>
+                <strong style={{ color: 'var(--brand-danger)', display: 'block', marginBottom: '0.25rem' }}>Warning: Permanent Action</strong>
+                Are you sure you want to delete this candidate? This will permanently remove their profile, login access, and all recorded examination attempts from the Commission database.
+              </div>
+
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+                <button 
+                  type="button" 
+                  className="btn btn-secondary"
+                  onClick={() => setCandidateToDelete(null)}
+                  disabled={isDeletingCandidate}
+                >
+                  Cancel
+                </button>
+                <button 
+                  id="confirm-delete-candidate-btn"
+                  type="button" 
+                  className="btn btn-danger"
+                  onClick={handleExecuteDeleteCandidate}
+                  disabled={isDeletingCandidate}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+                >
+                  <Trash2 size={15} />
+                  <span>{isDeletingCandidate ? 'Deleting...' : 'Delete Candidate Account'}</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>,
         document.body

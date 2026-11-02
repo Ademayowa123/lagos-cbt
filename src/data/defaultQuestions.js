@@ -11,9 +11,10 @@
  */
 
 import { resolveQuestionSubjectId } from './gradeLevelCategories.js';
+import newQuestionsBank from '../../new_questions.json' with { type: 'json' };
 
 // Base Authentic Question Items
-const RAW_QUESTIONS = [
+const BASE_QUESTIONS = [
   // ==========================================
   // PSR CHAPTER 2: RECRUITMENT, APPOINTMENT, PROMOTION
   // ==========================================
@@ -1400,25 +1401,42 @@ const RAW_QUESTIONS = [
   }
 ];
 
+const RAW_QUESTIONS = (() => {
+  const seenNorm = new Set();
+  const list = [];
+  for (const q of [...BASE_QUESTIONS, ...newQuestionsBank]) {
+    const norm = (q.question || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (!norm || seenNorm.has(norm)) continue;
+    seenNorm.add(norm);
+    list.push(q);
+  }
+  return list;
+})();
+
 // Helper to expand and guarantee EXACTLY 100 questions per exam session
-// with authentic distribution across all prescribed chapters
+// with authentic distribution across all prescribed chapters and strictly zero repeated questions
 export function get100ExamQuestionsForCategory(category) {
   const categoryId = category.id;
   const isGL0610 = categoryId === "group-gl-06-10";
   const isGL1214 = categoryId === "group-gl-12-14";
   const isGL1516 = categoryId === "group-gl-15-16";
 
+  const seenNorm = new Set();
+  const full100 = [];
+
   // Filter matching base questions and ensure every question has a valid subjectId
-  const basePool = RAW_QUESTIONS.filter(q => q.categories.includes(categoryId)).map(q => ({
-    ...q,
-    subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
-  }));
-
-  // Comprehensive generator to fill out to exactly 100 questions using prescribed rules
-  const full100 = [...basePool];
-
-  // Specific chapter rules to generate remaining verified questions
-  let counter = full100.length + 1;
+  for (const q of RAW_QUESTIONS) {
+    if (q.categories && q.categories.includes(categoryId)) {
+      const norm = (q.question || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (norm && !seenNorm.has(norm)) {
+        seenNorm.add(norm);
+        full100.push({
+          ...q,
+          subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
+        });
+      }
+    }
+  }
 
   // Syllabi definitions for systematic expansion
   const topicsForGL0610 = [
@@ -1475,27 +1493,59 @@ export function get100ExamQuestionsForCategory(category) {
   ];
 
   const targetTopics = isGL0610 ? topicsForGL0610 : isGL1214 ? topicsForGL1214 : topicsForGL1516;
+  let counter = full100.length + 1;
 
-  // Generate up to 100 questions systematically
-  let topicIdx = 0;
-  while (full100.length < 100) {
-    const t = targetTopics[topicIdx % targetTopics.length];
-    const cycle = Math.floor(topicIdx / targetTopics.length) + 1;
-    
-    // Add realistic variation
-    full100.push({
-      id: `${categoryId}-q-${counter}`,
-      chapter: t.ch,
-      resourceMaterial: `${t.ch} (${t.ref})`,
-      question: cycle > 1 ? `[Regulatory Assessment #${counter}] ${t.q}` : t.q,
-      options: t.opts,
-      correctAnswer: t.ans,
-      explanation: t.exp,
-      categories: [categoryId],
-      subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
-    });
-    counter++;
-    topicIdx++;
+  for (const t of targetTopics) {
+    if (full100.length >= 100) break;
+    const norm = (t.q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (norm && !seenNorm.has(norm)) {
+      seenNorm.add(norm);
+      full100.push({
+        id: `${categoryId}-t-${counter++}`,
+        chapter: t.ch,
+        resourceMaterial: `${t.ch} (${t.ref})`,
+        question: t.q,
+        options: t.opts,
+        correctAnswer: t.ans,
+        explanation: t.exp,
+        categories: [categoryId],
+        subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
+      });
+    }
+  }
+
+  // If still need more to reach 100, pull distinct questions from other topics without any repeats
+  const otherTopics = [topicsForGL0610, topicsForGL1214, topicsForGL1516].flat();
+  for (const t of otherTopics) {
+    if (full100.length >= 100) break;
+    const norm = (t.q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (norm && !seenNorm.has(norm)) {
+      seenNorm.add(norm);
+      full100.push({
+        id: `${categoryId}-ot-${counter++}`,
+        chapter: t.ch,
+        resourceMaterial: `${t.ch} (${t.ref})`,
+        question: t.q,
+        options: t.opts,
+        correctAnswer: t.ans,
+        explanation: t.exp,
+        categories: [categoryId],
+        subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
+      });
+    }
+  }
+
+  // If still under 100, add from any remaining questions in RAW_QUESTIONS
+  for (const q of RAW_QUESTIONS) {
+    if (full100.length >= 100) break;
+    const norm = (q.question || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+    if (norm && !seenNorm.has(norm)) {
+      seenNorm.add(norm);
+      full100.push({
+        ...q,
+        subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
+      });
+    }
   }
 
   return full100.slice(0, 100);
