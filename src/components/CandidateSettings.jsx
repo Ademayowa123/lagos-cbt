@@ -393,7 +393,7 @@ export default function CandidateSettings({
                     ✓ Exam Band: {matchingCatForDisplay.title}
                   </div>
                   <div>
-                    Syllabus: {matchingCatForDisplay.psrChapters?.length || 3} PSR Chapters, {matchingCatForDisplay.frChapters?.length || 3} Financial Regs Chapters • {matchingCatForDisplay.timeLimitMinutes || 90} Mins (100 Qs) • Cut-off: {matchingCatForDisplay.passScorePercentage || 50}%
+                    Syllabus: {matchingCatForDisplay.psrChapters?.length || 3} PSR Chapters, {matchingCatForDisplay.frChapters?.length || 3} Financial Regs Chapters • {matchingCatForDisplay.timeLimitMinutes || 60} Mins (100 Qs) • Cut-off: {matchingCatForDisplay.passScorePercentage || 50}%
                   </div>
                 </div>
               )}

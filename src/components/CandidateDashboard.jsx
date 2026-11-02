@@ -244,7 +244,7 @@ export default function CandidateDashboard({
               </span>
               <span className="dashboard-time-limit-tag">
                 <Clock size={12} />
-                <span>{category?.timeLimitMinutes || 90} Minutes</span>
+                <span>{category?.timeLimitMinutes || 60} Minutes</span>
               </span>
             </div>
 
@@ -252,7 +252,7 @@ export default function CandidateDashboard({
               Official Year 2027 CBT Promotion Examination
             </h3>
             <p className="dashboard-action-desc">
-              Enter the computer-based test platform calibrated for <strong>{candidate?.targetGrade}</strong>. Exactly 100 questions covering your prescribed Lagos State PSR and Financial Regulations chapters, with full statutory rule citations upon completion.
+              Enter the computer-based test platform calibrated for <strong>{candidate?.targetGrade}</strong>. Exactly 100 questions covering your prescribed Lagos State PSR, Financial Regulations, and State Policy resource materials, with full statutory citations upon completion.
             </p>
 
             {/* Prescribed Chapter Summary */}
@@ -271,6 +271,11 @@ export default function CandidateDashboard({
                   <span className="scope-bullet">📙</span>
                   <span className="scope-label">Financial Regulations:</span>
                   <span className="scope-val">{category?.frChapters?.map(f => `Ch.${f.chapter}`).join(', ') || 'Ch. 1-8'}</span>
+                </div>
+                <div className="dashboard-scope-line">
+                  <span className="scope-bullet">📜</span>
+                  <span className="scope-label">Circulars & Policies:</span>
+                  <span className="scope-val">Procurement, Schemes of Service, THEMES+, CSC Handbook, Directives</span>
                 </div>
               </div>
             </div>
@@ -324,7 +329,7 @@ export default function CandidateDashboard({
 
               <div className="dashboard-metric-box">
                 <div className="dashboard-metric-val text-gold">
-                  {category?.timeLimitMinutes || 90}m
+                  {category?.timeLimitMinutes || 60}m
                 </div>
                 <div className="dashboard-metric-lbl">TIME LIMIT</div>
               </div>
@@ -474,9 +479,9 @@ export default function CandidateDashboard({
                   <span style={{ fontSize: '0.85rem' }}>{modalMatchingCat.title}</span>
                 </div>
                 <div style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.5 }}>
-                  • Assessment: 100 Questions ({modalMatchingCat.timeLimitMinutes || 90} Mins)<br/>
+                  • Assessment: 100 Questions ({modalMatchingCat.timeLimitMinutes || 60} Mins)<br/>
                   • Pass Mark: {modalMatchingCat.passScorePercentage || 50}%<br/>
-                  • Syllabus: {modalMatchingCat.psrChapters?.length || 3} PSR Chapters, {modalMatchingCat.frChapters?.length || 3} Financial Regs Chapters
+                  • Syllabus: {modalMatchingCat.psrChapters?.length || 3} PSR Chapters, {modalMatchingCat.frChapters?.length || 3} Financial Regs Chapters + 5 State Policy Materials
                 </div>
               </div>
             )}

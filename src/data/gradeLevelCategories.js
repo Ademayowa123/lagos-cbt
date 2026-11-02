@@ -10,8 +10,8 @@ export const DEFAULT_GRADE_CATEGORIES = [
     title: "Senior / Officer Promotion Group (GL 06 - 10)",
     gradeLevels: ["GL 06 to 07", "GL 07 to 08", "GL 08 to 09", "GL 09 to 10"],
     targetLevel: "Grade Level 06 - 10",
-    description: "Assessment for junior-to-officer and senior officer advancement. Evaluates mastery of appointment rules, core discipline, leave entitlements, and foundational financial regulations.",
-    timeLimitMinutes: 90,
+    description: "Assessment for junior-to-officer and senior officer advancement. Evaluates mastery of appointment rules, core discipline, leave entitlements, financial regulations, and Lagos State circular materials.",
+    timeLimitMinutes: 60,
     passScorePercentage: 50, // Minimum 50% pass mark in CBT
     totalQuestions: 100,
     assessmentMatrix: {
@@ -29,15 +29,30 @@ export const DEFAULT_GRADE_CATEGORIES = [
     ],
     additionalReferences: [
       "Lagos State Public Procurement Law (2021)",
-      "Officers' Cadres in The Schemes of Service (2000, 2003 & extant circulars)",
-      "Civil Service Commission Annual Report/Handbook",
-      "Establishments & Training Circulars"
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
+    ],
+    resourceMaterials: [
+      "Public Service Rules (PSR 2015)",
+      "Financial Regulations (FR 2009)",
+      "Lagos State Public Procurement Law (2021)",
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
     ],
     subjects: [
-      { id: "psr_ch2", name: "PSR Chapter 2: Appointments, Confirmations & Promotions", weight: 25 },
-      { id: "psr_ch4", name: "PSR Chapter 4: Discipline & Code of Conduct", weight: 25 },
-      { id: "psr_ch12", name: "PSR Chapter 12: Leave Entitlements & Absences", weight: 20 },
-      { id: "fr_ch1_3_4", name: "Financial Regulations: Chapters 1, 3 & 4 (Authorities & Vote Book)", weight: 30 }
+      { id: "psr_ch2", name: "PSR Chapter 2: Appointments, Confirmations & Promotions", weight: 15 },
+      { id: "psr_ch4", name: "PSR Chapter 4: Discipline & Code of Conduct", weight: 15 },
+      { id: "psr_ch12", name: "PSR Chapter 12: Leave Entitlements & Absences", weight: 10 },
+      { id: "fr_ch1_3_4", name: "Financial Regulations: Chapters 1, 3 & 4 (Authorities & Vote Book)", weight: 15 },
+      { id: "procurement_law", name: "Lagos State Public Procurement Law (2021)", weight: 9 },
+      { id: "schemes_of_service", name: "Officers' Cadres in the Schemes of Service", weight: 9 },
+      { id: "developmental_objectives", name: "Developmental Objectives & Programmes (THEMES+)", weight: 9 },
+      { id: "csc_handbook", name: "Civil Service Commission Annual Report/Handbook", weight: 9 },
+      { id: "circulars_directives", name: "Circulars and Directives (OHOS/CSC/STO/MET)", weight: 9 }
     ],
     cadres: [
       "Administrative Officer II / I",
@@ -58,8 +73,8 @@ export const DEFAULT_GRADE_CATEGORIES = [
     title: "Middle Management / Chief Officer Band (GL 12 - 14)",
     gradeLevels: ["GL 10 to 12", "GL 12 to 13", "GL 13 to 14"],
     targetLevel: "Grade Level 12 - 14",
-    description: "Assessment for middle management and chief officers transitioning into upper administration. Examines disciplinary jurisdiction, allowances, payment procedures, and transport administration.",
-    timeLimitMinutes: 90,
+    description: "Assessment for middle management and chief officers transitioning into upper administration. Examines disciplinary jurisdiction, allowances, payment procedures, vehicles, and key state directives.",
+    timeLimitMinutes: 60,
     passScorePercentage: 50,
     totalQuestions: 100,
     assessmentMatrix: {
@@ -82,14 +97,28 @@ export const DEFAULT_GRADE_CATEGORIES = [
     ],
     additionalReferences: [
       "Lagos State Public Procurement Law (2021)",
-      "State Developmental Objectives & Megacity Programmes",
-      "Treasury Circulars on e-Payment & Centralized Billings"
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
+    ],
+    resourceMaterials: [
+      "Public Service Rules (PSR 2015)",
+      "Financial Regulations (FR 2009)",
+      "Lagos State Public Procurement Law (2021)",
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
     ],
     subjects: [
-      { id: "psr_ch4_8_10_12", name: "PSR Chapters 4, 8, 10 & 12 (Discipline, Allowances, Leave)", weight: 35 },
-      { id: "fr_ch3_6_20", name: "Financial Regulations: Chapters 3, 6 & 20 (Warrants, Payments, Vehicles)", weight: 35 },
-      { id: "procurement_law", name: "Lagos State Public Procurement Law & Tenders Rules", weight: 15 },
-      { id: "leadership_mgmt", name: "Management, Teamwork, Delegation & Change Administration", weight: 15 }
+      { id: "psr_ch4_8_10_12", name: "PSR Chapters 4, 8, 10 & 12 (Discipline, Allowances, Leave)", weight: 25 },
+      { id: "fr_ch3_6_20", name: "Financial Regulations: Chapters 3, 6 & 20 (Warrants, Payments, Vehicles)", weight: 25 },
+      { id: "procurement_law", name: "Lagos State Public Procurement Law (2021)", weight: 10 },
+      { id: "schemes_of_service", name: "Officers' Cadres in the Schemes of Service", weight: 10 },
+      { id: "developmental_objectives", name: "Developmental Objectives & Programmes (THEMES+)", weight: 10 },
+      { id: "csc_handbook", name: "Civil Service Commission Annual Report/Handbook", weight: 10 },
+      { id: "circulars_directives", name: "Circulars and Directives (OHOS/CSC/STO/MET)", weight: 10 }
     ],
     cadres: [
       "Chief Administrative Officer",
@@ -108,8 +137,8 @@ export const DEFAULT_GRADE_CATEGORIES = [
     title: "Directorate & Executive Promotion Group (GL 15 - 16)",
     gradeLevels: ["GL 14 to 15", "GL 15 to 16", "GL 16 to 17"],
     targetLevel: "Grade Level 15 - 16",
-    description: "Assessment for Directorate leadership and Substantive Directors. Focuses on Commission appointments, constitutional appeals, health policies, loss of public funds, and Board of Enquiry procedures.",
-    timeLimitMinutes: 90,
+    description: "Assessment for Directorate leadership and Substantive Directors. Focuses on Commission appointments, constitutional appeals, loss of funds, state procurement governance, and strategic circulars.",
+    timeLimitMinutes: 60,
     passScorePercentage: 50,
     totalQuestions: 100,
     assessmentMatrix: {
@@ -134,14 +163,28 @@ export const DEFAULT_GRADE_CATEGORIES = [
     ],
     additionalReferences: [
       "Lagos State Public Procurement Law (2021)",
-      "Civil Service Commission Annual Report/Handbook",
-      "State Treasury Circulars, Codification of Offences & Sanctions (FR 31)"
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
+    ],
+    resourceMaterials: [
+      "Public Service Rules (PSR 2015)",
+      "Financial Regulations (FR 2009)",
+      "Lagos State Public Procurement Law (2021)",
+      "Officers' Cadres in the Schemes of Service (2000, 2003 & extant circulars)",
+      "Developmental Objectives and Programmes of the State Government (THEMES+ & LSDP 2052)",
+      "Civil Service Commission Y2025 Annual Report/Handbook",
+      "Circulars and Directives (OHOS, CSC, STO, MET)"
     ],
     subjects: [
-      { id: "psr_ch2_4_6_10_12", name: "PSR Chapters 2, 4, 6, 10 & 12 (Appeals, Executive Discipline, Leave)", weight: 35 },
-      { id: "fr_ch1_3_20_25", name: "Financial Regulations: Chapters 1, 3, 20 & 25 (Authorities, Losses & Boards)", weight: 35 },
-      { id: "procurement_law", name: "Procurement Governance & Tender Thresholds", weight: 15 },
-      { id: "leadership_mgmt", name: "Executive Leadership, Strategic Policy & Public Financial Governance", weight: 15 }
+      { id: "psr_ch2_4_6_10_12", name: "PSR Chapters 2, 4, 6, 10 & 12 (Appeals, Executive Discipline, Leave)", weight: 25 },
+      { id: "fr_ch1_3_20_25", name: "Financial Regulations: Chapters 1, 3, 20 & 25 (Authorities, Losses & Boards)", weight: 25 },
+      { id: "procurement_law", name: "Lagos State Public Procurement Law (2021)", weight: 10 },
+      { id: "schemes_of_service", name: "Officers' Cadres in the Schemes of Service", weight: 10 },
+      { id: "developmental_objectives", name: "Developmental Objectives & Programmes (THEMES+)", weight: 10 },
+      { id: "csc_handbook", name: "Civil Service Commission Annual Report/Handbook", weight: 10 },
+      { id: "circulars_directives", name: "Circulars and Directives (OHOS/CSC/STO/MET)", weight: 10 }
     ],
     cadres: [
       "Deputy Director / Director (Administration & HR)",
@@ -181,6 +224,23 @@ export function resolveQuestionSubjectId(q, categoryId = 'group-gl-06-10') {
   const ch = String(q.chapter || q.resourceMaterial || '').toLowerCase();
   const qText = String(q.question || '').toLowerCase();
 
+  // Universal state resource materials across all grade levels
+  if (rawSubject === 'procurement_law' || ch.includes('procurement') || qText.includes('procurement') || qText.includes('public procurement agency')) {
+    return 'procurement_law';
+  }
+  if (rawSubject === 'schemes_of_service' || ch.includes('schemes of service') || ch.includes('scheme of service') || ch.includes('cadres in the schemes') || qText.includes('scheme of service') || qText.includes('schemes of service')) {
+    return 'schemes_of_service';
+  }
+  if (rawSubject === 'developmental_objectives' || ch.includes('developmental objectives') || qText.includes('themes+') || qText.includes('lsdp') || qText.includes('2052') || qText.includes('development plan')) {
+    return 'developmental_objectives';
+  }
+  if (rawSubject === 'csc_handbook' || ch.includes('civil service commission') || ch.includes('csc annual report') || ch.includes('annual report/handbook') || (qText.includes('civil service commission') && (qText.includes('handbook') || qText.includes('annual report')))) {
+    return 'csc_handbook';
+  }
+  if (rawSubject === 'circulars_directives' || ch.includes('circulars and directives') || ch.includes('extant circulars') || (qText.includes('circular') && (qText.includes('directive') || qText.includes('official communication')))) {
+    return 'circulars_directives';
+  }
+
   if (categoryId === 'group-gl-06-10') {
     if (ch.includes('financial') || ch.includes('fr') || ch.includes('vote book') || qText.includes('fr ') || qText.includes('financial regulation') || qText.includes('warrant') || qText.includes('vote book') || rawSubject === 'fr_ch1_3_4') {
       return 'fr_ch1_3_4';
@@ -201,14 +261,12 @@ export function resolveQuestionSubjectId(q, categoryId = 'group-gl-06-10') {
   }
 
   if (categoryId === 'group-gl-12-14') {
-    if (ch.includes('procurement') || qText.includes('procurement') || rawSubject === 'procurement_law') return 'procurement_law';
     if (ch.includes('leadership') || ch.includes('management') || qText.includes('leadership') || qText.includes('management') || rawSubject === 'leadership_mgmt') return 'leadership_mgmt';
     if (ch.includes('financial') || ch.includes('fr') || rawSubject === 'fr_ch3_6_20') return 'fr_ch3_6_20';
     return 'psr_ch4_8_10_12';
   }
 
   // group-gl-15-16
-  if (ch.includes('procurement') || qText.includes('procurement') || rawSubject === 'procurement_law') return 'procurement_law';
   if (ch.includes('leadership') || ch.includes('management') || ch.includes('policy') || rawSubject === 'leadership_mgmt') return 'leadership_mgmt';
   if (ch.includes('financial') || ch.includes('fr') || rawSubject === 'fr_ch1_3_20_25') return 'fr_ch1_3_20_25';
   return 'psr_ch2_4_6_10_12';

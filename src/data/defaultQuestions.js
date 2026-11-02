@@ -1417,20 +1417,18 @@ const RAW_QUESTIONS = (() => {
 // with authentic distribution across all prescribed chapters and strictly zero repeated questions
 export function get100ExamQuestionsForCategory(category) {
   const categoryId = category.id;
-  const isGL0610 = categoryId === "group-gl-06-10";
-  const isGL1214 = categoryId === "group-gl-12-14";
-  const isGL1516 = categoryId === "group-gl-15-16";
+  const targetTotal = Number(category.totalQuestions) || 100;
 
+  // Strict text deduplication of all questions matching this category
   const seenNorm = new Set();
-  const full100 = [];
+  const pool = [];
 
-  // Filter matching base questions and ensure every question has a valid subjectId
   for (const q of RAW_QUESTIONS) {
     if (q.categories && q.categories.includes(categoryId)) {
       const norm = (q.question || '').toLowerCase().replace(/[^a-z0-9]/g, '');
       if (norm && !seenNorm.has(norm)) {
         seenNorm.add(norm);
-        full100.push({
+        pool.push({
           ...q,
           subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
         });
@@ -1438,117 +1436,67 @@ export function get100ExamQuestionsForCategory(category) {
     }
   }
 
-  // Syllabi definitions for systematic expansion
-  const topicsForGL0610 = [
-    { ch: "PSR Chapter 2", ref: "PSR Rule 020206", q: "Who certifies an applicant medically fit for employment in the Public Service?", opts: ["A State Government Medical Officer", "The applicant's landlord", "A traditional herbalist", "Any office colleague"], ans: 0, exp: "Rule 020206 requires medical fitness certification by a recognized State Government Medical Officer." },
-    { ch: "PSR Chapter 2", ref: "PSR Rule 020207", q: "An applicant with no previous employment should ordinarily obtain a good-conduct testimonial from where?", opts: ["The last school or college attended", "A prospective supplier", "The nearest bank cashier", "A political campaign office"], ans: 0, exp: "Rule 020207 specifies that testimonials for new graduates must originate from the last educational institution attended." },
-    { ch: "PSR Chapter 2", ref: "PSR Rule 020401", q: "What is the primary condition for offering a contract appointment to an expatriate?", opts: ["When suitable Nigerians are unavailable", "Whenever an expatriate requests employment", "Only after the expatriate retires abroad", "Only for sub-clerical cadres"], ans: 0, exp: "Rule 020401 permits contract appointments to expatriates only where qualified Nigerian personnel are unavailable." },
-    { ch: "PSR Chapter 2", ref: "PSR Rule 020606", q: "What is the purpose of 'Notional Promotion' under Rule 020606?", opts: ["Restoring appropriate seniority after approved absence", "Paying double salary retroactively", "Eliminating vacancies permanently", "Replacing disciplinary proceedings"], ans: 0, exp: "Notional promotion restores an officer's relative seniority upon return from qualifying approved courses or postings." },
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040305", q: "Who must be formally notified in all cases when an officer's salary increment is withheld or deferred?", opts: ["The State Accountant-General and State Auditor-General", "The staff cooperative president only", "The officer's bank manager", "The nearest magistrate"], ans: 0, exp: "Rule 040305 requires immediate notification to the Accountant-General and Auditor-General of increment deferment." },
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040409", q: "What does Rule 040409 prescribe regarding the imposition of fines as disciplinary punishment in the Public Service?", opts: ["No fine shall be imposed on an officer as punishment", "A fine can be imposed at the discretion of any supervisor", "Fines are deducted from pension funds directly", "Fines replace written queries"], ans: 0, exp: "Rule 040409 strictly forbids the imposition of fines as disciplinary punishment on public servants." },
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040410", q: "Under Rule 040410, what is a surcharge intended to address?", opts: ["A revenue or property loss caused by an officer's fault or neglect", "An annual leave penalty", "An automatic fee for promotion screening", "A union dues levy"], ans: 0, exp: "Surcharge is a financial recovery mechanism to make good a loss caused to government through an officer's negligence." },
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040502", q: "Which of the following acts is explicitly categorized as Serious Misconduct?", opts: ["Holding more than one full-time paid appointment simultaneously", "Attending an approved official training seminar", "Submitting an accurate medical certificate", "Applying for annual leave in advance"], ans: 0, exp: "Holding dual full-time jobs is an egregious violation categorized as Serious Misconduct." },
-    { ch: "PSR Chapter 12", ref: "PSR Rule 120202", q: "What document must an officer submit immediately upon returning to duty after annual vacation leave?", opts: ["An endorsed Resumption of Duty Certificate", "A private travel receipt", "A new job application", "A medical fitness clearance"], ans: 0, exp: "Rule 120202 requires every returning officer to complete and submit an endorsed Resumption of Duty Certificate." },
-    { ch: "PSR Chapter 12", ref: "PSR Rule 120215", q: "What happens to annual vacation leave that is not utilized within the leave year and not formally deferred due to service exigency?", opts: ["It is automatically forfeited", "It doubles in the subsequent year", "It converts into cash payment automatically", "It is transferred to a colleague"], ans: 0, exp: "Annual leave not taken within the calendar year and not officially deferred is forfeited." },
-    { ch: "PSR Chapter 12", ref: "PSR Rule 120235", q: "What is the duration of Adoption Leave granted to an officer who legally adopts a child under Rule 120235?", opts: ["12 weeks at a stretch with full pay", "5 working days", "Two years without pay", "24 hours only"], ans: 0, exp: "Rule 120235 grants twelve (12) weeks paid adoption leave commencing from the date the baby is legally released." },
-    { ch: "PSR Chapter 12", ref: "PSR Rule 120237", q: "How long may the daily 2-hour nursing-mother concession be enjoyed following resumption from maternity leave?", opts: ["Up to six (6) months", "Only one week", "Up to five years", "Two days only"], ans: 0, exp: "Nursing mothers are entitled to 2 hours off duty daily for up to six (6) months following resumption." },
-    { ch: "Financial Regulations Chapter 1", ref: "FR 114", q: "Who is responsible under FR 114 for maintaining proper accounting records, main and subsidiary ledgers in an MDA?", opts: ["The Head of Finance and Accounts", "The Storekeeper", "The Internal Auditor", "The Transport Officer"], ans: 0, exp: "FR 114 assigns the maintenance of books of accounts, main and subsidiary ledgers to the Head of Finance and Accounts." },
-    { ch: "Financial Regulations Chapter 1", ref: "FR 115", q: "Under FR 115, what is a Sub-Accounting Officer required to maintain?", opts: ["A recognized Cash Book and other accounts prescribed by the Accountant-General", "A private bank account", "An informal diary", "A vehicle log book only"], ans: 0, exp: "FR 115 defines a Sub-Accounting Officer as an officer entrusted with public funds who keeps a recognized Cash Book." },
-    { ch: "Financial Regulations Chapter 1", ref: "FR 119", q: "What is a 'Revenue Collector' under Financial Regulation 119?", opts: ["An officer entrusted with official receipt or licence booklets for collection of revenue who maintains a cash book", "A private debt collection contractor", "The driver of the cash vehicle", "The Chairman of the Tenders Board"], ans: 0, exp: "FR 119 defines a Revenue Collector as an officer entrusted with receipt/licence booklets who maintains a revenue cash book." },
-    { ch: "Financial Regulations Chapter 3", ref: "FR 304", q: "What authority does the Annual General Warrant convey under Financial Regulation 304?", opts: ["Authorises the Accountant-General to issue funds to pay for personal emoluments and services in the Annual Estimates", "Permits contract awards without tenders", "Allows private commercial borrowing", "Suspends public financial reporting"], ans: 0, exp: "FR 304 provides that the General Warrant authorises the Accountant-General to issue funds provided in the Annual Estimates." },
-    { ch: "Financial Regulations Chapter 3", ref: "FR 306", q: "Under what circumstance may a Supplementary (Contingencies) Warrant be issued under FR 306?", opts: ["Where virement is impossible and expenditure is so urgent that delay would seriously injure the public interest", "To buy luxury office furniture", "To pay private contractor bonuses", "To fund political party campaigns"], ans: 0, exp: "FR 306 permits Contingencies Warrants only for exceptional, urgent matters where virement is impossible." },
-    { ch: "Financial Regulations Chapter 4", ref: "FR 403", q: "How are liabilities and commitments (such as LPOs and Job Orders) treated in the Vote Book under FR 403?", opts: ["Entered as soon as they are incurred and cleared when payment is effected", "Ignored until cash is paid", "Recorded in pencil on scrap paper", "Kept in a private file by the supplier"], ans: 0, exp: "FR 403 mandates that all liabilities and commitments must be entered immediately in the Vote Book." },
-    { ch: "Financial Regulations Chapter 4", ref: "FR 415", q: "What fundamental principle does Lagos State Financial Regulations (FR 415) mandate regarding public spending?", opts: ["Officers must exercise due economy; money must not be spent merely because it has been voted", "Budget votes must be exhausted at all costs before year end", "Funds may be transferred to private accounts", "Expenditure records should be kept secret"], ans: 0, exp: "FR 415 requires due economy: money must never be spent merely because funds have been voted in the estimates." },
-    { ch: "Financial Regulations Chapter 4", ref: "FR 420", q: "Before making any payment, what must a Sub-Accounting Officer satisfy himself of under FR 420?", opts: ["That expenditure is authorised by Warrant, voucher is correctly classified, and salary deductions are made", "That the contractor is a personal friend", "That the payment voucher is written in pencil", "That no certificate is signed"], ans: 0, exp: "FR 420 requires the Sub-Accounting Officer to verify warrant authority, correct classification, and statutory deductions." }
-  ];
+  // Helper to extract uniform resource material label
+  const getMaterial = (q) => String(q.chapter || q.resourceMaterial || 'General Civil Service Regulations').trim();
 
-  const topicsForGL1214 = [
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040402", q: "If an officer successfully exculpates himself in response to a written query, what action follows under Rule 040402?", opts: ["Written notification is given and no further disciplinary action taken on that query", "A fine is deducted from salary", "The officer is demoted one rank", "The query is forwarded to the police"], ans: 0, exp: "Rule 040402 provides that upon successful exculpation, the officer is notified in writing and the matter is closed." },
-    { ch: "PSR Chapter 4", ref: "PSR Rule 040507", q: "Under Rule 040507, when does an order of Suspension apply?", opts: ["Where a serious prima facie case of misconduct has been established against an officer", "Whenever an officer requests vacation leave", "When an office changes location", "Only upon reaching retirement age"], ans: 0, exp: "Suspension applies where a prima facie case of serious misconduct has been established against the officer." },
-    { ch: "PSR Chapter 8", ref: "PSR Chapter 8, Allowances", q: "What is the statutory basis for Duty Tour Allowance (DTA) paid to officers on official journeys within Nigeria?", opts: ["It covers boarding and lodging expenses at approved daily rates according to grade levels", "It is an unconditional salary bonus", "It is a taxable entertainment gift", "It must be retired within 3 years"], ans: 0, exp: "DTA is a per diem allowance designed to cover verified lodging and feeding expenses on official tours." },
-    { ch: "PSR Chapter 10", ref: "PSR Chapter 10, Rule 100101", q: "Who possesses the statutory authority to constitute a Medical Board to examine an officer's physical or mental fitness for continued service?", opts: ["The Permanent Secretary / Head of Department in consultation with the State Health Board", "The staff union chairman", "The commercial insurance agent", "The officer's family physician"], ans: 0, exp: "Medical Boards are officially convened through the supervising Ministry/Establishment in conjunction with the Health Board." },
-    { ch: "PSR Chapter 12", ref: "PSR Rule 120223", q: "Under what specific condition may annual vacation leave be formally deferred to the next leave year under Rule 120223?", opts: ["Due to overriding exigencies of official duties approved in writing by the Permanent Secretary/MDA Head", "Whenever an officer wishes to travel on private vacation next year", "To accumulate leave for terminal cash out", "At the personal discretion of the cashier"], ans: 0, exp: "Leave deferment requires written executive approval demonstrating that official duty exigencies prevented taking leave." },
-    { ch: "Financial Regulations Chapter 3", ref: "FR 314", q: "What is the rule under Financial Regulation 314 regarding an unspent balance on a recurrent expenditure vote?", opts: ["An unspent balance on a recurrent expenditure vote cannot be revoted", "It carries over automatically into the new budget", "It is distributed to staff as year-end bonuses", "It is placed in a private savings account"], ans: 0, exp: "FR 314 states that unspent recurrent balances lapse and cannot be revoted in the subsequent year." },
-    { ch: "Financial Regulations Chapter 6", ref: "FR 610", q: "Under FR 610, are alterations to the amount of a payment voucher permitted in either words or figures?", opts: ["Alterations to the amount whether in words or figures are NOT allowed; a new voucher must be prepared", "Alterations are allowed if covered with Tippex", "Alterations can be signed by a messenger", "Figures can be crossed out without full signature"], ans: 0, exp: "FR 610 strictly prohibits alterations to the amount on vouchers; any error requires raising a fresh voucher." },
-    { ch: "Financial Regulations Chapter 6", ref: "FR 616", q: "Under FR 616, how must all payments to corporate firms and contractors be executed?", opts: ["Only by cheques or electronic mandates crossed 'Account Payee Only' in favour of the firm", "In cash through a third-party courier", "By open bearer cheques", "By promissory notes"], ans: 0, exp: "FR 616 mandates that payments to firms must be made only by crossed cheques or electronic transfers to the firm's account." },
-    { ch: "Financial Regulations Chapter 6", ref: "FR 624", q: "Within what period must payment vouchers withdrawn against cash/cheque order forms be returned to the Sub-Treasury or Cash Office under FR 624?", opts: ["Within seven (7) days", "Within 30 days", "Within two months", "At the end of the financial year"], ans: 0, exp: "FR 624 requires vouchers withdrawn against cash orders to be returned receipted or cash refunded within 7 days." },
-    { ch: "Financial Regulations Chapter 20", ref: "FR 2004", q: "What does FR 2004 recommend regarding driver allocation to ensure vehicle care and accountability?", opts: ["A particular vehicle should be attached to a particular driver over a period to facilitate accountability", "Any driver should drive any pool vehicle at random", "Private transport operators should take over vehicles", "Vehicles should not have assigned drivers"], ans: 0, exp: "FR 2004 condemns the pool system and mandates attaching specific vehicles to designated drivers." },
-    { ch: "Financial Regulations Chapter 20", ref: "FR 2021", q: "Under FR 2021, when may an Accounting Officer dispose of an accident report and order vehicle repairs?", opts: ["When no civil claim against government exists, government will not sue, and funds are available", "Whenever the driver requests it verbally", "Only after five years have elapsed", "Without any technical inspection"], ans: 0, exp: "FR 2021 empowers the Accounting Officer to order repairs when liabilities are clear and repair funds exist." },
-    { ch: "Management & Leadership", ref: "Leadership Principles, Module 1", q: "Which leadership style is characterized by empowering team members, setting inspirational vision, and coaching for high performance?", opts: ["Transformational Leadership", "Autocratic Micromanagement", "Laissez-faire Abandonment", "Transactional Penalization"], ans: 0, exp: "Transformational leadership inspires, motivates, and develops public sector teams toward institutional goals." },
-    { ch: "Management & Leadership", ref: "Leadership Principles, Module 2", q: "According to Herzberg's Two-Factor Motivation Theory, which factor is a true 'Motivator' rather than a 'Hygiene' factor?", opts: ["Challenging work and recognition for achievement", "Basic salary and job security", "Company administrative policies", "Physical office air conditioning"], ans: 0, exp: "Herzberg identifies recognition, responsibility, and meaningful achievement as true intrinsic motivators." },
-    { ch: "Management & Leadership", ref: "Leadership Principles, Module 3", q: "What is the primary danger of failing to delegate authority as a middle/senior manager in a public service department?", opts: ["Operational bottlenecks, burnout, and stunted development of subordinate officers", "Excessive expenditure savings", "Faster file processing", "Reduced audit scrutiny"], ans: 0, exp: "Failure to delegate creates organizational bottlenecks, manager burnout, and prevents junior staff capacity development." }
-  ];
+  // Group unique pool by resource material
+  const materialMap = new Map();
+  for (const q of pool) {
+    const mat = getMaterial(q);
+    if (!materialMap.has(mat)) materialMap.set(mat, []);
+    materialMap.get(mat).push(q);
+  }
 
-  const topicsForGL1516 = [
-    { ch: "PSR Chapter 2", ref: "PSR Rule 020601(b)", q: "Which officers are expressly excluded from promotion consideration under Rule 020601(b)?", opts: ["Officers currently under active disciplinary action or interdiction", "Officers who hold postgraduate degrees", "Officers with clean service records", "Officers with approved leave"], ans: 0, exp: "Rule 020601(b) bars officers undergoing disciplinary proceedings from promotion consideration." },
-    { ch: "PSR Chapter 6", ref: "PSR Chapter 6, Rule 060101", q: "Under Public Service Rules Chapter 6, to whom does a civil servant address a formal petition against an administrative grievance?", opts: ["Through proper official channels to the Head of Service and Civil Service Commission", "Directly to social media platforms", "To external commercial media", "To private legal contractors"], ans: 0, exp: "Petitions and appeals must follow hierarchical official channels through the Head of Service to the Commission." },
-    { ch: "PSR Chapter 10", ref: "PSR Chapter 10, Rule 100201", q: "When an officer is certified by a duly constituted Medical Board to be permanently incapacitated for further service, what procedure follows?", opts: ["Statutory retirement on medical grounds (invalidation) with accrued retirement benefits", "Immediate dismissal without pension", "Compulsory transfer to a remote station", "Conversion to casual contract"], ans: 0, exp: "Medical Board certification of permanent unfitness leads to honorable retirement on grounds of invalidation." },
-    { ch: "Financial Regulations Chapter 1", ref: "FR 108", q: "Who is the constitutional officer responsible for audit and reporting on the public accounts of the Federation and all MDAs under FR 108?", opts: ["The Auditor-General for the Federation", "The Accountant-General", "The Minister of Finance", "The Central Bank Governor"], ans: 0, exp: "FR 108 designates the Auditor-General as the independent constitutional authority for public sector audit." },
-    { ch: "Financial Regulations Chapter 1", ref: "FR 113", q: "Under FR 113, what annual duty must an Accounting Officer perform regarding procurement records for the Bureau/Agency?", opts: ["Render annual returns of procurement records to the Public Procurement Bureau/Agency", "Destroy all tender files at the end of the year", "Hide contract records from auditors", "Keep procurement records secret for 50 years"], ans: 0, exp: "FR 113(g) mandates rendering annual returns of all procurement records to the Bureau of Public Procurement." },
-    { ch: "Financial Regulations Chapter 20", ref: "FR 2027", q: "When an accident renders a government vehicle beyond economic repair, what body must be convened under FR 2027?", opts: ["A Board of Survey under Chapter 26/27 to inspect and recommend boarding and write-off", "A private auctioneer without survey", "The drivers' disciplinary panel", "A commercial insurance broker"], ans: 0, exp: "FR 2027 requires convening a Board of Survey to inspect vehicles beyond economic repair before write-off." },
-    { ch: "Financial Regulations Chapter 25", ref: "FR 2505", q: "Under FR 2505, when MUST a formal Board of Enquiry be convened following a loss of public funds?", opts: ["If fraud is probable, the loss is substantial, or collusion among officers is suspected", "Whenever an officer misplaces an empty envelope", "For losses under N500", "Only when the police dismiss the case"], ans: 0, exp: "FR 2505(ii) makes a Board of Enquiry mandatory if fraud is probable, the loss is substantial, or collusion is suspected." },
-    { ch: "Financial Regulations Chapter 25", ref: "FR 2515", q: "Under FR 2515, what is the maximum delegated power of write-off of losses granted to the Accountant-General?", opts: ["Up to the value of N200,000 (except losses occurring within his own office)", "Up to N100,000,000", "Unlimited write-off authority", "N10,000 only"], ans: 0, exp: "FR 2515 delegates write-off authority up to N200,000 to the Accountant-General; losses above require the Minister of Finance." },
-    { ch: "Financial Regulations Chapter 25", ref: "FR 2522", q: "Where a public officer is convicted by a court for criminal embezzlement of public funds, what civil action must be taken under FR 2522?", opts: ["Liaise with the Attorney-General to explore recovering funds through civil action against the convict's assets", "Waive all recovery efforts", "Pay the officer a retirement bonus", "Destroy the court judgment"], ans: 0, exp: "FR 2522 requires liaising with the Attorney-General to seize assets and recover embezzled public funds." },
-    { ch: "Public Procurement Law", ref: "Lagos State Procurement Law (2021), Offences", q: "What penalty applies under Section 3126 of the Regulations and the Procurement Law to an officer convicted of collusive bid-rigging or procurement corruption?", opts: ["Imprisonment of not less than five (5) calendar years without option of fine, and summary dismissal", "A verbal warning from the supervisor", "A small fine of N5,000", "Transfer to another department with full pay"], ans: 0, exp: "Procurement offenses carry a mandatory minimum 5-year prison term without option of fine, plus summary dismissal." }
-  ];
+  const picked = [];
+  const pickedIds = new Set();
+  const numMaterials = materialMap.size;
+  const baseQuota = Math.max(1, Math.floor(targetTotal / Math.max(1, numMaterials)));
 
-  const targetTopics = isGL0610 ? topicsForGL0610 : isGL1214 ? topicsForGL1214 : topicsForGL1516;
-  let counter = full100.length + 1;
-
-  for (const t of targetTopics) {
-    if (full100.length >= 100) break;
-    const norm = (t.q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    if (norm && !seenNorm.has(norm)) {
-      seenNorm.add(norm);
-      full100.push({
-        id: `${categoryId}-t-${counter++}`,
-        chapter: t.ch,
-        resourceMaterial: `${t.ch} (${t.ref})`,
-        question: t.q,
-        options: t.opts,
-        correctAnswer: t.ans,
-        explanation: t.exp,
-        categories: [categoryId],
-        subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
-      });
+  // Pass 1: Guarantee base quota from each resource material
+  for (const [mat, questions] of materialMap.entries()) {
+    const quota = Math.min(questions.length, baseQuota);
+    for (let i = 0; i < quota; i++) {
+      picked.push(questions[i]);
+      pickedIds.add(questions[i].id);
     }
   }
 
-  // If still need more to reach 100, pull distinct questions from other topics without any repeats
-  const otherTopics = [topicsForGL0610, topicsForGL1214, topicsForGL1516].flat();
-  for (const t of otherTopics) {
-    if (full100.length >= 100) break;
-    const norm = (t.q || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    if (norm && !seenNorm.has(norm)) {
-      seenNorm.add(norm);
-      full100.push({
-        id: `${categoryId}-ot-${counter++}`,
-        chapter: t.ch,
-        resourceMaterial: `${t.ch} (${t.ref})`,
-        question: t.q,
-        options: t.opts,
-        correctAnswer: t.ans,
-        explanation: t.exp,
-        categories: [categoryId],
-        subjectId: resolveQuestionSubjectId({ chapter: t.ch, resourceMaterial: t.ref, question: t.q }, categoryId)
-      });
+  // Pass 2: Round-robin fill across remaining questions until target total (100) is reached
+  const remainingByMaterial = [];
+  for (const [mat, questions] of materialMap.entries()) {
+    const remaining = questions.filter((q) => !pickedIds.has(q.id));
+    if (remaining.length > 0) remainingByMaterial.push(remaining);
+  }
+
+  while (picked.length < targetTotal && remainingByMaterial.length > 0) {
+    let addedInRound = false;
+    for (let i = 0; i < remainingByMaterial.length; i++) {
+      if (picked.length >= targetTotal) break;
+      const list = remainingByMaterial[i];
+      if (list.length > 0) {
+        const nextQ = list.shift();
+        if (!pickedIds.has(nextQ.id)) {
+          picked.push(nextQ);
+          pickedIds.add(nextQ.id);
+          addedInRound = true;
+        }
+      }
+    }
+    if (!addedInRound) break;
+  }
+
+  // Pass 3: In rare fallback cases, pull from remaining pool
+  if (picked.length < targetTotal) {
+    for (const q of pool) {
+      if (picked.length >= targetTotal) break;
+      if (!pickedIds.has(q.id)) {
+        picked.push(q);
+        pickedIds.add(q.id);
+      }
     }
   }
 
-  // If still under 100, add from any remaining questions in RAW_QUESTIONS
-  for (const q of RAW_QUESTIONS) {
-    if (full100.length >= 100) break;
-    const norm = (q.question || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    if (norm && !seenNorm.has(norm)) {
-      seenNorm.add(norm);
-      full100.push({
-        ...q,
-        subjectId: q.subjectId || resolveQuestionSubjectId(q, categoryId)
-      });
-    }
-  }
-
-  return full100.slice(0, 100);
+  return picked.slice(0, targetTotal);
 }
 
 export const DEFAULT_QUESTIONS = RAW_QUESTIONS.map(q => ({

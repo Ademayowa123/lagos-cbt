@@ -132,7 +132,7 @@ export default function CBTExamEngine({
     if (cached?.endsAt) {
       return Math.max(0, Math.round((cached.endsAt - Date.now()) / 1000));
     }
-    return (safeCategory?.timeLimitMinutes || 90) * 60;
+    return (safeCategory?.timeLimitMinutes || 60) * 60;
   });
   const endsAtRef = useRef(0);
   const clockOffsetRef = useRef(0);
@@ -229,7 +229,7 @@ export default function CBTExamEngine({
         if (!cancelled) {
           const rawQ = buildLocalExam(safeCategory);
           const now = Date.now();
-          const durationSec = (safeCategory.timeLimitMinutes || 90) * 60;
+          const durationSec = (safeCategory.timeLimitMinutes || 60) * 60;
           const fallbackSession = {
             examId: 'local-' + now,
             category: safeCategory,

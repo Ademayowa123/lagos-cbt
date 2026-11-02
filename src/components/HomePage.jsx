@@ -168,7 +168,7 @@ export default function HomePage({
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Questions per Session</div>
             </div>
             <div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--brand-primary)' }}>90 Mins</div>
+              <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--brand-primary)' }}>60 Mins</div>
               <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Standard Time Limit</div>
             </div>
             <div>

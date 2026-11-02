@@ -104,6 +104,13 @@ function normalizeQuestion(q) {
   };
 }
 
+// Helper to extract uniform resource material label
+function getQuestionResourceMaterial(q) {
+  const ch = String(q.chapter || q.resourceMaterial || '').trim();
+  if (ch) return ch;
+  return 'General Civil Service Regulations';
+}
+
 // ---------- exam engine (server-side timer, shuffling and marking) ----------
 async function buildSnapshot(cat) {
   const allQ = await db.allQuestions();
@@ -122,8 +129,69 @@ async function buildSnapshot(cat) {
     }
   }
 
-  const picked = uniquePool.slice(0, cat.totalQuestions || 100);
-  return picked.map((q) => {
+  const targetTotal = Number(cat.totalQuestions) || 100;
+
+  // Group unique questions by resource material to guarantee every syllabus material is tested
+  const materialMap = new Map();
+  for (const q of uniquePool) {
+    const mat = getQuestionResourceMaterial(q);
+    if (!materialMap.has(mat)) materialMap.set(mat, []);
+    materialMap.get(mat).push(q);
+  }
+
+  const picked = [];
+  const pickedIds = new Set();
+  const numMaterials = materialMap.size;
+  const baseQuota = Math.max(1, Math.floor(targetTotal / Math.max(1, numMaterials)));
+
+  // Pass 1: Guarantee base quota representation from every single resource material
+  for (const [mat, questions] of materialMap.entries()) {
+    const quota = Math.min(questions.length, baseQuota);
+    for (let i = 0; i < quota; i++) {
+      picked.push(questions[i]);
+      pickedIds.add(questions[i].id);
+    }
+  }
+
+  // Pass 2: Round-robin fill across remaining questions until 100 questions are reached
+  const remainingByMaterial = [];
+  for (const [mat, questions] of materialMap.entries()) {
+    const remaining = questions.filter((q) => !pickedIds.has(q.id));
+    if (remaining.length > 0) remainingByMaterial.push(remaining);
+  }
+
+  while (picked.length < targetTotal && remainingByMaterial.length > 0) {
+    let addedInRound = false;
+    for (let i = 0; i < remainingByMaterial.length; i++) {
+      if (picked.length >= targetTotal) break;
+      const list = remainingByMaterial[i];
+      if (list.length > 0) {
+        const nextQ = list.shift();
+        if (!pickedIds.has(nextQ.id)) {
+          picked.push(nextQ);
+          pickedIds.add(nextQ.id);
+          addedInRound = true;
+        }
+      }
+    }
+    if (!addedInRound) break;
+  }
+
+  // Pass 3: In rare fallback cases, pull from remaining uniquePool
+  if (picked.length < targetTotal) {
+    for (const q of uniquePool) {
+      if (picked.length >= targetTotal) break;
+      if (!pickedIds.has(q.id)) {
+        picked.push(q);
+        pickedIds.add(q.id);
+      }
+    }
+  }
+
+  // Shuffle the final 100 questions so the candidate experiences an interleaved, authentic CBT test
+  const finalQuestions = shuffle(picked).slice(0, targetTotal);
+
+  return finalQuestions.map((q) => {
     const order = shuffle(q.options.map((_, i) => i));
     return {
       id: q.id,

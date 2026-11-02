@@ -100,7 +100,7 @@ export default function ExamInstructions({
 
           <div style={{ padding: '0.85rem', borderRadius: 'var(--radius-md)', background: 'var(--bg-tertiary)', border: '1.5px solid var(--brand-gold)' }}>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Time Allotted</div>
-            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-gold)' }}>{safeCategory.timeLimitMinutes || 90} Mins</div>
+            <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--brand-gold)' }}>{safeCategory.timeLimitMinutes || 60} Mins</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--text-subtle)' }}>Real-Time Clock</div>
           </div>
 
@@ -116,7 +116,7 @@ export default function ExamInstructions({
       <div className="card" style={{ textAlign: 'left', marginBottom: '2rem' }}>
         <h4 style={{ marginBottom: '0.85rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
           <BookOpen size={18} color="var(--brand-primary)" />
-          Prescribed Study Chapters for {safeCategory.title || safeCategory.code} (Circular Section 8):
+          Prescribed Study Chapters & Materials for {safeCategory.title || safeCategory.code} (Circular Section 8):
         </h4>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1rem' }}>
@@ -138,6 +138,17 @@ export default function ExamInstructions({
             <ul style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.825rem', color: 'var(--text-muted)', lineHeight: 1.6 }}>
               {safeCategory.frChapters?.map((f, idx) => (
                 <li key={idx}><strong style={{ color: 'var(--text-main)' }}>{f.name}</strong></li>
+              ))}
+            </ul>
+          </div>
+
+          <div style={{ background: 'var(--bg-tertiary)', padding: '1rem', borderRadius: 'var(--radius-md)', gridColumn: '1 / -1' }}>
+            <div style={{ fontWeight: 700, color: 'var(--brand-primary)', marginBottom: '0.5rem', fontSize: '0.9rem' }}>
+              State Policy, Cadres & Circular Resource Materials:
+            </div>
+            <ul style={{ paddingLeft: '1.2rem', margin: 0, fontSize: '0.825rem', color: 'var(--text-muted)', lineHeight: 1.6, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '0.25rem' }}>
+              {(safeCategory.additionalReferences || []).map((ref, idx) => (
+                <li key={idx}><strong style={{ color: 'var(--text-main)' }}>{ref}</strong></li>
               ))}
             </ul>
           </div>
