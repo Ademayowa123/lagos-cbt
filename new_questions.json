@@ -13,10 +13,12 @@
   "correctAnswer": 2,
   "explanation": "FR 102: the Constitution regulates payment of revenue into the Federation Account and CRF, disbursement from the funds and the audit of public accounts.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 102"
+  "source": "Financial Regulations (Revised to January 2009), FR 102",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-02-a",
@@ -32,10 +34,12 @@
   "correctAnswer": 1,
   "explanation": "FR 104 names the Finance (Control and Management) Act, the Appropriation and Supplementary Appropriation Acts and the RMFAC Act.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 104"
+  "source": "Financial Regulations (Revised to January 2009), FR 104",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-03-a",
@@ -51,10 +55,12 @@
   "correctAnswer": 3,
   "explanation": "FR 105: the Minister of Finance issues the Financial Regulations, which apply generally to the Federal Public Service.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 105"
+  "source": "Financial Regulations (Revised to January 2009), FR 105",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-04-a",
@@ -70,10 +76,12 @@
   "correctAnswer": 0,
   "explanation": "FR 107(a) lists this as the first duty of the Accountant-General.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 107(a)"
+  "source": "Financial Regulations (Revised to January 2009), FR 107(a)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-05-a",
@@ -89,10 +97,12 @@
   "correctAnswer": 1,
   "explanation": "FR 107(n) is among the duties of the Accountant-General.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 107(n)"
+  "source": "Financial Regulations (Revised to January 2009), FR 107(n)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-06-a",
@@ -108,10 +118,12 @@
   "correctAnswer": 3,
   "explanation": "FR 109(i)(b) describes the Appropriation Audit.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 109(i)(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 109(i)(b)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-07-a",
@@ -127,10 +139,12 @@
   "correctAnswer": 2,
   "explanation": "FR 109(i)(d) defines the Value-for-Money (Performance) Audit.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 109(i)(d)"
+  "source": "Financial Regulations (Revised to January 2009), FR 109(i)(d)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-08-a",
@@ -146,10 +160,12 @@
   "correctAnswer": 0,
   "explanation": "FR 110 gives the Accountant-General and the Auditor-General, or their representatives, free access to books, accounts and information.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 110"
+  "source": "Financial Regulations (Revised to January 2009), FR 110",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-09-a",
@@ -165,10 +181,12 @@
   "correctAnswer": 1,
   "explanation": "FR 112(1)(e) lists this among the functions of the Accounting Officer.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 112(e)"
+  "source": "Financial Regulations (Revised to January 2009), FR 112(e)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-10-a",
@@ -184,10 +202,12 @@
   "correctAnswer": 3,
   "explanation": "FR 112(1)(l): revenue collected is not to be spent but remitted promptly to the appropriate authorities.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 112(l)"
+  "source": "Financial Regulations (Revised to January 2009), FR 112(l)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-11-a",
@@ -203,10 +223,12 @@
   "correctAnswer": 2,
   "explanation": "FR 116: the political head of a ministry is the Minister; of a parastatal or extra-ministerial office it is the Chairman.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 116"
+  "source": "Financial Regulations (Revised to January 2009), FR 116",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-12-a",
@@ -222,10 +244,12 @@
   "correctAnswer": 0,
   "explanation": "FR 117(ii): the report goes to the Head of Service for ministries and extra-ministerial offices, and to the Minister for parastatals.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 117(ii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 117(ii)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-13-a",
@@ -241,10 +265,12 @@
   "correctAnswer": 3,
   "explanation": "FR 118(ii)(a). The other duties belong to the Head of Finance and Accounts or the Accounting Officer.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 118(ii)(a)"
+  "source": "Financial Regulations (Revised to January 2009), FR 118(ii)(a)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-14-a",
@@ -260,10 +286,12 @@
   "correctAnswer": 0,
   "explanation": "FR 120 defines the Imprest-holder, who must keep an imprest cash book.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 120"
+  "source": "Financial Regulations (Revised to January 2009), FR 120",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-15-a",
@@ -279,10 +307,12 @@
   "correctAnswer": 1,
   "explanation": "FR 121 defines the Officer Controlling Expenditure.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 121"
+  "source": "Financial Regulations (Revised to January 2009), FR 121",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-16-a",
@@ -298,10 +328,12 @@
   "correctAnswer": 2,
   "explanation": "FR 122.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 122"
+  "source": "Financial Regulations (Revised to January 2009), FR 122",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-17-a",
@@ -317,10 +349,12 @@
   "correctAnswer": 0,
   "explanation": "FR 123(i)(p) requires a reply within twenty-one days giving the full particulars requested.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 123(i)(p)"
+  "source": "Financial Regulations (Revised to January 2009), FR 123(i)(p)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-18-a",
@@ -336,10 +370,12 @@
   "correctAnswer": 2,
   "explanation": "FR 123(i)(j), without prejudice to Chapter 25.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 123(i)(j)"
+  "source": "Financial Regulations (Revised to January 2009), FR 123(i)(j)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-19-a",
@@ -355,10 +391,12 @@
   "correctAnswer": 3,
   "explanation": "FR 124: officers remain personally and pecuniarily responsible.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 124"
+  "source": "Financial Regulations (Revised to January 2009), FR 124",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-20-a",
@@ -374,10 +412,12 @@
   "correctAnswer": 1,
   "explanation": "FR 126. Accounting Officers likewise make surprise checks on the accounts of their subordinates.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 126"
+  "source": "Financial Regulations (Revised to January 2009), FR 126",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c01-21-a",
@@ -393,10 +433,12 @@
   "correctAnswer": 1,
   "explanation": "FR 127: any departure from the Regulations is permitted only with the concurrence of the Accountant-General.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 127"
+  "source": "Financial Regulations (Revised to January 2009), FR 127",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-01-a",
@@ -412,10 +454,13 @@
   "correctAnswer": 2,
   "explanation": "FR 301: the Annual Estimates and Appropriation Act limit disbursement and a warrant is required.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 301"
+  "source": "Financial Regulations (Revised to January 2009), FR 301",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-02-a",
@@ -431,10 +476,13 @@
   "correctAnswer": 3,
   "explanation": "FR 301.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 301"
+  "source": "Financial Regulations (Revised to January 2009), FR 301",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-03-a",
@@ -450,10 +498,13 @@
   "correctAnswer": 0,
   "explanation": "The Development Fund (Special) Warrant is a capital expenditure warrant (FR 318 and 323).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 302(ii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 302(ii)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-04-a",
@@ -469,10 +520,13 @@
   "correctAnswer": 3,
   "explanation": "FR 307: it must not be charged directly to the Contingencies Fund.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 307"
+  "source": "Financial Regulations (Revised to January 2009), FR 307",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-05-a",
@@ -488,10 +542,13 @@
   "correctAnswer": 1,
   "explanation": "FR 308.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 308"
+  "source": "Financial Regulations (Revised to January 2009), FR 308",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-06-a",
@@ -507,10 +564,13 @@
   "correctAnswer": 0,
   "explanation": "FR 310(b).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 310(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 310(b)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-07-a",
@@ -526,10 +586,13 @@
   "correctAnswer": 2,
   "explanation": "FR 310(c).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 310(c)"
+  "source": "Financial Regulations (Revised to January 2009), FR 310(c)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-08-a",
@@ -545,10 +608,13 @@
   "correctAnswer": 2,
   "explanation": "FR 311.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 311"
+  "source": "Financial Regulations (Revised to January 2009), FR 311",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-09-a",
@@ -564,10 +630,13 @@
   "correctAnswer": 1,
   "explanation": "FR 312.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 312"
+  "source": "Financial Regulations (Revised to January 2009), FR 312",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-10-a",
@@ -583,10 +652,13 @@
   "correctAnswer": 0,
   "explanation": "FR 313.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 313"
+  "source": "Financial Regulations (Revised to January 2009), FR 313",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-11-a",
@@ -602,10 +674,13 @@
   "correctAnswer": 3,
   "explanation": "FR 315. Form 146 is the loss report (FR 2504) and Gen. 59 is the vehicle log-book (FR 2001).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 315"
+  "source": "Financial Regulations (Revised to January 2009), FR 315",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-12-a",
@@ -621,10 +696,13 @@
   "correctAnswer": 1,
   "explanation": "FR 316(iii).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 316(iii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 316(iii)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-13-a",
@@ -640,10 +718,13 @@
   "correctAnswer": 2,
   "explanation": "FR 316(v).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 316(v)"
+  "source": "Financial Regulations (Revised to January 2009), FR 316(v)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-14-a",
@@ -659,10 +740,13 @@
   "correctAnswer": 3,
   "explanation": "FR 317: officers controlling votes are personally responsible for compliance.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 317"
+  "source": "Financial Regulations (Revised to January 2009), FR 317",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-15-a",
@@ -678,10 +762,13 @@
   "correctAnswer": 0,
   "explanation": "FR 320.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 320"
+  "source": "Financial Regulations (Revised to January 2009), FR 320",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-16-a",
@@ -697,10 +784,13 @@
   "correctAnswer": 1,
   "explanation": "FR 322.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 322"
+  "source": "Financial Regulations (Revised to January 2009), FR 322",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-17-a",
@@ -716,10 +806,13 @@
   "correctAnswer": 3,
   "explanation": "FR 323; the expenditure is submitted to the National Assembly at its next meeting for approval.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 323"
+  "source": "Financial Regulations (Revised to January 2009), FR 323",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-18-a",
@@ -735,10 +828,13 @@
   "correctAnswer": 0,
   "explanation": "FR 324(a) and (c).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 324"
+  "source": "Financial Regulations (Revised to January 2009), FR 324",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-19-a",
@@ -754,10 +850,13 @@
   "correctAnswer": 2,
   "explanation": "FR 325.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 325"
+  "source": "Financial Regulations (Revised to January 2009), FR 325",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c03-20-a",
@@ -773,10 +872,13 @@
   "correctAnswer": 3,
   "explanation": "FR 326.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 326"
+  "source": "Financial Regulations (Revised to January 2009), FR 326",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-01-a",
@@ -795,7 +897,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 401(i)"
+  "source": "Financial Regulations (Revised to January 2009), FR 401(i)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-02-a",
@@ -814,7 +917,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 401(ii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 401(ii)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-03-a",
@@ -833,7 +937,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 404"
+  "source": "Financial Regulations (Revised to January 2009), FR 404",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-04-a",
@@ -852,7 +957,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 406"
+  "source": "Financial Regulations (Revised to January 2009), FR 406",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-05-a",
@@ -871,7 +977,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 408"
+  "source": "Financial Regulations (Revised to January 2009), FR 408",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-06-a",
@@ -890,7 +997,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 409"
+  "source": "Financial Regulations (Revised to January 2009), FR 409",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-07-a",
@@ -909,7 +1017,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 409"
+  "source": "Financial Regulations (Revised to January 2009), FR 409",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-08-a",
@@ -928,7 +1037,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 410"
+  "source": "Financial Regulations (Revised to January 2009), FR 410",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-09-a",
@@ -947,7 +1057,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 412"
+  "source": "Financial Regulations (Revised to January 2009), FR 412",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-10-a",
@@ -966,7 +1077,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 414"
+  "source": "Financial Regulations (Revised to January 2009), FR 414",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-11-a",
@@ -985,7 +1097,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 416(ii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 416(ii)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-12-a",
@@ -1004,7 +1117,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 417"
+  "source": "Financial Regulations (Revised to January 2009), FR 417",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-13-a",
@@ -1023,7 +1137,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 418"
+  "source": "Financial Regulations (Revised to January 2009), FR 418",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-14-a",
@@ -1042,7 +1157,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 419"
+  "source": "Financial Regulations (Revised to January 2009), FR 419",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-15-a",
@@ -1061,7 +1177,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 421"
+  "source": "Financial Regulations (Revised to January 2009), FR 421",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c04-16-a",
@@ -1080,7 +1197,8 @@
    "group-gl-06-10"
   ],
   "subjectId": "fr_ch1_3_4",
-  "source": "Financial Regulations (Revised to January 2009), FR 422"
+  "source": "Financial Regulations (Revised to January 2009), FR 422",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-001-a",
@@ -1096,10 +1214,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 1, Rule 020101: The State Civil Service Commission and other Agencies so empowered.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q1"
+  "source": "PSR PDF Q1",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-002-a",
@@ -1115,10 +1235,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 1, Rule 020102(i): State Civil Service Commission and any other similar body so empowered.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q2"
+  "source": "PSR PDF Q2",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-003-a",
@@ -1134,10 +1256,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 1, Rule 020102(iii): The Head of Service.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q3"
+  "source": "PSR PDF Q3",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-005-a",
@@ -1153,10 +1277,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 1, Rule 020107: Strictly prohibited.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q5"
+  "source": "PSR PDF Q5",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-006-a",
@@ -1172,10 +1298,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 1, Rule 020108(i): LS/ESTAB Form No. 1.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q6"
+  "source": "PSR PDF Q6",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-007-a",
@@ -1191,10 +1319,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 1, Rule 020108(ii): No, any contravention is regarded as an act of serious misconduct.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q7"
+  "source": "PSR PDF Q7",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-008-a",
@@ -1210,10 +1340,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 2, Rule 020203(a): 2 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q8"
+  "source": "PSR PDF Q8",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-009-a",
@@ -1229,10 +1361,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 2, Rule 020205(a): 18 to 55 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q9"
+  "source": "PSR PDF Q9",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-010-a",
@@ -1248,10 +1382,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 2, Rule 020206(a): Every applicant/candidate.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q10"
+  "source": "PSR PDF Q10",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-011-a",
@@ -1267,10 +1403,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 2, Rule 020209: Sign an Oath of Secrecy Form 1.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q11"
+  "source": "PSR PDF Q11",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-012-a",
@@ -1286,10 +1424,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 2, Rules 020210 & 020211: Serious misconduct attracting disciplinary action including dismissal.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q12"
+  "source": "PSR PDF Q12",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-013-a",
@@ -1305,10 +1445,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 3, Rule 020301: 2 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q13"
+  "source": "PSR PDF Q13",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-014-a",
@@ -1324,10 +1466,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 3, Rule 020304: 3 attempts.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q14"
+  "source": "PSR PDF Q14",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-015-a",
@@ -1343,10 +1487,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 4, Rules 020401 & 020403: A tour of two years, renewable only once.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q15"
+  "source": "PSR PDF Q15",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-016-a",
@@ -1362,10 +1508,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 4, Rule 020402(b)(ii): If they are pensioners, 55 years or over, request contract, or possess specialized skills.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q16"
+  "source": "PSR PDF Q16",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-017-a",
@@ -1381,10 +1529,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 4, Rule 020405: Not less than four months.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q17"
+  "source": "PSR PDF Q17",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-018-a",
@@ -1400,10 +1550,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 5, Rule 020501(a): Temporary release of an officer to another Government-approved body or international organization.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q18"
+  "source": "PSR PDF Q18",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-019-a",
@@ -1419,10 +1571,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 5, Rule 020501(iii): 2 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q19"
+  "source": "PSR PDF Q19",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-020-a",
@@ -1438,10 +1592,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 5, Rule 020501(b): Transfer.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q20"
+  "source": "PSR PDF Q20",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-021-a",
@@ -1457,10 +1613,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 5, Rule 020503(a): 2 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q21"
+  "source": "PSR PDF Q21",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-022-a",
@@ -1476,10 +1634,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 6, Rule 020601(b): 3 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q22"
+  "source": "PSR PDF Q22",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-023-a",
@@ -1495,10 +1655,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 6, Rule 020601(b): 4 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q23"
+  "source": "PSR PDF Q23",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-024-a",
@@ -1514,10 +1676,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 6, Rule 020602(iv): 6 months.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q24"
+  "source": "PSR PDF Q24",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-025-a",
@@ -1533,10 +1697,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 6, Rule 020606(b): Restoration of seniority without immediate salary of the higher post until assumption of duty.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q25"
+  "source": "PSR PDF Q25",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-026-a",
@@ -1552,10 +1718,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 7, Rule 020705(b): No, pregnancy is not a condition for exit.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q26"
+  "source": "PSR PDF Q26",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-027-a",
@@ -1571,10 +1739,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 7, Rule 020706(i): They shall be required to leave the Service.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q27"
+  "source": "PSR PDF Q27",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-029-a",
@@ -1590,10 +1760,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 7, Rule 020710(iii): 6 months notice or 3 months salary in lieu.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q29"
+  "source": "PSR PDF Q29",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-030-a",
@@ -1609,10 +1781,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 8, Rule 020803: For use as a reference covering the holder's civil/public service career when seeking other employment.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q30"
+  "source": "PSR PDF Q30",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-031-a",
@@ -1628,10 +1802,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 8, Rule 020804: The Permanent Secretary of the retiring officer and Permanent Secretary, Civil Service Commission.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q31"
+  "source": "PSR PDF Q31",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-032-a",
@@ -1647,10 +1823,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Schedule, Clause 10: 15%.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q32"
+  "source": "PSR PDF Q32",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-034-a",
@@ -1666,10 +1844,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 2, Rule 020208(b): Immediately notify her Permanent Secretary / Head of Extra-Ministerial Department.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q34"
+  "source": "PSR PDF Q34",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-036-a",
@@ -1685,10 +1865,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 4, Rule 020411: On grade levels immediately below that on which they retired.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q36"
+  "source": "PSR PDF Q36",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-037-a",
@@ -1704,10 +1886,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 7, Rule 020710(ii): 5 years but less than 10 years.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q37"
+  "source": "PSR PDF Q37",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-038-a",
@@ -1723,10 +1907,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 7, Rule 020710(i): One month's notice of intention to leave or pay one month's salary in lieu of notice.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q38"
+  "source": "PSR PDF Q38",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-039-a",
@@ -1742,10 +1928,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 7, Rule 020702: Refund of any expenditure by Government in transporting him, family, and baggage.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q39"
+  "source": "PSR PDF Q39",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-040-a",
@@ -1761,10 +1949,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 8, Rule 020802: Triplicate (3 copies).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q40"
+  "source": "PSR PDF Q40",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-041-a",
@@ -1780,10 +1970,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 7, Rule 020708(ii): In the month of January every year.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q41"
+  "source": "PSR PDF Q41",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-042-a",
@@ -1799,10 +1991,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 7, Rule 020708(iii): At least six months before due date.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q42"
+  "source": "PSR PDF Q42",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-043-a",
@@ -1818,10 +2012,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 4, Rule 020402(b)(iv): No, they must remain on contract until granted Nigerian citizenship.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q43"
+  "source": "PSR PDF Q43",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-044-a",
@@ -1837,10 +2033,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 7, Rule 020704(a)(i): They forfeit all claims to vacation leave and any privileges granted will be ex-gratia.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q44"
+  "source": "PSR PDF Q44",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-045-a",
@@ -1856,10 +2054,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2 / Chapter 12, Rule 120209 (Qualifying period): 3 months continuous service.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q45"
+  "source": "PSR PDF Q45",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-046-a",
@@ -1875,10 +2076,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 2, Section 7, Rule 020708(iv): At least 3 months before the officer is due to retire.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q46"
+  "source": "PSR PDF Q46",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-047-a",
@@ -1894,10 +2097,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 6, Rule 020607: They are not considered for promotion under normal circumstances (though can be considered for enhanced appointment during contract re-negotiation).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q47"
+  "source": "PSR PDF Q47",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-048-a",
@@ -1913,10 +2118,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 7, Rule 020712: Attendance at the mandatory one-month pre-retirement workshop/seminar.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q48"
+  "source": "PSR PDF Q48",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-049-a",
@@ -1932,10 +2139,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 2, Section 8, Rule 020804: The Permanent Secretary of the retiring officer and the Permanent Secretary, Office in charge of Establishment Matters.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q49"
+  "source": "PSR PDF Q49",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-050-a",
@@ -1951,10 +2160,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 7, Rule 020707: Lagos State Pension Reform Law 2007.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q50"
+  "source": "PSR PDF Q50",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-051-a",
@@ -1970,10 +2181,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 1, Rule 040101 / Rule 040406(xiii): 2 months (60 days).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q51"
+  "source": "PSR PDF Q51",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-052-a",
@@ -1989,10 +2203,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 1 (General Principles) / Rule 040507: Not more than 3 months.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q52"
+  "source": "PSR PDF Q52",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-053-a",
@@ -2008,10 +2225,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 1 (General Principles) / Rule 040505: 2 months.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q53"
+  "source": "PSR PDF Q53",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-054-a",
@@ -2027,10 +2247,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 1 (General Principles): A letter of undertaking to be of good conduct.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q54"
+  "source": "PSR PDF Q54",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-055-a",
@@ -2046,10 +2269,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 1, Rule 040106: Permanent Secretaries and Heads of Extra-Ministerial Departments/Agencies.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q55"
+  "source": "PSR PDF Q55",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-056-a",
@@ -2065,10 +2291,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 1, Rule 040107: No, they shall be postponed until her maternity leave has expired.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q56"
+  "source": "PSR PDF Q56",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-057-a",
@@ -2084,10 +2313,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 2, Rule 040203: Guilty of a breach of discipline for which disciplinary proceedings may be instituted.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q57"
+  "source": "PSR PDF Q57",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-058-a",
@@ -2103,10 +2335,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 3, Rule 040301: A series of omissions or inability to discharge duties to the required standard, cumulative of incapacity.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q58"
+  "source": "PSR PDF Q58",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-059-a",
@@ -2122,10 +2357,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 3, Rule 040303(i): Three or more occasions previously in writing (or suffered loss/deferment of increment).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q59"
+  "source": "PSR PDF Q59",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-060-a",
@@ -2141,10 +2379,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 3, Rule 040303(ii): A timeline of one year.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q60"
+  "source": "PSR PDF Q60",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-061-a",
@@ -2160,10 +2401,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 3, Rule 040305(a): In writing, stating the reason(s) and period.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q61"
+  "source": "PSR PDF Q61",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-062-a",
@@ -2179,10 +2423,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 4, Rule 040401: A specific act of wrongdoing or improper behaviour which can be investigated and proved.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q62"
+  "source": "PSR PDF Q62",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-063-a",
@@ -2198,10 +2445,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 4, Rule 040402: Inform the officer in writing giving details, issuing a query to exculpate themselves within a specific period.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q63"
+  "source": "PSR PDF Q63",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-064-a",
@@ -2217,10 +2467,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 4, Rule 040404(b): Forward a written report to the Permanent Secretary/Head of Extra-Ministerial Department without delay.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q64"
+  "source": "PSR PDF Q64",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-065-a",
@@ -2236,10 +2489,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 4, Rule 040406(v): Not less than three persons (one appointed Chairman).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q65"
+  "source": "PSR PDF Q65",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-066-a",
@@ -2255,10 +2511,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 4, Rule 040406(v): No, the Head of the officer's department shall not be a member of the Board.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q66"
+  "source": "PSR PDF Q66",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-067-a",
@@ -2274,10 +2533,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 4, Rule 040407: Prohibited unless they previously obtained permission from the Permanent Secretary in charge of Establishments matters.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q67"
+  "source": "PSR PDF Q67",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-069-a",
@@ -2293,10 +2555,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 4, Rule 040409: No, no fine shall be imposed on any officer as punishment for such an offence.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q69 (wrong options written by Claude)"
+  "source": "PSR PDF Q69 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-070-a",
@@ -2312,10 +2577,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 4, Rule 040410(a): He is liable to be surcharged with the amount, and sums due to him may be withheld in satisfaction.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q70 (wrong options written by Claude)"
+  "source": "PSR PDF Q70 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-075-a",
@@ -2331,10 +2599,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 5, Rule 040505(i) & (iii): Not less than half (50%) of his monthly salary.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q75 (wrong options written by Claude)"
+  "source": "PSR PDF Q75 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-077-a",
@@ -2350,10 +2621,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 5, Rule 040509: The date on which he is notified.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q77 (wrong options written by Claude)"
+  "source": "PSR PDF Q77 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-081-a",
@@ -2369,10 +2643,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Section 5, Rule 040515(1): Aggregate unsecured debts and liabilities exceeding three times his monthly emoluments, or being a judgment debtor or bankrupt.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q81 (wrong options written by Claude)"
+  "source": "PSR PDF Q81 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-082-a",
@@ -2388,10 +2665,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 5, Rule 040515(7): He is disqualified from promotion or from acting in a higher appointment.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q82 (wrong options written by Claude)"
+  "source": "PSR PDF Q82 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-083-a",
@@ -2407,10 +2687,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 5, Rule 040517: The Official Secrets Act (Cap. 335).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q83 (wrong options written by Claude)"
+  "source": "PSR PDF Q83 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-084-a",
@@ -2426,10 +2709,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 5, Rule 040520: No, not without the written permission of the Permanent Secretary responsible for Establishments Matters.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q84 (wrong options written by Claude)"
+  "source": "PSR PDF Q84 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-088-a",
@@ -2445,10 +2731,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 5, Rule 040527: Report to Government immediately, and not give information to syndicates or derive personal benefit.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q88 (wrong options written by Claude)"
+  "source": "PSR PDF Q88 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-096-a",
@@ -2464,10 +2753,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 4, Appendix 4 (Official Secrets Act, Section 7): On indictment, imprisonment up to 14 years; on summary conviction, up to 2 years or a fine.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q96 (wrong options written by Claude)"
+  "source": "PSR PDF Q96 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-097-a",
@@ -2483,10 +2775,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Appendix 4, Section 7(3): The Attorney-General of the Federation or of a State, or the Director of Public Prosecutions.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q97 (wrong options written by Claude)"
+  "source": "PSR PDF Q97 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-099-a",
@@ -2502,10 +2797,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 5, Rule 040506(c): Failure to comply within seven days of delivery of the instructions.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q99 (wrong options written by Claude)"
+  "source": "PSR PDF Q99 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-262-a",
@@ -2521,10 +2819,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 4, Section 5, Rules 040502(vii), 040523 & 040524: Resign from the service.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q262 (wrong options written by Claude)"
+  "source": "PSR PDF Q262 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-286-a",
@@ -2540,10 +2841,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 4, Section 4, Rule 040401: As an act of misconduct.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q286 (wrong options written by Claude)"
+  "source": "PSR PDF Q286 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-293-a",
@@ -2559,10 +2863,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 4, Section 5, Rule 040534(b): Hand it over to the Government.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch4",
-  "source": "PSR PDF Q293 (wrong options written by Claude)"
+  "source": "PSR PDF Q293 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-258-a",
@@ -2578,10 +2885,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 3, Rules 020301 & 020304: Up to 4 years (2 years initial plus approved extensions).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q258 (wrong options written by Claude)"
+  "source": "PSR PDF Q258 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-287-a",
@@ -2597,10 +2906,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 2, Section 5, Rule 020502(iii): It is prohibited.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q287 (wrong options written by Claude)"
+  "source": "PSR PDF Q287 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-288-a",
@@ -2616,10 +2927,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 2, Section 1, Rule 020103: The Junior Staff Committee.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch2",
-  "source": "PSR PDF Q288 (wrong options written by Claude)"
+  "source": "PSR PDF Q288 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-206-a",
@@ -2635,10 +2948,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 12, Section 1, Rule 120106: From 1st January to 31st December of each calendar year.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q206 (wrong options written by Claude)"
+  "source": "PSR PDF Q206 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-207-a",
@@ -2654,10 +2970,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 12, Section 2, Rule 120203: Yes, annual vacation leave is compulsory and must be enjoyed.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q207 (wrong options written by Claude)"
+  "source": "PSR PDF Q207 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-209-a",
@@ -2673,10 +2992,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 12, Section 2, Rule 120206: On working days only (excluding weekends and public holidays).",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q209 (wrong options written by Claude)"
+  "source": "PSR PDF Q209 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-210-a",
@@ -2692,10 +3014,13 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 12, Section 2, Rule 120207: They are inclusive of Saturdays, Sundays and public holidays.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q210 (wrong options written by Claude)"
+  "source": "PSR PDF Q210 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-221-a",
@@ -2711,10 +3036,13 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 12, Section 2, Rules 120222 & 120223: Leave postponed because of the exigencies of the service, with formal approval, to be taken at a later date.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q221 (wrong options written by Claude)"
+  "source": "PSR PDF Q221 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-245-a",
@@ -2730,10 +3058,13 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 12, Section 2, Rule 120210: Permanent Secretaries and Heads of Departments, through roster management.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q245 (wrong options written by Claude)"
+  "source": "PSR PDF Q245 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-psr-246-a",
@@ -2749,10 +3080,13 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 12, Section 2, Rule 120222: It lapses, unless officially deferred under approved exigency procedures.",
   "categories": [
-   "group-gl-06-10"
+   "group-gl-06-10",
+   "group-gl-12-14",
+   "group-gl-15-16"
   ],
   "subjectId": "psr_ch12",
-  "source": "PSR PDF Q246 (wrong options written by Claude)"
+  "source": "PSR PDF Q246 (wrong options written by Claude)",
+  "categoryId": "group-gl-06-10"
  },
  {
   "id": "x-fr-c20-01-c",
@@ -2768,10 +3102,12 @@
   "correctAnswer": 1,
   "explanation": "FR 2003.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2003"
+  "source": "Financial Regulations (Revised to January 2009), FR 2003",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-02-c",
@@ -2787,10 +3123,12 @@
   "correctAnswer": 2,
   "explanation": "FR 2005: ministries enter into agreements with petrol dealers for fuel on a monthly credit basis.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2005"
+  "source": "Financial Regulations (Revised to January 2009), FR 2005",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-03-c",
@@ -2806,10 +3144,12 @@
   "correctAnswer": 3,
   "explanation": "FR 2007: the chart shows the service history of a vehicle from purchase to its present age.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2007"
+  "source": "Financial Regulations (Revised to January 2009), FR 2007",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-04-c",
@@ -2825,10 +3165,12 @@
   "correctAnswer": 2,
   "explanation": "FR 2008, which also introduces the Station Diary.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2008"
+  "source": "Financial Regulations (Revised to January 2009), FR 2008",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-05-c",
@@ -2844,10 +3186,12 @@
   "correctAnswer": 0,
   "explanation": "FR 2013.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2013"
+  "source": "Financial Regulations (Revised to January 2009), FR 2013",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-06-c",
@@ -2863,10 +3207,12 @@
   "correctAnswer": 3,
   "explanation": "FR 2014 and FR 2015.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2015"
+  "source": "Financial Regulations (Revised to January 2009), FR 2015",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-07-c",
@@ -2882,10 +3228,12 @@
   "correctAnswer": 1,
   "explanation": "FR 2016.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2016"
+  "source": "Financial Regulations (Revised to January 2009), FR 2016",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-08-c",
@@ -2901,10 +3249,12 @@
   "correctAnswer": 0,
   "explanation": "FR 2017; an unsolicited inspection might be held to admit liability (FR 2014).",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2017"
+  "source": "Financial Regulations (Revised to January 2009), FR 2017",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-09-c",
@@ -2920,10 +3270,12 @@
   "correctAnswer": 1,
   "explanation": "FR 2018.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2018"
+  "source": "Financial Regulations (Revised to January 2009), FR 2018",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-10-c",
@@ -2939,10 +3291,12 @@
   "correctAnswer": 2,
   "explanation": "FR 2019(c).",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2019(c)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2019(c)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-11-c",
@@ -2958,10 +3312,12 @@
   "correctAnswer": 3,
   "explanation": "FR 2019.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2019"
+  "source": "Financial Regulations (Revised to January 2009), FR 2019",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-12-c",
@@ -2977,10 +3333,12 @@
   "correctAnswer": 3,
   "explanation": "FR 2020; he applies for the Board under Chapter 25, Part III.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2020"
+  "source": "Financial Regulations (Revised to January 2009), FR 2020",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-13-c",
@@ -2996,10 +3354,12 @@
   "correctAnswer": 1,
   "explanation": "FR 2022; the other situations are those in which the Accounting Officer may himself dispose of the report (FR 2021).",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2022"
+  "source": "Financial Regulations (Revised to January 2009), FR 2022",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-14-c",
@@ -3015,10 +3375,12 @@
   "correctAnswer": 2,
   "explanation": "FR 2023(i)(b).",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2023(i)(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2023(i)(b)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-15-c",
@@ -3034,10 +3396,12 @@
   "correctAnswer": 0,
   "explanation": "FR 2024.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2024"
+  "source": "Financial Regulations (Revised to January 2009), FR 2024",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-16-c",
@@ -3053,10 +3417,12 @@
   "correctAnswer": 2,
   "explanation": "FR 2025: the Ministry refers the papers to the law officers for advice.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2025"
+  "source": "Financial Regulations (Revised to January 2009), FR 2025",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-17-c",
@@ -3072,10 +3438,12 @@
   "correctAnswer": 0,
   "explanation": "FR 2026.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2026"
+  "source": "Financial Regulations (Revised to January 2009), FR 2026",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-18-c",
@@ -3091,10 +3459,12 @@
   "correctAnswer": 3,
   "explanation": "FR 2028: copies go to the Auditor-General and the Accountant-General.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2028"
+  "source": "Financial Regulations (Revised to January 2009), FR 2028",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c20-19-c",
@@ -3110,10 +3480,12 @@
   "correctAnswer": 1,
   "explanation": "Endnote to Chapter 20, Section 23(d), Road Traffic Act.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), Road Traffic Act, s.23 (Endnote to Ch. 20)"
+  "source": "Financial Regulations (Revised to January 2009), Road Traffic Act, s.23 (Endnote to Ch. 20)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c25-01-c",
@@ -3132,7 +3504,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2503"
+  "source": "Financial Regulations (Revised to January 2009), FR 2503",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-02-c",
@@ -3151,7 +3524,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2506(iii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2506(iii)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-03-c",
@@ -3170,7 +3544,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2507(d)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2507(d)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-04-c",
@@ -3189,7 +3564,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2507(e)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2507(e)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-05-c",
@@ -3208,7 +3584,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2507(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2507(b)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-06-c",
@@ -3227,7 +3604,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2508"
+  "source": "Financial Regulations (Revised to January 2009), FR 2508",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-07-c",
@@ -3246,7 +3624,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2509"
+  "source": "Financial Regulations (Revised to January 2009), FR 2509",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-08-c",
@@ -3265,7 +3644,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2516"
+  "source": "Financial Regulations (Revised to January 2009), FR 2516",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-09-c",
@@ -3284,7 +3664,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2517(a)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2517(a)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-10-c",
@@ -3303,7 +3684,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2517(f)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2517(f)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-11-c",
@@ -3322,7 +3704,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2517"
+  "source": "Financial Regulations (Revised to January 2009), FR 2517",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-12-c",
@@ -3341,7 +3724,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2518"
+  "source": "Financial Regulations (Revised to January 2009), FR 2518",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-13-c",
@@ -3360,7 +3744,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2519(i)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2519(i)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-14-c",
@@ -3379,7 +3764,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2520"
+  "source": "Financial Regulations (Revised to January 2009), FR 2520",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-15-c",
@@ -3398,7 +3784,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2523(ii)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2523(ii)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-16-c",
@@ -3417,7 +3804,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2527"
+  "source": "Financial Regulations (Revised to January 2009), FR 2527",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-17-c",
@@ -3436,7 +3824,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2528"
+  "source": "Financial Regulations (Revised to January 2009), FR 2528",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-18-c",
@@ -3455,7 +3844,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2529"
+  "source": "Financial Regulations (Revised to January 2009), FR 2529",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-19-c",
@@ -3474,7 +3864,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2530"
+  "source": "Financial Regulations (Revised to January 2009), FR 2530",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-20-c",
@@ -3493,7 +3884,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2531"
+  "source": "Financial Regulations (Revised to January 2009), FR 2531",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-21-c",
@@ -3512,7 +3904,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2532"
+  "source": "Financial Regulations (Revised to January 2009), FR 2532",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-22-c",
@@ -3531,7 +3924,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2535"
+  "source": "Financial Regulations (Revised to January 2009), FR 2535",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-23-c",
@@ -3550,7 +3944,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2537(a)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2537(a)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-24-c",
@@ -3569,7 +3964,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2539(i)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2539(i)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-25-c",
@@ -3588,7 +3984,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2502 (Explanatory Note)"
+  "source": "Financial Regulations (Revised to January 2009), FR 2502 (Explanatory Note)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-fr-c25-26-c",
@@ -3607,7 +4004,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "fr_ch1_3_20_25",
-  "source": "Financial Regulations (Revised to January 2009), FR 2511"
+  "source": "Financial Regulations (Revised to January 2009), FR 2511",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-101-c",
@@ -3626,7 +4024,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q101 (wrong options written by Claude)"
+  "source": "PSR PDF Q101 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-103-c",
@@ -3645,7 +4044,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q103 (wrong options written by Claude)"
+  "source": "PSR PDF Q103 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-104-c",
@@ -3664,7 +4064,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q104 (wrong options written by Claude)"
+  "source": "PSR PDF Q104 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-105-c",
@@ -3683,7 +4084,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q105 (wrong options written by Claude)"
+  "source": "PSR PDF Q105 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-106-c",
@@ -3702,7 +4104,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q106 (wrong options written by Claude)"
+  "source": "PSR PDF Q106 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-107-c",
@@ -3721,7 +4124,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q107 (wrong options written by Claude)"
+  "source": "PSR PDF Q107 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-108-c",
@@ -3740,7 +4144,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q108 (wrong options written by Claude)"
+  "source": "PSR PDF Q108 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-109-c",
@@ -3759,7 +4164,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q109 (wrong options written by Claude)"
+  "source": "PSR PDF Q109 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-111-c",
@@ -3778,7 +4184,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q111 (wrong options written by Claude)"
+  "source": "PSR PDF Q111 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-114-c",
@@ -3797,7 +4204,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q114 (wrong options written by Claude)"
+  "source": "PSR PDF Q114 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-119-c",
@@ -3816,7 +4224,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q119 (wrong options written by Claude)"
+  "source": "PSR PDF Q119 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-121-c",
@@ -3835,7 +4244,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q121 (wrong options written by Claude)"
+  "source": "PSR PDF Q121 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-122-c",
@@ -3854,7 +4264,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q122 (wrong options written by Claude)"
+  "source": "PSR PDF Q122 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-126-c",
@@ -3873,7 +4284,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q126 (wrong options written by Claude)"
+  "source": "PSR PDF Q126 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-127-c",
@@ -3892,7 +4304,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q127 (wrong options written by Claude)"
+  "source": "PSR PDF Q127 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-132-c",
@@ -3911,7 +4324,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q132 (wrong options written by Claude)"
+  "source": "PSR PDF Q132 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-133-c",
@@ -3930,7 +4344,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q133 (wrong options written by Claude)"
+  "source": "PSR PDF Q133 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-134-c",
@@ -3949,7 +4364,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q134 (wrong options written by Claude)"
+  "source": "PSR PDF Q134 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-135-c",
@@ -3968,7 +4384,8 @@
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q135 (wrong options written by Claude)"
+  "source": "PSR PDF Q135 (wrong options written by Claude)",
+  "categoryId": "group-gl-15-16"
  },
  {
   "id": "x-psr-172-c",
@@ -3984,10 +4401,12 @@
   "correctAnswer": 0,
   "explanation": "PSR Chapter 10, Section 1, Rule 100103: Through the proper departmental channels, upward to the appropriate authority.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q172 (wrong options written by Claude)"
+  "source": "PSR PDF Q172 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-173-c",
@@ -4003,10 +4422,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 10, Section 1, Rule 100104: Only after exhausting internal departmental channels and routing properly in accordance with the rules.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q173 (wrong options written by Claude)"
+  "source": "PSR PDF Q173 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-181-c",
@@ -4022,10 +4443,12 @@
   "correctAnswer": 3,
   "explanation": "PSR Chapter 10, Section 2, Rule 100209: Clear signature of the petitioner, rank, ministry, date, and the remedy sought (prayer).",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q181 (wrong options written by Claude)"
+  "source": "PSR PDF Q181 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-183-c",
@@ -4041,10 +4464,12 @@
   "correctAnswer": 1,
   "explanation": "PSR Chapter 10, Section 2, Rule 100204: Generally disregarded, as they lack a responsible petitioner.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q183 (wrong options written by Claude)"
+  "source": "PSR PDF Q183 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-186-c",
@@ -4060,10 +4485,12 @@
   "correctAnswer": 2,
   "explanation": "PSR Chapter 10, Section 2 (General Disciplinary Standard): It constitutes misconduct and renders the petitioner liable to separate disciplinary action.",
   "categories": [
+   "group-gl-12-14",
    "group-gl-15-16"
   ],
   "subjectId": "psr_ch2_4_6_10_12",
-  "source": "PSR PDF Q186 (wrong options written by Claude)"
+  "source": "PSR PDF Q186 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-01-b",
@@ -4082,7 +4509,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 601"
+  "source": "Financial Regulations (Revised to January 2009), FR 601",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-02-b",
@@ -4101,7 +4529,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 602"
+  "source": "Financial Regulations (Revised to January 2009), FR 602",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-03-b",
@@ -4120,7 +4549,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 603(i)"
+  "source": "Financial Regulations (Revised to January 2009), FR 603(i)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-04-b",
@@ -4139,7 +4569,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 605"
+  "source": "Financial Regulations (Revised to January 2009), FR 605",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-05-b",
@@ -4158,7 +4589,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 607"
+  "source": "Financial Regulations (Revised to January 2009), FR 607",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-06-b",
@@ -4177,7 +4609,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 608"
+  "source": "Financial Regulations (Revised to January 2009), FR 608",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-07-b",
@@ -4196,7 +4629,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 613"
+  "source": "Financial Regulations (Revised to January 2009), FR 613",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-08-b",
@@ -4215,7 +4649,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 615"
+  "source": "Financial Regulations (Revised to January 2009), FR 615",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-09-b",
@@ -4234,7 +4669,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 617"
+  "source": "Financial Regulations (Revised to January 2009), FR 617",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-10-b",
@@ -4253,7 +4689,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 618"
+  "source": "Financial Regulations (Revised to January 2009), FR 618",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-11-b",
@@ -4272,7 +4709,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 619"
+  "source": "Financial Regulations (Revised to January 2009), FR 619",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-12-b",
@@ -4291,7 +4729,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 620"
+  "source": "Financial Regulations (Revised to January 2009), FR 620",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-13-b",
@@ -4310,7 +4749,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 620(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 620(b)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-14-b",
@@ -4329,7 +4769,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 621"
+  "source": "Financial Regulations (Revised to January 2009), FR 621",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-15-b",
@@ -4348,7 +4789,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 622"
+  "source": "Financial Regulations (Revised to January 2009), FR 622",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-16-b",
@@ -4367,7 +4809,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 623"
+  "source": "Financial Regulations (Revised to January 2009), FR 623",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-17-b",
@@ -4386,7 +4829,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 626(b)"
+  "source": "Financial Regulations (Revised to January 2009), FR 626(b)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-18-b",
@@ -4405,7 +4849,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 627"
+  "source": "Financial Regulations (Revised to January 2009), FR 627",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-19-b",
@@ -4424,7 +4869,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 628"
+  "source": "Financial Regulations (Revised to January 2009), FR 628",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-20-b",
@@ -4443,7 +4889,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 629"
+  "source": "Financial Regulations (Revised to January 2009), FR 629",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-21-b",
@@ -4462,7 +4909,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 630"
+  "source": "Financial Regulations (Revised to January 2009), FR 630",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-fr-c06-22-b",
@@ -4481,7 +4929,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "fr_ch3_6_20",
-  "source": "Financial Regulations (Revised to January 2009), FR 633"
+  "source": "Financial Regulations (Revised to January 2009), FR 633",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-141-b",
@@ -4500,7 +4949,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q141 (wrong options written by Claude)"
+  "source": "PSR PDF Q141 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-142-b",
@@ -4519,7 +4969,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q142 (wrong options written by Claude)"
+  "source": "PSR PDF Q142 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-143-b",
@@ -4538,7 +4989,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q143 (wrong options written by Claude)"
+  "source": "PSR PDF Q143 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-145-b",
@@ -4557,7 +5009,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q145 (wrong options written by Claude)"
+  "source": "PSR PDF Q145 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-149-b",
@@ -4576,7 +5029,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q149 (wrong options written by Claude)"
+  "source": "PSR PDF Q149 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-152-b",
@@ -4595,7 +5049,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q152 (wrong options written by Claude)"
+  "source": "PSR PDF Q152 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-162-b",
@@ -4614,7 +5069,8 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q162 (wrong options written by Claude)"
+  "source": "PSR PDF Q162 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
  },
  {
   "id": "x-psr-170-b",
@@ -4633,6 +5089,1987 @@
    "group-gl-12-14"
   ],
   "subjectId": "psr_ch4_8_10_12",
-  "source": "PSR PDF Q170 (wrong options written by Claude)"
+  "source": "PSR PDF Q170 (wrong options written by Claude)",
+  "categoryId": "group-gl-12-14"
+ },
+ {
+  "id": "psr-c08-004",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080210)",
+  "referenceRule": "Rule 080210",
+  "question": "Are public servants mandated to undergo regular health checks?",
+  "options": [
+   "No, medical checks are only done on first appointment",
+   "Yes, but only for officers on G.L. 15 and above",
+   "Yes, an Annual Medical Check-up is instituted under government health procedures",
+   "No, only officers above 50 years of age are checked"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080210: An Annual Medical Check-up is instituted under government health procedures.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080210"
+ },
+ {
+  "id": "psr-c08-005",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080201)",
+  "referenceRule": "Rule 080201",
+  "question": "Where are public servants primarily expected to receive official medical treatment?",
+  "options": [
+   "Any private hospital of the officer's choice",
+   "Hospitals outside Nigeria",
+   "Traditional medical homes",
+   "State Government Medical Facilities"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080201: Public servants are primarily expected to receive treatment at State Government Medical Facilities.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080201"
+ },
+ {
+  "id": "psr-c08-006",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080202)",
+  "referenceRule": "Rule 080202",
+  "question": "Who generally bears medical expenses unless special circumstances apply?",
+  "options": [
+   "The Government in all cases",
+   "The officer, except where refundable in special circumstances or under approved government health schemes",
+   "The Permanent Secretary personally",
+   "The Ministry of Finance in all cases"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080202: Medical expenses are generally borne by the officer, except where refundable in special circumstances or under approved schemes.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080202"
+ },
+ {
+  "id": "psr-c08-007",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080203)",
+  "referenceRule": "Rule 080203",
+  "question": "Under what condition may medical expenses incurred outside government facilities be refunded?",
+  "options": [
+   "Whenever the officer simply prefers a private hospital",
+   "Whenever the officer is on annual leave",
+   "In special circumstances where government facilities are unavailable, or an emergency referral is certified by a Medical Board",
+   "Only for officers on G.L. 17"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080203: Refund is permitted in special circumstances where government facilities are unavailable or an emergency referral is certified by a Medical Board.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080203"
+ },
+ {
+  "id": "psr-c08-008",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080207)",
+  "referenceRule": "Rule 080207",
+  "question": "What is required for medical treatment overseas for a public servant?",
+  "options": [
+   "Official recommendation by a duly constituted Medical Board and explicit government approval",
+   "The officer's own request alone",
+   "A recommendation from any private doctor",
+   "Approval of the Head of Department only"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080207: Medical treatment overseas requires official recommendation by a duly constituted Medical Board and explicit government approval.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080207"
+ },
+ {
+  "id": "psr-c08-009",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080301 and 080302)",
+  "referenceRule": "Rules 080301 and 080302",
+  "question": "What types of medical certificates are recognized to cover absence from duty due to illness?",
+  "options": [
+   "A self-written statement by the officer",
+   "Official Medical Certificates issued by registered government medical officers or recognized approved medical practitioners",
+   "A note from a colleague in the same office",
+   "A chemist's receipt for drugs bought"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rules 080301 & 080302: Only official Medical Certificates issued by registered government medical officers or approved practitioners are recognized.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080301 and 080302"
+ },
+ {
+  "id": "psr-c08-010",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080303 to 080305)",
+  "referenceRule": "Rules 080303 to 080305",
+  "question": "What is the duty of an officer who is sick at home regarding the employer?",
+  "options": [
+   "Remain silent until fully recovered",
+   "Report only after returning to work",
+   "Wait for the Department to enquire after him",
+   "Report to the employer when sick, notify his address, and seek and comply with medical advice"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rules 080303-080305: An officer who is sick at home must report to the employer, notify his address, and seek and comply with medical advice.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080303 to 080305"
+ },
+ {
+  "id": "psr-c08-011",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080312)",
+  "referenceRule": "Rule 080312",
+  "question": "What is the consequence if an officer fails to cover absence from duty with proper medical authority?",
+  "options": [
+   "It is treated as absence without leave, making the officer liable to disciplinary action",
+   "It is automatically converted to casual leave",
+   "It is deducted from annual leave without query",
+   "It is overlooked if it is the first occurrence"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080312: Failure to cover absence with medical authority is treated as absence without leave, attracting disciplinary action.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080312"
+ },
+ {
+  "id": "psr-c08-012",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080313)",
+  "referenceRule": "Rule 080313",
+  "question": "Who has the power to grant an extension of leave to an officer who is ill?",
+  "options": [
+   "A fellow officer of the same grade",
+   "The officer himself",
+   "The authorized administrative authority, upon receipt of valid medical board recommendations or medical certificates",
+   "The attending nurse"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080313: The authorized administrative authority grants extensions upon receipt of valid medical board recommendations or certificates.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080313"
+ },
+ {
+  "id": "psr-c08-013",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080314 and 080315)",
+  "referenceRule": "Rules 080314 and 080315",
+  "question": "What happens when an officer reaches the aggregate sick leave limits stipulated in the rules?",
+  "options": [
+   "Automatic promotion",
+   "Immediate dismissal without inquiry",
+   "Transfer to another Ministry",
+   "Referral to a Medical Board for consideration of invaliding from the service if incapable of further efficient service"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rules 080314 & 080315: The officer is referred to a Medical Board for consideration of invaliding if incapable of further efficient service.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080314 and 080315"
+ },
+ {
+  "id": "psr-c08-014",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080316)",
+  "referenceRule": "Rule 080316",
+  "question": "What financial provision is made for a hospitalized public officer?",
+  "options": [
+   "No payment of any kind",
+   "Payment in accordance with approved public service medical hospitalization guidelines",
+   "Forfeiture of the whole month's salary",
+   "Payment only after retirement"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080316: Payment is made in accordance with approved public service medical hospitalization guidelines.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080316"
+ },
+ {
+  "id": "psr-c08-015",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080402)",
+  "referenceRule": "Rule 080402",
+  "question": "What action must an injured officer take when injured in the course of official duty?",
+  "options": [
+   "Wait until the end of the month before reporting",
+   "Report only if he is hospitalized",
+   "Immediately report the injury to the Department and submit the required accident/injury report forms for medical evaluation",
+   "Treat himself privately and say nothing"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080402: The officer must immediately report to the Department and submit accident/injury report forms for medical evaluation.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080402"
+ },
+ {
+  "id": "psr-c08-016",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080403)",
+  "referenceRule": "Rule 080403",
+  "question": "What responsibility does a Medical Officer have upon examining an injured officer?",
+  "options": [
+   "Issue official medical reports detailing the nature of injuries sustained in the line of duty for compensation processing",
+   "Keep the findings secret from the Department",
+   "Decide the officer's next promotion",
+   "Refuse to issue any report"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080403: Issue official medical reports detailing the nature of injuries sustained in the line of duty for compensation processing.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080403"
+ },
+ {
+  "id": "psr-c08-017",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080501)",
+  "referenceRule": "Rule 080501",
+  "question": "What provisions exist regarding the death of a Nigerian officer or spouse overseas while on official duty?",
+  "options": [
+   "The family bears all the cost",
+   "Government repatriation and benefit schemes covering transport and corpse repatriation expenses",
+   "No provision exists",
+   "Burial must be done overseas at the family's expense"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080501: Government repatriation and benefit schemes cover transport and corpse repatriation expenses.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080501"
+ },
+ {
+  "id": "psr-c08-018",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080307)",
+  "referenceRule": "Rule 080307",
+  "question": "What constitutes the formal constitution of a Medical Board under the service rules?",
+  "options": [
+   "A panel of senior administrative officers",
+   "A committee of the officer's colleagues",
+   "A group of trade union representatives",
+   "A board of qualified medical practitioners/government doctors convened to evaluate the health and fitness of officers"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080307: A Medical Board is composed of qualified medical practitioners/government doctors convened to evaluate health and fitness.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080307"
+ },
+ {
+  "id": "psr-c08-020",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080310)",
+  "referenceRule": "Rule 080310",
+  "question": "What is the procedure when a patient sends a private practitioner's report instead of attending government clinics?",
+  "options": [
+   "It is accepted without any verification",
+   "It is automatically rejected and destroyed",
+   "It is reviewed and countersigned or verified by government medical authorities in accordance with departmental rules",
+   "It is kept as the officer's personal property"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080310: Private practitioner reports must be reviewed and countersigned or verified by government medical authorities.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080310"
+ },
+ {
+  "id": "psr-c08-021",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080315)",
+  "referenceRule": "Rule 080315",
+  "question": "What happens during 'invaliding' from the service due to ill health?",
+  "options": [
+   "The officer is dismissed with forfeiture of all benefits",
+   "The officer is placed on probation",
+   "The officer is transferred to a lower grade",
+   "The officer is retired on medical grounds with terminal benefits computed under pension law, upon medical board certification"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080315: The officer is retired on medical grounds with terminal benefits computed under pension law upon medical board certification.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080315"
+ },
+ {
+  "id": "psr-c08-022",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080206 and 080207)",
+  "referenceRule": "Rules 080206 and 080207",
+  "question": "What rule governs medical expenses during overseas leave versus official overseas duty?",
+  "options": [
+   "Government covers both in all cases",
+   "Official duty overseas attracts government medical coverage, whereas private overseas leave generally rests on personal responsibility unless covered by approved insurance",
+   "Neither is ever covered",
+   "Only private overseas leave is covered"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rules 080206 & 080207: Official duty overseas attracts government medical coverage; private leave is the officer's responsibility.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080206 and 080207"
+ },
+ {
+  "id": "psr-c08-023",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080101)",
+  "referenceRule": "Rule 080101",
+  "question": "What is the official position on traditional medical practitioners under public service medical rules?",
+  "options": [
+   "Traditional practitioners issue official medical certificates",
+   "Traditional practitioners are the first point of care for officers",
+   "The private medical practitioner definition includes traditional practitioners, but formal public service healthcare relies on orthodox government-approved standards",
+   "Traditional medicine is compulsory for all officers"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080101: Formal public service healthcare relies on orthodox government-approved medical standards.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080101"
+ },
+ {
+  "id": "psr-c08-025",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080105)",
+  "referenceRule": "Rule 080105",
+  "question": "Are special medical tests required for officers proceeding on long leave of absence?",
+  "options": [
+   "Never required under any circumstance",
+   "Medical tests for officers on leave of absence or special postings may be required under health regulations",
+   "Required only for dismissed officers",
+   "Required only for officers on G.L. 01 to 06"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080105: Medical tests for officers on leave of absence or special postings may be required under health regulations.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080105"
+ },
+ {
+  "id": "psr-c08-026",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080204 and 080205)",
+  "referenceRule": "Rules 080204 and 080205",
+  "question": "What procedure applies when an officer falls seriously ill on a voyage to or from Nigeria or while on duty?",
+  "options": [
+   "He must pay all expenses himself",
+   "He is treated as being on private leave",
+   "No provision exists for such cases",
+   "Government medical expense provisions and repatriation guidelines apply for ship/aircraft and overseas emergency treatment"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rules 080204 & 080205: Government medical expense provisions and repatriation guidelines apply for voyage and overseas emergencies.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080204 and 080205"
+ },
+ {
+  "id": "psr-c08-027",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080107)",
+  "referenceRule": "Rule 080107",
+  "question": "What is the status of leave or time granted to visit a medical specialist or dentist?",
+  "options": [
+   "It is governed by official leave/time-out provisions or approved clinic visits under medical procedures",
+   "It is automatic and requires no approval",
+   "It is treated as absence without leave in all cases",
+   "It is deducted from the next promotion year"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080107: Governed by official leave/time-out provisions or approved clinic visits under medical procedures.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080107"
+ },
+ {
+  "id": "psr-c08-028",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080307)",
+  "referenceRule": "Rule 080307",
+  "question": "What record-keeping duty does a Department maintain regarding sick staff?",
+  "options": [
+   "No records are kept of sick staff",
+   "Only records of the officer's salary are kept",
+   "Recording addresses, making enquiries about absentees, and reporting staff sickness to ensure welfare and control",
+   "Records are kept only after the officer's death"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080307: Departments maintain records of addresses, make enquiries about absentees, and report sickness for welfare and control.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080307"
+ },
+ {
+  "id": "psr-c08-029",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080307)",
+  "referenceRule": "Rule 080307",
+  "question": "Who bears responsibility for inquiries about staff reported absent due to alleged sickness?",
+  "options": [
+   "The officer's neighbours",
+   "The State Governor personally",
+   "The officer's trade union",
+   "The Permanent Secretary/Head of Department through personnel management channels"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080307: The Permanent Secretary/Head of Department through personnel management channels bears responsibility.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080307"
+ },
+ {
+  "id": "psr-c08-030",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080204)",
+  "referenceRule": "Rule 080204",
+  "question": "Are officers embarked as invalids entitled to special passage assistance?",
+  "options": [
+   "No, they must buy their own passage",
+   "Yes, repatriation passages and medical travel facilitation according to service regulations",
+   "Only officers on G.L. 17 qualify",
+   "Only officers on probation qualify"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080204: Officers embarked as invalids are entitled to repatriation passages and medical travel facilitation.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080204"
+ },
+ {
+  "id": "psr-c08-031",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080102)",
+  "referenceRule": "Rule 080102",
+  "question": "A clerk asks to see a colleague's medical file out of curiosity. What is the correct position?",
+  "options": [
+   "He can, since all Ministry files are open to staff",
+   "He can, if he is of a higher grade",
+   "He cannot, because medical documents relating to officers are confidential",
+   "He can, if the Head of Department is absent"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080102: Medical documents relating to officers are strictly confidential and cannot be inspected out of curiosity.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080102"
+ },
+ {
+  "id": "psr-c08-032",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080103)",
+  "referenceRule": "Rule 080103",
+  "question": "A new appointee brings a fitness certificate from a private clinic. Is this sufficient for first appointment?",
+  "options": [
+   "No, he must be certified medically fit by a State Government Medical Officer",
+   "Yes, any registered clinic's certificate is enough",
+   "Yes, if the certificate is notarized",
+   "Yes, if the certificate is less than one year old"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080103: A new appointee must be certified medically fit by a State Government Medical Officer.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080103"
+ },
+ {
+  "id": "psr-c08-033",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080103)",
+  "referenceRule": "Rule 080103",
+  "question": "Which statement about medical examination on first appointment is correct?",
+  "options": [
+   "It is optional if the candidate looks healthy",
+   "It is mandatory for every candidate on initial entry into government service",
+   "It applies only to senior staff",
+   "It applies only after confirmation"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080103: Medical examination is mandatory for every candidate on initial entry into government service.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080103"
+ },
+ {
+  "id": "psr-c08-034",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080301 and 080302)",
+  "referenceRule": "Rules 080301 and 080302",
+  "question": "Which of the following is NOT recognized as cover for absence from duty due to illness?",
+  "options": [
+   "A certificate from a registered government medical officer",
+   "A certificate from a recognized approved medical practitioner",
+   "An official Medical Certificate",
+   "A note written by the officer himself"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rules 080301 & 080302: A note written by the officer himself is not recognized as medical cover for absence.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080301 and 080302"
+ },
+ {
+  "id": "psr-c08-035",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 120207)",
+  "referenceRule": "Rule 120207",
+  "question": "Are casual, sick and maternity leave inclusive of Saturdays, Sundays and public holidays?",
+  "options": [
+   "Yes, they are inclusive of Saturdays, Sundays and public holidays",
+   "No, only working days are counted",
+   "No, only Saturdays are counted",
+   "Yes, but public holidays are excluded"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 120207: Casual, sick and maternity leave are inclusive of Saturdays, Sundays and public holidays.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 120207"
+ },
+ {
+  "id": "psr-c08-036",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080312)",
+  "referenceRule": "Rule 080312",
+  "question": "An officer stays away for three days without any medical authority. How is the absence treated?",
+  "options": [
+   "As casual leave",
+   "As paid annual leave",
+   "As absence without leave, making him liable to disciplinary action",
+   "As approved sick leave"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080312: Uncovered absence is treated as absence without leave liable to disciplinary action.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080312"
+ },
+ {
+  "id": "psr-c08-037",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080207)",
+  "referenceRule": "Rule 080207",
+  "question": "Which body must recommend medical treatment overseas for a public servant?",
+  "options": [
+   "The officer's family",
+   "A private hospital abroad",
+   "The Ministry's Accounts Department",
+   "A duly constituted Medical Board"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080207: Overseas medical treatment must be recommended by a duly constituted Medical Board.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080207"
+ },
+ {
+  "id": "psr-c08-038",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080206 and 080207)",
+  "referenceRule": "Rules 080206 and 080207",
+  "question": "An officer needs emergency medical care while on official duty overseas. Who generally bears the cost?",
+  "options": [
+   "The officer entirely",
+   "The Government, as official duty overseas attracts government medical coverage",
+   "His spouse",
+   "His next of kin"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rules 080206 & 080207: The Government bears medical costs for officers on official overseas duty.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080206 and 080207"
+ },
+ {
+  "id": "psr-c08-039",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080306)",
+  "referenceRule": "Rule 080306",
+  "question": "An officer directed to appear before a Medical Board says he is too busy. Is this acceptable?",
+  "options": [
+   "Yes, if he sends a representative",
+   "Yes, if he is on G.L. 15 and above",
+   "No, he has a strict duty to appear and comply with the board's recommendations",
+   "Yes, if he informs the Board a month later"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080306: Officers have an imperative duty to appear and comply with the Medical Board's recommendations.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080306"
+ },
+ {
+  "id": "psr-c08-040",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080310)",
+  "referenceRule": "Rule 080310",
+  "question": "Who verifies a report sent by a private practitioner in place of attendance at government clinics?",
+  "options": [
+   "Government medical authorities",
+   "The officer's colleague",
+   "The Ministry's driver",
+   "The officer's landlord"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080310: Government medical authorities must verify reports from private practitioners.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080310"
+ },
+ {
+  "id": "psr-c08-041",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080303 to 080305)",
+  "referenceRule": "Rules 080303 to 080305",
+  "question": "Which information must a sick officer at home give his employer?",
+  "options": [
+   "His bank account number",
+   "His address, so that he can be contacted",
+   "His religion",
+   "His next promotion date"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rules 080303-080305: A sick officer at home must notify his address so he can be contacted.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080303 to 080305"
+ },
+ {
+  "id": "psr-c08-042",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080210)",
+  "referenceRule": "Rule 080210",
+  "question": "How often is the medical check-up for public servants instituted under government health procedures?",
+  "options": [
+   "Every ten years",
+   "Only on retirement",
+   "Only on first appointment",
+   "Annually"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080210: The public service medical check-up is instituted annually.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080210"
+ },
+ {
+  "id": "psr-c08-043",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080402)",
+  "referenceRule": "Rule 080402",
+  "question": "To whom should an officer injured in the course of official duty first report the injury?",
+  "options": [
+   "His Department, immediately",
+   "The press",
+   "The State Governor",
+   "A private insurer only"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 080402: The injury must be reported immediately to his Department.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080402"
+ },
+ {
+  "id": "psr-c08-044",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080403)",
+  "referenceRule": "Rule 080403",
+  "question": "For what purpose does a Medical Officer issue a report on injuries sustained in the line of duty?",
+  "options": [
+   "Deciding the officer's promotion",
+   "Deciding the officer's transfer",
+   "Compensation processing",
+   "Computing the officer's leave allowance"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080403: Reports on line-of-duty injuries are issued for compensation processing.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080403"
+ },
+ {
+  "id": "psr-c08-045",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080501)",
+  "referenceRule": "Rule 080501",
+  "question": "Which of the following is covered by government repatriation provisions in Chapter 8?",
+  "options": [
+   "Death of an officer's friend overseas",
+   "Death of an officer on private holiday only",
+   "Death of a neighbour of the officer",
+   "Death of a Nigerian officer or his spouse overseas while on official duty"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 080501: Government repatriation covers death of a Nigerian officer or spouse overseas while on official duty.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080501"
+ },
+ {
+  "id": "psr-c08-046",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080203)",
+  "referenceRule": "Rule 080203",
+  "question": "Which of the following is a valid ground for refunding medical expenses incurred outside government facilities?",
+  "options": [
+   "The officer's personal preference",
+   "An emergency referral certified by a Medical Board",
+   "A cheaper price at a private hospital",
+   "The officer's wish to avoid queues"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 080203: An emergency referral certified by a Medical Board is a valid ground for refund.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080203"
+ },
+ {
+  "id": "psr-c08-047",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 080315)",
+  "referenceRule": "Rule 080315",
+  "question": "Under what circumstance is an officer considered for invaliding?",
+  "options": [
+   "When he wins a promotion",
+   "When he applies for annual leave",
+   "When aggregate sick leave limits are reached and he is incapable of further efficient service",
+   "When he changes his name"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 080315: When aggregate sick leave limits are reached and the officer is incapable of further efficient service.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 080315"
+ },
+ {
+  "id": "psr-c08-048",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rule 120233)",
+  "referenceRule": "Rule 120233",
+  "question": "What is 'Sick Leave'?",
+  "options": [
+   "Authorized leave granted on certified medical grounds supported by approved medical certificates or medical boards",
+   "Leave granted for private business",
+   "Leave granted for a religious pilgrimage",
+   "Leave granted for further studies"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 120233: Sick leave is authorized leave granted on certified medical grounds.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 120233"
+ },
+ {
+  "id": "psr-c08-049",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Chapters 8 and 12)",
+  "referenceRule": "Chapters 8 and 12",
+  "question": "An officer on annual vacation falls ill and has a proper sick leave certificate. What may happen to the annual leave?",
+  "options": [
+   "It is automatically forfeited",
+   "It may be credited/suspended and converted to sick leave as appropriate",
+   "It is converted to cash immediately",
+   "It continues unaffected with no adjustment"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Chapters 8 & 12: Annual leave may be suspended/credited and converted to sick leave upon proper medical certification.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapters 8 and 12"
+ },
+ {
+  "id": "psr-c08-050",
+  "chapter": "PSR Chapter 8",
+  "resourceMaterial": "PSR Chapter 8 (Rules 080304 and 080310)",
+  "referenceRule": "Rules 080304 and 080310",
+  "question": "After obtaining a certificate from an outside doctor, when should the officer report to his department?",
+  "options": [
+   "After one month",
+   "At the end of the year",
+   "Only on resumption of the next leave year",
+   "Without delay, within 24 hours of issuance"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rules 080304 & 080310: Report without delay, within 24 hours of issuance.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rules 080304 and 080310"
+ },
+ {
+  "id": "psr-c10-051",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100101)",
+  "referenceRule": "Rule 100101",
+  "question": "How is 'Whistle blowing / Grievance' broadly defined in the context of service petitions?",
+  "options": [
+   "Formal reporting or lodging of legitimate grievances regarding administrative injustice, unfair treatment or service malpractices through prescribed channels",
+   "Spreading rumours about colleagues in the office",
+   "Publishing complaints in newspapers",
+   "Refusing to carry out official duties"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100101: Defined as formal reporting of legitimate grievances regarding administrative injustice or malpractices.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100101"
+ },
+ {
+  "id": "psr-c10-054",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100203)",
+  "referenceRule": "Rule 100203",
+  "question": "What is strictly prohibited regarding external influence in petitions?",
+  "options": [
+   "Writing the petition in formal language",
+   "Seeking external political, ethnic or prominent influence to lobby or press petitions instead of using internal service procedures",
+   "Attaching the officer's letter of appointment",
+   "Keeping a copy of the petition"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 100203: Seeking external political, ethnic or prominent influence to lobby or press petitions is strictly prohibited.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100203"
+ },
+ {
+  "id": "psr-c10-055",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100204)",
+  "referenceRule": "Rule 100204",
+  "question": "What requirement governs the identity of a petitioner?",
+  "options": [
+   "The petitioner may use a pseudonym",
+   "Identity is optional if the allegation is serious",
+   "The identity of the petitioner must be clearly disclosed; anonymous petitions are generally disregarded",
+   "Only the petitioner's initials are required"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 100204: The identity of the petitioner must be clearly disclosed; anonymous petitions are generally disregarded.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100204"
+ },
+ {
+  "id": "psr-c10-056",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100205)",
+  "referenceRule": "Rule 100205",
+  "question": "How must a petition submitted on behalf of an illiterate person be handled?",
+  "options": [
+   "Properly endorsed and accompanied by a jurat indicating the writer/interpreter, in accordance with Illiterates Protection laws",
+   "It is automatically rejected",
+   "It is accepted without any endorsement",
+   "It must be submitted verbally only"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100205: Must be accompanied by a jurat indicating the writer/interpreter under Illiterates Protection laws.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100205"
+ },
+ {
+  "id": "psr-c10-057",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100206)",
+  "referenceRule": "Rule 100206",
+  "question": "What is the proper routing of a formal official petition?",
+  "options": [
+   "Directly to the final authority, skipping all superiors",
+   "Routed sequentially through immediate superior officers and the Permanent Secretary to the final appellate authority",
+   "Through fellow officers of the same grade",
+   "Through the press"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 100206: Routed sequentially through immediate superior officers and the Permanent Secretary to final appellate authority.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100206"
+ },
+ {
+  "id": "psr-c10-058",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100208)",
+  "referenceRule": "Rule 100208",
+  "question": "What can cause a petition to be disqualified or rejected?",
+  "options": [
+   "Being typed instead of handwritten",
+   "Being signed with the petitioner's full name",
+   "Being routed through the Permanent Secretary",
+   "Lack of proper identity, failure to exhaust internal channels, use of foul language, or external political lobbying"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 100208: Disqualification occurs for lack of proper identity, failure to exhaust internal channels, foul language, or political lobbying.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100208"
+ },
+ {
+  "id": "psr-c10-059",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100208)",
+  "referenceRule": "Rule 100208",
+  "question": "Why must any delay in submitting a petition be explained by the petitioner?",
+  "options": [
+   "To establish promptness and ensure the matter is not stale or statute-barred under administrative limitation rules",
+   "To enable the Ministry to charge a fee",
+   "To punish the petitioner for the delay",
+   "Delays never need to be explained"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100208: To establish promptness and ensure the matter is not stale or statute-barred under administrative limitation rules.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100208"
+ },
+ {
+  "id": "psr-c10-061",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10 and Chapter 18, Section 6)",
+  "referenceRule": "Chapter 10 and Chapter 18, Section 6",
+  "question": "Can an officer appeal against a disciplinary penalty imposed by a Personnel Management Board?",
+  "options": [
+   "No, the decision is final in all cases",
+   "Yes, but only to the officer's own Head of Department",
+   "Yes, but only through the press",
+   "Yes, through formal appeal channels to the Civil Service Commission or the appropriate appellate body"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Chapter 10 & 18: Appeals lie through formal appeal channels to the Civil Service Commission or appropriate appellate body.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10 and Chapter 18, Section 6"
+ },
+ {
+  "id": "psr-c10-063",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10 and Chapter 2, Section 6)",
+  "referenceRule": "Chapter 10 and Chapter 2, Section 6",
+  "question": "Who handles appeals relating to senior officers on Grade Level 07 and above?",
+  "options": [
+   "The Head of the officer's own department alone",
+   "The Local Government Chairman",
+   "The State Civil Service Commission or the relevant Extra-Ministerial Body",
+   "A trade union committee"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Chapter 10 & 2: The State Civil Service Commission or relevant Extra-Ministerial Body handles appeals for GL 07 and above.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10 and Chapter 2, Section 6"
+ },
+ {
+  "id": "psr-c10-064",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040517 and Chapter 10)",
+  "referenceRule": "Rule 040517 and Chapter 10",
+  "question": "Is an officer permitted to attach classified official documents as exhibits in a petition?",
+  "options": [
+   "No, unauthorized disclosure or abstraction of classified documents violates the Official Secrets Act and is serious misconduct",
+   "Yes, all documents may be attached freely",
+   "Yes, if the petition is urgent",
+   "Yes, if copies are made first"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 040517 & Ch 10: Unauthorized disclosure of classified documents violates the Official Secrets Act and is serious misconduct.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040517 and Chapter 10"
+ },
+ {
+  "id": "psr-c10-066",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 020602(iv))",
+  "referenceRule": "Rule 020602(iv)",
+  "question": "Within what period should petitions against promotion results typically be lodged?",
+  "options": [
+   "Within 1 month",
+   "Within 12 months",
+   "Within 2 years",
+   "Within 6 months of the announcement"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 020602(iv): Petitions against promotion results should be lodged within 6 months of announcement.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 020602(iv)"
+ },
+ {
+  "id": "psr-c10-067",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, Sections 1 and 2)",
+  "referenceRule": "Chapter 10, Sections 1 and 2",
+  "question": "What is the administrative duty of a Permanent Secretary upon receiving a petition routed through him against an administrative decision?",
+  "options": [
+   "Forward it with pertinent comments, factual records and file notes to the appropriate appellate commission without undue delay",
+   "Destroy it",
+   "Keep it indefinitely without action",
+   "Return it to the petitioner unread"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Chapter 10: The Permanent Secretary must forward the petition with pertinent comments, factual records and file notes without undue delay.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, Sections 1 and 2"
+ },
+ {
+  "id": "psr-c10-068",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, General Principles)",
+  "referenceRule": "Chapter 10, General Principles",
+  "question": "Does lodging a petition automatically suspend the execution of a lawful disciplinary penalty?",
+  "options": [
+   "Yes, automatically in all cases",
+   "Yes, for a period of six months",
+   "No, the penalty remains in force unless specifically stayed or set aside by the competent appellate authority",
+   "Yes, if the petitioner is on G.L. 07 and above"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Chapter 10: A disciplinary penalty remains in force unless specifically stayed or set aside by the competent appellate authority.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, General Principles"
+ },
+ {
+  "id": "psr-c10-069",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040302 and Chapter 10)",
+  "referenceRule": "Rule 040302 and Chapter 10",
+  "question": "What support do public service rules provide for settling internal workplace grievances informally?",
+  "options": [
+   "Immediate dismissal of the complaining officer",
+   "Referral directly to the press",
+   "Mandatory resignation",
+   "Counselling, mentoring, coaching and administrative dialogue through supervisors before escalating to formal petitions"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 040302 & Ch 10: Counselling, mentoring, coaching and administrative dialogue through supervisors before escalating.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040302 and Chapter 10"
+ },
+ {
+  "id": "psr-c10-070",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040522)",
+  "referenceRule": "Rule 040522",
+  "question": "Are officers permitted to engage external media or newspapers to air service grievances?",
+  "options": [
+   "Yes, whenever the officer feels unfairly treated",
+   "No, public utterances, press interviews or publishing grievances without express government permission violate conduct rules",
+   "Yes, if the grievance is about promotion",
+   "Yes, if the officer is on leave"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 040522: Public utterances or publishing grievances in external media without express permission violate conduct rules.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040522"
+ },
+ {
+  "id": "psr-c10-071",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, General Principles)",
+  "referenceRule": "Chapter 10, General Principles",
+  "question": "Can an officer be victimized for submitting a legitimate, properly channeled petition?",
+  "options": [
+   "Yes, as a standard deterrent",
+   "Yes, if the petition is unsuccessful",
+   "No, victimization for exercising legitimate petition rights is prohibited and constitutes administrative misconduct",
+   "Yes, with the Permanent Secretary's approval"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Chapter 10: Victimization for submitting a legitimate, properly channeled petition is strictly prohibited and constitutes misconduct.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, General Principles"
+ },
+ {
+  "id": "psr-c10-072",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100202)",
+  "referenceRule": "Rule 100202",
+  "question": "What is required when a petition contains multiple complex allegations involving financial records?",
+  "options": [
+   "Detailed auditing reports, vouchers and documentary evidence must be attached to substantiate the claims",
+   "Nothing, a verbal claim is enough",
+   "Only the petitioner's signature",
+   "A letter from a friend"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100202: Detailed auditing reports, vouchers and documentary evidence must be attached to substantiate allegations.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100202"
+ },
+ {
+  "id": "psr-c10-073",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 180601)",
+  "referenceRule": "Rule 180601",
+  "question": "How are appeals from parastatal organizations handled regarding petition routes?",
+  "options": [
+   "Sent directly to the press",
+   "Routed through the Parastatal Governing Board/Council and supervisory Ministry to the Head of Government or Civil Service Commission as applicable",
+   "Sent to the Local Government Chairman",
+   "They are not allowed"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 180601: Routed through Parastatal Governing Board/Council and supervisory Ministry to the Head of Government or Commission.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 180601"
+ },
+ {
+  "id": "psr-c10-074",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040502(xxvii) and Chapter 10)",
+  "referenceRule": "Rule 040502(xxvii) and Chapter 10",
+  "question": "What duty does an officer have regarding truthfulness in petitions?",
+  "options": [
+   "He may exaggerate to strengthen his case",
+   "Truthfulness is optional",
+   "False petitions attract only a verbal warning",
+   "He must state facts truthfully; malicious and false petitions constitute serious misconduct punishable by dismissal"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 040502 & Ch 10: Facts must be stated truthfully; malicious and false petitions constitute serious misconduct punishable by dismissal.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040502(xxvii) and Chapter 10"
+ },
+ {
+  "id": "psr-c10-075",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapters 6 and 10)",
+  "referenceRule": "Chapters 6 and 10",
+  "question": "What is the role of the Public Service Office in petitions and appeals?",
+  "options": [
+   "To coordinate administrative reviews, policy interpretations and advisory processing on personnel appeals",
+   "To punish all petitioners",
+   "To collect fees from petitioners",
+   "To publish petitions in the press"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Chapters 6 & 10: The Public Service Office coordinates administrative reviews, policy interpretations and advisory processing.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapters 6 and 10"
+ },
+ {
+  "id": "psr-c10-076",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100207)",
+  "referenceRule": "Rule 100207",
+  "question": "How many copies of a petition are normally required for administrative processing?",
+  "options": [
+   "A single copy only",
+   "Exactly ten copies",
+   "Multiple prescribed copies, as specified in administrative guidelines (usually duplicate or triplicate)",
+   "No copies are needed"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 100207: Multiple prescribed copies, as specified in guidelines (usually duplicate or triplicate).",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100207"
+ },
+ {
+  "id": "psr-c10-077",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, Sections 1 and 2)",
+  "referenceRule": "Chapter 10, Sections 1 and 2",
+  "question": "What is the timeframe limit for forwarding disciplinary appeal files by ministries to central commissions?",
+  "options": [
+   "Within 5 years",
+   "Within 2 days",
+   "There is no time limit",
+   "Within 14 to 30 days of receipt"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Chapter 10: Disciplinary appeal files should be forwarded to central commissions within 14 to 30 days of receipt.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, Sections 1 and 2"
+ },
+ {
+  "id": "psr-c10-078",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 020705(a) and Chapter 10)",
+  "referenceRule": "Rule 020705(a) and Chapter 10",
+  "question": "What happens if a petitioner dies while an appeal is pending?",
+  "options": [
+   "All benefits are automatically forfeited",
+   "Terminal benefits or estate representatives may pursue outstanding financial entitlements or adjustments in accordance with estate laws",
+   "The petition is posted to the press",
+   "The Governor takes over the petition"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 020705(a) & Ch 10: Terminal benefits or estate representatives may pursue outstanding financial entitlements.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 020705(a) and Chapter 10"
+ },
+ {
+  "id": "psr-c10-079",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapters 4 and 10)",
+  "referenceRule": "Chapters 4 and 10",
+  "question": "Are legal practitioners permitted to represent officers during internal administrative panel hearings of petitions?",
+  "options": [
+   "Yes, always without restriction",
+   "No, never under any circumstance",
+   "It is governed by administrative panel rules; inquiries are primarily internal, and legal counsel depends on the gravity and terms of reference authorized by the Commission",
+   "Only if the lawyer is a relative"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Chapters 4 & 10: Inquiries are primarily internal; legal representation depends on panel rules and Commission authorization.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapters 4 and 10"
+ },
+ {
+  "id": "psr-c10-080",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 010101 and Chapter 10)",
+  "referenceRule": "Rule 010101 and Chapter 10",
+  "question": "Where do final appeals lie for matters within the constitutional jurisdiction of the Lagos State Civil Service Commission?",
+  "options": [
+   "To the State Civil Service Commission / competent Courts of Law as provided by the Constitution and Laws of Lagos State",
+   "To the press",
+   "To a trade union",
+   "To the officer's Head of Department only"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 010101 & Ch 10: To the State Civil Service Commission and competent Courts of Law as provided by the Constitution.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 010101 and Chapter 10"
+ },
+ {
+  "id": "psr-c10-081",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040528)",
+  "referenceRule": "Rule 040528",
+  "question": "A petitioner asks a prominent politician to press his case. What is the position?",
+  "options": [
+   "It is encouraged to speed the matter up",
+   "It is prohibited; officers must not seek the influence of prominent persons",
+   "It is required for G.L. 07 and above",
+   "It is allowed if the politician is a relative"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 040528: Prohibited; officers must not seek the influence of prominent persons to press petitions.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040528"
+ },
+ {
+  "id": "psr-c10-082",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100204)",
+  "referenceRule": "Rule 100204",
+  "question": "The Ministry receives a petition signed with a false name. How is it treated?",
+  "options": [
+   "As a priority and investigated fully",
+   "As a valid petition if signed by two officers",
+   "As a petition to be forwarded to the Governor",
+   "Generally disregarded, since anonymous petitions are discountenanced"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 100204: Petitions with false or anonymous names are generally disregarded and discountenanced.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100204"
+ },
+ {
+  "id": "psr-c10-083",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100205)",
+  "referenceRule": "Rule 100205",
+  "question": "In a petition written on behalf of an illiterate person, whom must the jurat indicate?",
+  "options": [
+   "The writer/interpreter of the petition",
+   "The Permanent Secretary",
+   "The Governor",
+   "A trade union leader"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100205: The jurat must specifically indicate the writer/interpreter of the petition.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100205"
+ },
+ {
+  "id": "psr-c10-084",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100206)",
+  "referenceRule": "Rule 100206",
+  "question": "Which is the correct order of routing a petition?",
+  "options": [
+   "Final appellate authority, then the Permanent Secretary, then the superior officer",
+   "Newspaper, then the Governor",
+   "Immediate superior officer, then the Permanent Secretary, then the final appellate authority",
+   "Colleague, then trade union, then the press"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 100206: The correct routing order is immediate superior officer, Permanent Secretary, then final appellate authority.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100206"
+ },
+ {
+  "id": "psr-c10-085",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, General Standard)",
+  "referenceRule": "Chapter 10, General Standard",
+  "question": "A petitioner insults the Permanent Secretary in his petition. How is this viewed?",
+  "options": [
+   "As a ground for automatic success of the petition",
+   "As a ground for promotion",
+   "As conduct of no consequence",
+   "As misconduct that can attract separate disciplinary action"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Chapter 10: Insulting a superior officer in a petition is viewed as misconduct that can attract disciplinary action.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, General Standard"
+ },
+ {
+  "id": "psr-c10-086",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040509)",
+  "referenceRule": "Rule 040509",
+  "question": "An officer who has been dismissed lodges a petition. From what date does the dismissal take effect?",
+  "options": [
+   "The date the petition is decided",
+   "The date on which he is notified",
+   "The date of the next annual appraisal",
+   "Six months after notification"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 040509: Dismissal takes effect from the date on which the officer is notified.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040509"
+ },
+ {
+  "id": "psr-c10-087",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040522)",
+  "referenceRule": "Rule 040522",
+  "question": "Which of these is a prohibited way of airing a grievance?",
+  "options": [
+   "Writing through proper channels",
+   "Discussing it with his supervisor",
+   "Giving press interviews or publishing it without express government permission",
+   "Seeking counselling from a superior"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 040522: Giving press interviews or publishing grievances without express permission is prohibited.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040522"
+ },
+ {
+  "id": "psr-c10-088",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040517)",
+  "referenceRule": "Rule 040517",
+  "question": "Under which law is an officer bound regarding classified information and state secrets?",
+  "options": [
+   "The Official Secrets Act (Cap. 335)",
+   "The Labour Act only",
+   "The Road Traffic Act",
+   "The Marriage Act"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 040517: Officers are bound by the Official Secrets Act (Cap. 335).",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040517"
+ },
+ {
+  "id": "psr-c10-089",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040502(xxvii))",
+  "referenceRule": "Rule 040502(xxvii)",
+  "question": "What is the effect of a malicious and false petition?",
+  "options": [
+   "It is a minor oversight",
+   "It is serious misconduct punishable by dismissal",
+   "It earns a commendation",
+   "It is ignored without consequence"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 040502: Submitting malicious and false petitions constitutes serious misconduct punishable by dismissal.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040502(xxvii)"
+ },
+ {
+  "id": "psr-c10-090",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100104)",
+  "referenceRule": "Rule 100104",
+  "question": "Before an officer petitions the Head of Government directly, what must he have done?",
+  "options": [
+   "Taken the matter to the press",
+   "Obtained a politician's support",
+   "Resigned from the service",
+   "Exhausted internal departmental channels and routed the petition properly"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Rule 100104: The officer must have exhausted internal departmental channels and routed properly.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100104"
+ },
+ {
+  "id": "psr-c10-091",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100208)",
+  "referenceRule": "Rule 100208",
+  "question": "A petition is filed late. What must the petitioner do?",
+  "options": [
+   "Explain the delay",
+   "Pay a fine",
+   "Say nothing about it",
+   "Withdraw the petition"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 100208: The petitioner must explain the delay to avoid disqualification.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100208"
+ },
+ {
+  "id": "psr-c10-092",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100209)",
+  "referenceRule": "Rule 100209",
+  "question": "Which of the following must appear at the end of a formal petition?",
+  "options": [
+   "The names of his friends",
+   "A list of his hobbies",
+   "The petitioner's signature, rank, ministry, date and the prayer/desired remedy",
+   "The Governor's signature"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 100209: The petitioner's signature, rank, ministry, date and prayer/desired remedy must appear at the end.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100209"
+ },
+ {
+  "id": "psr-c10-093",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10, General Principles)",
+  "referenceRule": "Chapter 10, General Principles",
+  "question": "Can an officer be victimized for lodging a legitimate, properly channeled petition?",
+  "options": [
+   "Yes, as a routine warning",
+   "Yes, if the petition is rejected",
+   "Yes, if it was lodged on a Friday",
+   "No, victimization is prohibited and amounts to administrative misconduct"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Chapter 10: Victimization is prohibited and constitutes administrative misconduct.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10, General Principles"
+ },
+ {
+  "id": "psr-c10-094",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040302 and Chapter 10)",
+  "referenceRule": "Rule 040302 and Chapter 10",
+  "question": "Before escalating a grievance to a formal petition, what does the Service encourage?",
+  "options": [
+   "Immediate press publicity",
+   "Counselling, mentoring, coaching and dialogue with supervisors",
+   "Immediate resignation",
+   "Staying silent forever"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 040302 & Ch 10: Counselling, mentoring, coaching and dialogue with supervisors are encouraged.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040302 and Chapter 10"
+ },
+ {
+  "id": "psr-c10-095",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 180601)",
+  "referenceRule": "Rule 180601",
+  "question": "Through which body does an appeal from a parastatal organization first pass?",
+  "options": [
+   "The officer's neighbours",
+   "The local newspaper",
+   "The Parastatal Governing Board/Council and supervisory Ministry",
+   "A private law firm"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 180601: The Parastatal Governing Board/Council and supervisory Ministry.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 180601"
+ },
+ {
+  "id": "psr-c10-096",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapters 6 and 10)",
+  "referenceRule": "Chapters 6 and 10",
+  "question": "Which office coordinates administrative reviews and advisory processing on personnel appeals?",
+  "options": [
+   "The Public Service Office",
+   "The State Board of Internal Revenue",
+   "A private firm",
+   "The officer's cooperative society"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Chapters 6 & 10: The Public Service Office coordinates administrative reviews and advisory processing.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapters 6 and 10"
+ },
+ {
+  "id": "psr-c10-097",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 100202)",
+  "referenceRule": "Rule 100202",
+  "question": "What must accompany a petition containing allegations about financial records?",
+  "options": [
+   "Nothing, an oral claim is enough",
+   "Detailed audit reports, vouchers and documentary evidence",
+   "A letter of invitation to a party",
+   "The petitioner's photograph"
+  ],
+  "correctAnswer": 1,
+  "explanation": "Rule 100202: Detailed audit reports, vouchers and documentary evidence must accompany allegations involving finances.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 100202"
+ },
+ {
+  "id": "psr-c10-098",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Chapter 10 and Chapter 2, Section 6)",
+  "referenceRule": "Chapter 10 and Chapter 2, Section 6",
+  "question": "Who handles appeals relating to officers on Grade Level 07 and above?",
+  "options": [
+   "The Local Government Chairman",
+   "A student union",
+   "The officer's own subordinate",
+   "The State Civil Service Commission or the relevant Extra-Ministerial Body"
+  ],
+  "correctAnswer": 3,
+  "explanation": "Chapter 10 & 2: The State Civil Service Commission or relevant Extra-Ministerial Body handles appeals for GL 07 and above.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Chapter 10 and Chapter 2, Section 6"
+ },
+ {
+  "id": "psr-c10-099",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040203)",
+  "referenceRule": "Rule 040203",
+  "question": "What is the consequence of a civil servant failing without reasonable excuse to appear before a Commission when requested?",
+  "options": [
+   "He is guilty of a breach of discipline and disciplinary proceedings may be instituted",
+   "He is automatically promoted",
+   "He is rewarded with extra leave",
+   "Nothing happens"
+  ],
+  "correctAnswer": 0,
+  "explanation": "Rule 040203: Guilty of a breach of discipline and disciplinary proceedings may be instituted.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040203"
+ },
+ {
+  "id": "psr-c10-100",
+  "chapter": "PSR Chapter 10",
+  "resourceMaterial": "PSR Chapter 10 (Rule 040106)",
+  "referenceRule": "Rule 040106",
+  "question": "Who exercises full disciplinary powers over officers on Salary Grade Level 01 to 06?",
+  "options": [
+   "Local Government Chairmen",
+   "The State Governor directly",
+   "Permanent Secretaries and Heads of Extra-Ministerial Departments/Agencies",
+   "The Honourable Commissioner for Finance"
+  ],
+  "correctAnswer": 2,
+  "explanation": "Rule 040106: Permanent Secretaries and Heads of Extra-Ministerial Departments/Agencies exercise disciplinary powers over GL 01-06.",
+  "categories": [
+   "group-gl-12-14",
+   "group-gl-15-16"
+  ],
+  "categoryId": "group-gl-12-14",
+  "subjectId": "psr_ch4_8_10_12",
+  "source": "Lagos State Public Service Rules, Rule 040106"
  }
 ]
