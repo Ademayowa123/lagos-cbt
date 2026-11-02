@@ -14,16 +14,50 @@ export default function ResourceLibraryView({
 
   const safeResources = Array.isArray(resources) && resources.length > 0 ? resources : DEFAULT_RESOURCES;
 
+  const count0610 = safeResources.filter(r => {
+    const cids = Array.isArray(r.categoryIds) ? r.categoryIds : (r.categoryId ? [r.categoryId] : []);
+    const band = String(r.gradeBand || '').toLowerCase();
+    return cids.includes('group-gl-06-10') || band.includes('06') || band.includes('all');
+  }).length;
+
+  const count1214 = safeResources.filter(r => {
+    const cids = Array.isArray(r.categoryIds) ? r.categoryIds : (r.categoryId ? [r.categoryId] : []);
+    const band = String(r.gradeBand || '').toLowerCase();
+    return cids.includes('group-gl-12-14') || band.includes('12') || band.includes('all');
+  }).length;
+
+  const count1516 = safeResources.filter(r => {
+    const cids = Array.isArray(r.categoryIds) ? r.categoryIds : (r.categoryId ? [r.categoryId] : []);
+    const band = String(r.gradeBand || '').toLowerCase();
+    return cids.includes('group-gl-15-16') || band.includes('15') || band.includes('all');
+  }).length;
+
   const filtered = safeResources.filter(res => {
     if (!res) return false;
     const title = String(res.title || '').toLowerCase();
     const summary = String(res.summary || '').toLowerCase();
     const type = String(res.type || '').toLowerCase();
     const gradeBand = String(res.gradeBand || '').toLowerCase();
-    const q = search.toLowerCase();
+    const categoryIds = Array.isArray(res.categoryIds) 
+      ? res.categoryIds 
+      : (res.categoryId ? [res.categoryId] : []);
+    const q = search.toLowerCase().trim();
 
-    const matchSearch = title.includes(q) || summary.includes(q) || type.includes(q);
-    const matchCat = selectedFilter === 'all' || gradeBand.includes(selectedFilter.toLowerCase());
+    const matchSearch = !q || title.includes(q) || summary.includes(q) || type.includes(q);
+
+    let matchCat = false;
+    if (selectedFilter === 'all') {
+      matchCat = true;
+    } else if (selectedFilter === 'group-gl-06-10' || selectedFilter === 'GL 06 - 10') {
+      matchCat = categoryIds.includes('group-gl-06-10') || gradeBand.includes('06') || gradeBand.includes('10') || gradeBand.includes('all');
+    } else if (selectedFilter === 'group-gl-12-14' || selectedFilter === 'GL 12 - 14') {
+      matchCat = categoryIds.includes('group-gl-12-14') || gradeBand.includes('12') || gradeBand.includes('14') || gradeBand.includes('all');
+    } else if (selectedFilter === 'group-gl-15-16' || selectedFilter === 'GL 15 - 16') {
+      matchCat = categoryIds.includes('group-gl-15-16') || gradeBand.includes('15') || gradeBand.includes('16') || gradeBand.includes('all');
+    } else {
+      matchCat = categoryIds.includes(selectedFilter) || gradeBand.includes(selectedFilter.toLowerCase());
+    }
+
     return matchSearch && matchCat;
   });
 
@@ -58,28 +92,32 @@ export default function ResourceLibraryView({
 
         <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button 
+            id="resource-filter-all"
             className={`btn btn-sm ${selectedFilter === 'all' ? 'btn-primary' : 'btn-secondary'}`}
             onClick={() => setSelectedFilter('all')}
           >
             All Resources ({safeResources.length})
           </button>
           <button 
-            className={`btn btn-sm ${selectedFilter === 'GL 04' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setSelectedFilter('GL 04')}
+            id="resource-filter-gl-06-10"
+            className={`btn btn-sm ${selectedFilter === 'group-gl-06-10' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setSelectedFilter('group-gl-06-10')}
           >
-            Clerical (GL 04 - 07)
+            Officer (GL 06 - 10) ({count0610})
           </button>
           <button 
-            className={`btn btn-sm ${selectedFilter === 'GL 07' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setSelectedFilter('GL 07')}
+            id="resource-filter-gl-12-14"
+            className={`btn btn-sm ${selectedFilter === 'group-gl-12-14' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setSelectedFilter('group-gl-12-14')}
           >
-            Officer (GL 07 - 12)
+            Middle Management (GL 12 - 14) ({count1214})
           </button>
           <button 
-            className={`btn btn-sm ${selectedFilter === 'GL 12' ? 'btn-primary' : 'btn-secondary'}`}
-            onClick={() => setSelectedFilter('GL 12')}
+            id="resource-filter-gl-15-16"
+            className={`btn btn-sm ${selectedFilter === 'group-gl-15-16' ? 'btn-primary' : 'btn-secondary'}`}
+            onClick={() => setSelectedFilter('group-gl-15-16')}
           >
-            Directorate (GL 12 - 17)
+            Directorate (GL 15 - 16) ({count1516})
           </button>
         </div>
       </div>
