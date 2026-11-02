@@ -377,47 +377,37 @@ export default function CandidateAuth({
                   <div
                     key={demo.id}
                     id={`demo-officer-${demo.id}`}
+                    className="auth-demo-card"
                     onClick={() => {
                       setSelectedDemoId(demo.id);
                       if (matchedCategory) setSelectedCategory(matchedCategory);
                     }}
                     style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.85rem',
-                      padding: '0.9rem 1rem',
-                      borderRadius: 'var(--radius-md)',
-                      background: isSelected ? 'rgba(16, 185, 129, 0.1)' : 'var(--bg-tertiary)',
-                      border: `2px solid ${isSelected ? 'var(--brand-emerald)' : 'var(--border-subtle)'}`,
-                      cursor: 'pointer',
-                      transition: 'all 0.2s ease'
+                      background: isSelected ? 'rgba(16, 185, 129, 0.12)' : 'var(--bg-tertiary)',
+                      border: `2px solid ${isSelected ? 'var(--brand-emerald)' : 'var(--border-subtle)'}`
                     }}
                   >
-                    <CandidateAvatar name={demo.fullName} size={50} />
+                    <CandidateAvatar name={demo.fullName} size={46} />
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
-                        <span style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text-main)' }}>
-                          {demo.fullName}
-                        </span>
-                        <span className={`badge ${matchedCategory?.badgeColor || 'badge-emerald'}`} style={{ fontSize: '0.65rem' }}>
-                          {matchedCategory?.code}
-                        </span>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', flexWrap: 'wrap' }}>
+                          <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-main)' }}>
+                            {demo.fullName}
+                          </span>
+                          <span className={`badge ${matchedCategory?.badgeColor || 'badge-emerald'}`} style={{ fontSize: '0.65rem' }}>
+                            {matchedCategory?.code}
+                          </span>
+                        </div>
+                        <code style={{ fontSize: '0.725rem', color: 'var(--brand-emerald)', background: 'var(--bg-primary)', padding: '2px 6px', borderRadius: '4px' }}>
+                          @{demo.username}
+                        </code>
                       </div>
-                      <div style={{ fontSize: '0.825rem', color: 'var(--text-main)', marginTop: '0.15rem' }}>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--text-main)', marginTop: '0.15rem' }}>
                         {demo.cadre} • <strong>{demo.targetGrade}</strong>
                       </div>
-                      <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      <div style={{ fontSize: '0.725rem', color: 'var(--text-muted)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                         {demo.ministry}
                       </div>
-                    </div>
-
-                    <div style={{ textAlign: 'right', flexShrink: 0 }}>
-                      <div style={{ fontSize: '0.7rem', color: 'var(--brand-emerald)', fontWeight: 700 }}>
-                        Username:
-                      </div>
-                      <code style={{ fontSize: '0.775rem', color: 'var(--text-main)', background: 'var(--bg-primary)', padding: '2px 6px', borderRadius: '4px' }}>
-                        {demo.username}
-                      </code>
                     </div>
                   </div>
                 );
@@ -428,8 +418,7 @@ export default function CandidateAuth({
             <button
               type="button"
               id="launch-demo-exam-btn"
-              className="btn btn-emerald btn-lg"
-              style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', minHeight: '52px' }}
+              className="btn btn-emerald btn-lg auth-demo-launch-btn"
               onClick={() => handleLaunchDemo()}
             >
               <Zap size={18} />
@@ -755,7 +744,7 @@ export default function CandidateAuth({
             PROMOTION GRADE LEVEL GROUP MATRIX (PER CALL CIRCULAR)
            ========================================================================= */}
         <div style={{ marginTop: '2rem', borderTop: '1px solid var(--border-subtle)', paddingTop: '1.5rem', textAlign: 'left' }}>
-          <label className="form-label" style={{ marginBottom: '0.65rem' }}>
+          <label className="form-label" style={{ marginBottom: '0.65rem', display: 'flex', flexWrap: 'wrap', gap: '0.5rem', alignItems: 'center', justifyContent: 'space-between' }}>
             <span style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
               <Layers size={16} color="var(--brand-primary)" />
               Select Promotion Grade Level Group (Per Circular):

@@ -28,7 +28,7 @@ export default function ResourceLibraryView({
   });
 
   return (
-    <div className="container animate-fade-in" style={{ padding: '2.5rem 1.5rem 5rem', textAlign: 'left' }}>
+    <div className="container resource-library-container animate-fade-in">
       {/* Header */}
       <div style={{ marginBottom: '2rem' }}>
         <span className="badge badge-emerald" style={{ marginBottom: '0.4rem' }}>
@@ -44,7 +44,7 @@ export default function ResourceLibraryView({
 
       {/* Filter and Search Bar */}
       <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
-        <div style={{ position: 'relative', flex: 1, minWidth: '280px' }}>
+        <div style={{ position: 'relative', flex: 1, minWidth: '260px' }}>
           <Search size={16} style={{ position: 'absolute', left: '12px', top: '14px', color: 'var(--text-muted)' }} />
           <input 
             type="text" 
@@ -85,7 +85,7 @@ export default function ResourceLibraryView({
       </div>
 
       {/* Resource Cards Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))', gap: '1.5rem' }}>
+      <div className="resource-library-grid">
         {filtered.map((res) => (
           <div key={res.id} className="resource-card card-interactive">
             <div>
@@ -124,7 +124,7 @@ export default function ResourceLibraryView({
               </div>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderTop: '1px solid var(--border-subtle)', paddingTop: '1rem' }}>
+            <div className="resource-card-footer">
               <span className="badge badge-emerald">{res.badge || "Verified"}</span>
               <button 
                 className="btn btn-sm btn-primary"

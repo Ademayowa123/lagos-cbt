@@ -410,6 +410,18 @@ a:hover {
   width: 100%;
 }
 
+/* Print Visibility Controls: Hide print-only elements on normal screens */
+.print-only {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .btn {
+    white-space: normal;
+    text-align: center;
+  }
+}
+
 @media print {
   body {
     background: white !important;

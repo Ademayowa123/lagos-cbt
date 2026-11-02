@@ -1015,7 +1015,7 @@ export default function CBTExamEngine({
               </p>
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+            <div className="modal-actions">
               <button 
                 id="cancel-submit-btn"
                 className="btn btn-secondary"

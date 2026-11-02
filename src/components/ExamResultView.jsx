@@ -358,14 +358,14 @@ export default function ExamResultView({ resultData, onRetake, onGoAdmin }) {
 
         {/* Commission Official Footer for Print */}
         <div className="print-only" style={{ marginTop: '3rem', paddingTop: '1.5rem', borderTop: '1px solid #ccc', textAlign: 'center' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '2rem', textAlign: 'center' }}>
-            <div>
-              <div style={{ borderBottom: '1px solid black', width: '220px', marginBottom: '0.25rem' }}></div>
-              <div style={{ fontSize: '0.8rem' }}>Director of Examinations (CSC)</div>
+          <div style={{ display: 'flex', justifyContent: 'space-around', gap: '1.5rem', flexWrap: 'wrap', marginTop: '2rem', textAlign: 'center' }}>
+            <div style={{ flex: '1 1 200px', maxWidth: '240px' }}>
+              <div style={{ borderBottom: '1px solid black', width: '100%', marginBottom: '0.25rem' }}></div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 600 }}>Director of Examinations (CSC)</div>
             </div>
-            <div>
-              <div style={{ borderBottom: '1px solid black', width: '220px', marginBottom: '0.25rem' }}></div>
-              <div style={{ fontSize: '0.8rem' }}>Permanent Secretary / Commissioner</div>
+            <div style={{ flex: '1 1 200px', maxWidth: '240px' }}>
+              <div style={{ borderBottom: '1px solid black', width: '100%', marginBottom: '0.25rem' }}></div>
+              <div style={{ fontSize: '0.8rem', fontWeight: 600 }}>Permanent Secretary / Commissioner</div>
             </div>
           </div>
         </div>
