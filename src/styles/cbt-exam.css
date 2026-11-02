@@ -234,6 +234,172 @@
   flex-wrap: wrap;
 }
 
+.cbt-action-nav-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cbt-persistent-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  padding: 0.6rem 1.15rem;
+}
+
+.cbt-keyboard-tip {
+  display: block;
+}
+
+/* Question Header & Rule Citation */
+.cbt-q-meta-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cbt-q-number {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.cbt-q-total {
+  color: var(--text-subtle);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.cbt-rule-citation-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(96, 165, 250, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.35;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+[data-theme="light"] .cbt-rule-citation-pill {
+  background: rgba(37, 99, 235, 0.08);
+  color: #1d4ed8;
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.cbt-rule-icon {
+  flex-shrink: 0;
+  color: var(--brand-primary);
+}
+
+.cbt-q-action-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Security Violation Lockout Modal */
+.cbt-lockout-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10002;
+  background: rgba(10, 15, 29, 0.94);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.cbt-lockout-card {
+  background: var(--bg-card);
+  border: 2px solid var(--brand-danger);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 20px 60px rgba(239, 68, 68, 0.35);
+  max-width: 520px;
+  width: 100%;
+  padding: 2.25rem 1.75rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cbt-lockout-icon-box {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: var(--brand-danger);
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+.cbt-lockout-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--brand-danger);
+  margin-bottom: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.cbt-lockout-badge {
+  display: inline-block;
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+}
+
+.cbt-lockout-desc {
+  font-size: 0.925rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.cbt-lockout-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.65rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cbt-lockout-stat-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.cbt-lockout-stat-label {
+  font-size: 0.72rem;
+  color: var(--text-subtle);
+  margin-top: 0.2rem;
+}
+
+.cbt-lockout-auto-timer {
+  font-size: 0.78rem;
+  color: var(--text-subtle);
+  margin-top: 0.85rem;
+}
+
 /* Question Palette Sidebar */
 .cbt-palette-sidebar {
   display: flex;
@@ -566,16 +732,40 @@
     height: 32px;
   }
 
+  /* Question Header & Rule Citation on Mobile */
   .cbt-question-header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
+    align-items: stretch;
+    gap: 0.75rem;
     padding-bottom: 0.75rem;
     margin-bottom: 1rem;
   }
 
+  .cbt-q-meta-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.45rem;
+    width: 100%;
+  }
+
   .cbt-q-number {
-    font-size: 1.15rem;
+    font-size: 1.2rem;
+  }
+
+  .cbt-rule-citation-pill {
+    width: 100%;
+    font-size: 0.72rem;
+    padding: 0.4rem 0.65rem;
+    border-radius: 6px;
+    line-height: 1.4;
+  }
+
+  .cbt-q-action-tools {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 100%;
   }
 
   .cbt-q-text {
@@ -601,6 +791,11 @@
     font-size: 0.95rem;
   }
 
+  /* Mobile Keyboard Shortcut Tip: Hide on touch devices */
+  .cbt-keyboard-tip {
+    display: none !important;
+  }
+
   /* Sticky Action Bar at Bottom of Phone Viewport */
   .cbt-action-bar {
     position: sticky;
@@ -609,22 +804,68 @@
     right: 0;
     background: var(--bg-card);
     border-top: 1px solid var(--border-medium);
-    padding: 0.75rem 0.5rem;
+    padding: 0.75rem 0.65rem;
     margin-top: 1rem;
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.3);
     z-index: 100;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.65rem;
   }
 
-  .cbt-action-bar .btn {
-    padding: 0.65rem 0.9rem;
+  .cbt-action-nav-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  .cbt-action-nav-group .btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 0.65rem;
     font-size: 0.875rem;
+    min-height: 44px;
+  }
+
+  .cbt-persistent-submit-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: var(--radius-md);
+    min-height: 44px;
   }
 
   .cbt-action-bar span {
-    font-size: 0.825rem;
+    font-size: 0.85rem;
   }
 }
+
+@media (max-width: 480px) {
+  .cbt-lockout-card {
+    padding: 1.5rem 1.15rem;
+  }
+  .cbt-lockout-title {
+    font-size: 1.2rem;
+  }
+  .cbt-lockout-desc {
+    font-size: 0.85rem;
+  }
+  .cbt-lockout-stats {
+    gap: 0.35rem;
+    padding: 0.75rem 0.25rem;
+  }
+  .cbt-lockout-stat-val {
+    font-size: 1.1rem;
+  }
+}
+
 

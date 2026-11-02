@@ -15,6 +15,7 @@ import {
 import { MINISTRIES_DEPARTMENTS, DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import { updateUserProfile, changeUserPassword } from '../data/authData';
 import CandidateAvatar from './CandidateAvatar';
+import ModernSelect from './ModernSelect';
 
 export default function CandidateSettings({
   candidate,
@@ -299,17 +300,16 @@ export default function CandidateSettings({
               <Building2 size={15} color="var(--brand-gold)" />
               <span>Ministry / Department / Agency (MDA):</span>
             </label>
-            <select
+            <ModernSelect
               id="settings-ministry"
-              className="form-select"
+              name="ministry"
               value={ministry}
               onChange={(e) => setMinistry(e.target.value)}
-              required
-            >
-              {MINISTRIES_DEPARTMENTS.map((m, idx) => (
-                <option key={idx} value={m}>{m}</option>
-              ))}
-            </select>
+              options={MINISTRIES_DEPARTMENTS}
+              placeholder="Select Ministry / Department"
+              title="Ministry / Department / Agency (MDA)"
+              searchable={true}
+            />
           </div>
 
           {/* Cadre & Target Grade Level */}
@@ -348,23 +348,22 @@ export default function CandidateSettings({
                   </span>
                 )}
               </label>
-              <select
+              <ModernSelect
                 id="settings-target-grade"
-                className="form-select"
+                name="targetGrade"
                 value={targetGrade}
                 onChange={(e) => setTargetGrade(e.target.value)}
-                required
-              >
-                {categoriesList.map((cat) => (
-                  <optgroup key={cat.id} label={`${cat.code} — ${cat.title}`}>
-                    {(cat.gradeLevels || []).map((gl, idx) => (
-                      <option key={`${cat.id}-${idx}`} value={gl}>
-                        {gl} ({cat.code})
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
+                options={categoriesList.map((cat) => ({
+                  group: `${cat.code} — ${cat.title}`,
+                  options: (cat.gradeLevels || []).map((gl) => ({
+                    value: gl,
+                    label: `${gl} (${cat.code})`
+                  }))
+                }))}
+                placeholder="Select Target Promotion Grade"
+                title="Target Promotion Grade"
+                searchable={true}
+              />
               {matchingCatForDisplay && (
                 <div style={{
                   marginTop: '0.6rem',

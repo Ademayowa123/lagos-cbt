@@ -15,7 +15,10 @@ import {
   HelpCircle,
   ShieldAlert,
   LayoutGrid,
-  X
+  X,
+  Lock,
+  BookOpen,
+  ArrowRight
 } from 'lucide-react';
 import CalculatorModal from './CalculatorModal';
 import CandidateAvatar from './CandidateAvatar';
@@ -112,6 +115,7 @@ export default function CBTExamEngine({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [securityStrikes, setSecurityStrikes] = useState(0);
   const [showStrikeWarning, setShowStrikeWarning] = useState(false);
+  const [showViolationLockoutModal, setShowViolationLockoutModal] = useState(false);
   const [showSubmitModal, setShowSubmitModal] = useState(false);
   const [isMobilePaletteOpen, setIsMobilePaletteOpen] = useState(false);
   const [lastAutoSaveTime, setLastAutoSaveTime] = useState(new Date().toLocaleTimeString());
@@ -424,10 +428,15 @@ export default function CBTExamEngine({
       const next = strikesRef.current + 1;
       strikesRef.current = next;
       setSecurityStrikes(next);
-      setShowStrikeWarning(true);
       if (next >= 3) {
-        alert("SECURITY VIOLATION LIMIT EXCEEDED: Examination is being locked and submitted immediately.");
-        handleFinalSubmit();
+        setShowStrikeWarning(false);
+        setShowViolationLockoutModal(true);
+        // Automatically finalize submission after brief review window
+        setTimeout(() => {
+          handleFinalSubmit();
+        }, 4500);
+      } else {
+        setShowStrikeWarning(true);
       }
     };
 
@@ -689,29 +698,22 @@ export default function CBTExamEngine({
         <section className="cbt-question-card animate-fade-in" key={currentQ?.id}>
           <div>
             <div className="cbt-question-header">
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                <span className="cbt-q-number" style={{ fontSize: '1.35rem', fontWeight: 800 }}>
-                  Question {currentIndex + 1} <span style={{ color: 'var(--text-subtle)', fontWeight: 500, fontSize: '1rem' }}>of {examQuestions.length}</span>
+              <div className="cbt-q-meta-group">
+                <span className="cbt-q-number">
+                  Question {currentIndex + 1} <span className="cbt-q-total">of {examQuestions.length}</span>
                 </span>
-                <span 
-                  className="badge"
-                  style={{
-                    backgroundColor: 'rgba(59, 130, 246, 0.12)',
-                    color: '#2563eb',
-                    border: '1px solid rgba(59, 130, 246, 0.35)',
-                    borderRadius: '9999px',
-                    padding: '0.35rem 0.85rem',
-                    fontSize: '0.825rem',
-                    fontWeight: 700,
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.04em'
-                  }}
-                >
-                  {currentQ?.resourceMaterial || currentQ?.referenceRule || currentQ?.chapter || category?.code || 'Syllabus'}
-                </span>
+                {(currentQ?.resourceMaterial || currentQ?.referenceRule || currentQ?.chapter || category?.code) && (
+                  <div 
+                    className="cbt-rule-citation-pill"
+                    title={currentQ?.resourceMaterial || currentQ?.referenceRule || currentQ?.chapter || category?.code}
+                  >
+                    <BookOpen size={13} className="cbt-rule-icon" />
+                    <span>{currentQ?.resourceMaterial || currentQ?.referenceRule || currentQ?.chapter || category?.code}</span>
+                  </div>
+                )}
               </div>
 
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <div className="cbt-q-action-tools">
                 <button 
                   id="flag-question-btn"
                   className={`btn btn-sm ${isCurrentFlagged ? 'btn-gold' : 'btn-outline'}`}
@@ -767,21 +769,17 @@ export default function CBTExamEngine({
 
           {/* Navigation Action Bar */}
           <footer className="cbt-action-bar">
-            <button 
-              id="cbt-prev-btn"
-              className="btn btn-secondary"
-              disabled={currentIndex === 0}
-              onClick={() => setCurrentIndex(prev => prev - 1)}
-            >
-              <ChevronLeft size={18} />
-              <span>Previous Question</span>
-            </button>
+            <div className="cbt-action-nav-group">
+              <button 
+                id="cbt-prev-btn"
+                className="btn btn-secondary"
+                disabled={currentIndex === 0}
+                onClick={() => setCurrentIndex(prev => prev - 1)}
+              >
+                <ChevronLeft size={18} />
+                <span>Previous Question</span>
+              </button>
 
-            <div style={{ fontSize: '0.8rem', color: 'var(--text-subtle)' }}>
-              Tip: Press keys <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>A</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>B</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>C</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>D</kbd> or arrow keys
-            </div>
-
-            <div style={{ display: 'flex', gap: '0.75rem' }}>
               {currentIndex < examQuestions.length - 1 ? (
                 <button 
                   id="cbt-next-btn"
@@ -802,6 +800,20 @@ export default function CBTExamEngine({
                 </button>
               )}
             </div>
+
+            <div className="cbt-keyboard-tip" style={{ fontSize: '0.8rem', color: 'var(--text-subtle)' }}>
+              Tip: Press keys <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>A</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>B</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>C</kbd>, <kbd style={{ padding: '2px 6px', background: 'var(--bg-tertiary)', borderRadius: '4px' }}>D</kbd> or arrow keys
+            </div>
+
+            <button 
+              id="cbt-persistent-submit-btn"
+              className="btn btn-emerald cbt-persistent-submit-btn"
+              onClick={() => setShowSubmitModal(true)}
+              title="Submit & Finalize Promotion Examination"
+            >
+              <Send size={15} />
+              <span>Submit Examination ({answeredCount}/{examQuestions.length})</span>
+            </button>
           </footer>
         </section>
 
@@ -950,6 +962,61 @@ export default function CBTExamEngine({
             >
               I Understand & Return to Examination
             </button>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* SECURITY VIOLATION LIMIT EXCEEDED MODAL (Replaces native browser alert) */}
+      {showViolationLockoutModal && createPortal(
+        <div className="cbt-lockout-modal-overlay animate-fade-in" style={{ zIndex: 10002 }}>
+          <div className="cbt-lockout-card animate-scale-up" role="alertdialog" aria-modal="true">
+            <div className="cbt-lockout-icon-box">
+              <ShieldAlert size={64} />
+            </div>
+
+            <div className="cbt-lockout-badge">
+              Security Protocol Strike 3 of 3 • Terminal Infraction
+            </div>
+
+            <h3 className="cbt-lockout-title">
+              Security Violation Limit Exceeded
+            </h3>
+
+            <p className="cbt-lockout-desc">
+              Candidate <strong>{candidate?.fullName || 'Candidate'}</strong>, the proctoring monitor recorded repeated navigation away from the active examination window. In accordance with Lagos State Civil Service Examination Integrity Regulations, your session has been locked and submitted.
+            </p>
+
+            <div className="cbt-lockout-stats">
+              <div>
+                <div className="cbt-lockout-stat-val" style={{ color: 'var(--brand-danger)' }}>3 / 3</div>
+                <div className="cbt-lockout-stat-label">Security Strikes</div>
+              </div>
+              <div>
+                <div className="cbt-lockout-stat-val" style={{ color: 'var(--brand-emerald)' }}>{answeredCount}</div>
+                <div className="cbt-lockout-stat-label">Answers Saved</div>
+              </div>
+              <div>
+                <div className="cbt-lockout-stat-val" style={{ color: 'var(--brand-gold)' }}>{unansweredCount}</div>
+                <div className="cbt-lockout-stat-label">Unanswered</div>
+              </div>
+            </div>
+
+            <button 
+              type="button"
+              id="cbt-proceed-lockout-results-btn"
+              className="btn btn-danger btn-lg"
+              style={{ width: '100%', justifyContent: 'center', fontWeight: 800, minHeight: '48px', gap: '0.5rem' }}
+              onClick={handleFinalSubmit}
+            >
+              <Lock size={18} />
+              <span>Proceed to Official Results</span>
+              <ArrowRight size={18} />
+            </button>
+
+            <div className="cbt-lockout-auto-timer">
+              Finalizing examination audit log and scoring records…
+            </div>
           </div>
         </div>,
         document.body

@@ -355,6 +355,34 @@ a:hover {
   transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
+.form-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.85rem center;
+  background-size: 16px 16px;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+[data-theme="light"] .form-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+}
+
+.form-select option {
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  padding: 0.5rem;
+}
+
+.form-select optgroup {
+  background-color: var(--bg-secondary);
+  color: var(--brand-primary);
+  font-weight: 700;
+}
+
 .form-input:focus, .form-select:focus, .form-textarea:focus {
   border-color: var(--border-focus);
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
@@ -362,6 +390,316 @@ a:hover {
 
 .form-input::placeholder, .form-textarea::placeholder {
   color: var(--text-subtle);
+}
+
+/* ==========================================================================
+   ModernSelect Component Styles (Desktop Floating & Mobile Bottom Sheet)
+   ========================================================================== */
+.modern-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.modern-select-wrapper.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.modern-select-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 44px;
+  padding: 0.7rem 1rem;
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
+  user-select: none;
+}
+
+.modern-select-trigger:hover {
+  border-color: var(--border-active);
+  background-color: var(--bg-card-hover);
+}
+
+.modern-select-trigger.active,
+.modern-select-trigger:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  outline: none;
+}
+
+.modern-select-trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+  flex: 1;
+}
+
+.modern-select-trigger-icon {
+  color: var(--brand-primary);
+  flex-shrink: 0;
+}
+
+.modern-select-trigger-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.modern-select-trigger-label.placeholder {
+  color: var(--text-subtle);
+}
+
+.modern-select-chevron {
+  color: var(--text-muted);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.modern-select-chevron.open {
+  transform: rotate(180deg);
+  color: var(--brand-primary);
+}
+
+/* Desktop Floating Dropdown */
+.modern-select-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 1050;
+  background: var(--bg-card);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.38);
+  max-height: 320px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modern-select-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.modern-select-search-bar .search-icon {
+  color: var(--text-subtle);
+  flex-shrink: 0;
+}
+
+.modern-select-search-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  color: var(--text-main);
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+}
+
+.modern-select-search-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.search-clear-btn {
+  background: none;
+  border: none;
+  color: var(--text-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: 50%;
+}
+
+.search-clear-btn:hover {
+  color: var(--text-main);
+  background: var(--border-subtle);
+}
+
+.modern-select-options-list {
+  overflow-y: auto;
+  max-height: 250px;
+  padding: 0.4rem;
+}
+
+.modern-select-group-header {
+  padding: 0.5rem 0.75rem 0.25rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--brand-primary);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-sm);
+  margin: 0.35rem 0 0.15rem;
+}
+
+.modern-select-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+  line-height: 1.4;
+  margin-bottom: 1px;
+}
+
+.modern-select-item:hover {
+  background: var(--bg-tertiary);
+}
+
+.modern-select-item.selected {
+  background: rgba(59, 130, 246, 0.15);
+  color: var(--brand-primary);
+  font-weight: 600;
+}
+
+.modern-select-item-text {
+  flex: 1;
+}
+
+.modern-select-item-check {
+  color: var(--brand-primary);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+}
+
+.modern-select-empty {
+  padding: 1.5rem 1rem;
+  text-align: center;
+  color: var(--text-subtle);
+  font-size: 0.85rem;
+}
+
+/* Mobile Bottom Sheet Modal */
+.modern-select-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modern-select-mobile-sheet {
+  background: var(--bg-card);
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border: 1px solid var(--border-medium);
+  border-bottom: none;
+  width: 100%;
+  max-width: 600px;
+  max-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.modern-select-sheet-handle {
+  width: 44px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--border-medium);
+  margin: 0.75rem auto 0.25rem;
+  flex-shrink: 0;
+}
+
+.modern-select-sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.modern-select-sheet-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.modern-select-sheet-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.modern-select-mobile-search {
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--bg-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.modern-select-mobile-search .search-icon {
+  color: var(--text-subtle);
+  flex-shrink: 0;
+}
+
+.modern-select-mobile-search-input {
+  padding: 0.55rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+.modern-select-mobile-list {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.5rem 0.85rem 2rem;
+  flex: 1;
+}
+
+.modern-select-mobile-list .modern-select-item {
+  min-height: 48px;
+  padding: 0.85rem 1rem;
+  font-size: 0.95rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 4px;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* Custom Scrollbars */

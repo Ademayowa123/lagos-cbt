@@ -20,6 +20,7 @@ import {
 import CandidateAvatar from './CandidateAvatar';
 import { updateUserProfile } from '../data/authData';
 import { DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
+import ModernSelect from './ModernSelect';
 
 export default function CandidateDashboard({
   candidate,
@@ -445,23 +446,22 @@ export default function CandidateDashboard({
               <label htmlFor="modal-target-grade-select" className="form-label" style={{ fontWeight: 700, fontSize: '0.85rem' }}>
                 Target Promotion Grade:
               </label>
-              <select
+              <ModernSelect
                 id="modal-target-grade-select"
-                className="form-select"
+                name="targetGrade"
                 value={modalSelectedGrade}
                 onChange={(e) => setModalSelectedGrade(e.target.value)}
-                style={{ width: '100%', fontSize: '0.9rem' }}
-              >
-                {categoriesList.map((cat) => (
-                  <optgroup key={cat.id} label={`${cat.code} — ${cat.title}`}>
-                    {(cat.gradeLevels || []).map((gl, idx) => (
-                      <option key={`${cat.id}-${idx}`} value={gl}>
-                        {gl} ({cat.code})
-                      </option>
-                    ))}
-                  </optgroup>
-                ))}
-              </select>
+                options={categoriesList.map((cat) => ({
+                  group: `${cat.code} — ${cat.title}`,
+                  options: (cat.gradeLevels || []).map((gl) => ({
+                    value: gl,
+                    label: `${gl} (${cat.code})`
+                  }))
+                }))}
+                placeholder="Select Promotion Grade"
+                title="Target Promotion Grade Level"
+                searchable={true}
+              />
             </div>
 
             {/* Live Preview of Matching Exam Band */}

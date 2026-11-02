@@ -22,6 +22,7 @@ import {
 } from '../data/authData';
 import { MINISTRIES_DEPARTMENTS, DEFAULT_GRADE_CATEGORIES } from '../data/gradeLevelCategories';
 import CandidateAvatar from './CandidateAvatar';
+import ModernSelect from './ModernSelect';
 
 export default function CandidateAuth({ 
   gradeCategories, 
@@ -686,44 +687,46 @@ export default function CandidateAuth({
               {/* Ministry & Cadre */}
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '0.85rem', marginBottom: '1rem' }}>
                 <div className="form-group">
-                  <label className="form-label">Ministry / Department / Agency:</label>
-                  <select
-                    className="form-select"
+                  <label className="form-label" htmlFor="register-ministry">Ministry / Department / Agency:</label>
+                  <ModernSelect
+                    id="register-ministry"
+                    name="ministry"
                     value={regForm.ministry}
                     onChange={(e) => setRegForm({ ...regForm, ministry: e.target.value })}
-                  >
-                    {MINISTRIES_DEPARTMENTS.map((m, i) => (
-                      <option key={i} value={m}>{m}</option>
-                    ))}
-                  </select>
+                    options={MINISTRIES_DEPARTMENTS}
+                    placeholder="Select Ministry / Agency"
+                    title="Select Ministry / Department"
+                    searchable={true}
+                  />
                 </div>
 
                 <div className="form-group">
-                  <label className="form-label">Cadre / Professional Track:</label>
-                  <select
-                    className="form-select"
+                  <label className="form-label" htmlFor="register-cadre">Cadre / Professional Track:</label>
+                  <ModernSelect
+                    id="register-cadre"
+                    name="cadre"
                     value={regForm.cadre}
                     onChange={(e) => setRegForm({ ...regForm, cadre: e.target.value })}
-                  >
-                    {(safeCategory?.cadres || ['Administrative Officer I']).map((c, i) => (
-                      <option key={i} value={c}>{c}</option>
-                    ))}
-                  </select>
+                    options={safeCategory?.cadres || ['Administrative Officer I']}
+                    placeholder="Select Professional Cadre"
+                    title="Professional Cadre"
+                    searchable={true}
+                  />
                 </div>
               </div>
 
               {/* Target Grade Level */}
               <div className="form-group">
-                <label className="form-label">Target Promotion Grade Level:</label>
-                <select
-                  className="form-select"
+                <label className="form-label" htmlFor="register-target-grade">Target Promotion Grade Level:</label>
+                <ModernSelect
+                  id="register-target-grade"
+                  name="targetGrade"
                   value={regForm.targetGrade}
                   onChange={(e) => setRegForm({ ...regForm, targetGrade: e.target.value })}
-                >
-                  {(safeCategory?.gradeLevels || ['GL 09 to 10']).map((gl, i) => (
-                    <option key={i} value={gl}>{gl}</option>
-                  ))}
-                </select>
+                  options={safeCategory?.gradeLevels || ['GL 09 to 10']}
+                  placeholder="Select Target Grade Level"
+                  title="Target Promotion Grade Level"
+                />
               </div>
             </div>
 
