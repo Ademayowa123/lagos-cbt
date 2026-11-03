@@ -81,6 +81,16 @@ export function clearActiveExamSession(candidateId, categoryId) {
       localStorage.removeItem(`${key}_index`);
       localStorage.removeItem(`${key}_session`);
     }
+
+    if (candidateId) {
+      const prefix = `cbt_backup_${candidateId}_`;
+      const toRemove = [];
+      for (let i = 0; i < localStorage.length; i++) {
+        const k = localStorage.key(i);
+        if (k && k.startsWith(prefix)) toRemove.push(k);
+      }
+      toRemove.forEach(k => localStorage.removeItem(k));
+    }
   } catch (e) {
     console.error('[ExamSession] Failed to clear active exam session:', e);
   }

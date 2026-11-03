@@ -77,6 +77,8 @@ export default function CBTExamEngine({
   const [session, setSession] = useState(() => {
     return getCachedExamSession(safeCandidate?.id, safeCategory?.id);
   });
+  const sessionRef = useRef(session);
+  sessionRef.current = session;
   const [loadError, setLoadError] = useState('');
   const examQuestions = session?.questions || [];
   const category = session?.category || safeCategory;
@@ -199,6 +201,7 @@ export default function CBTExamEngine({
         if (cancelled) return;
         endsAtRef.current = s.endsAt;
         clockOffsetRef.current = s.serverNow - Date.now();
+        sessionRef.current = s;
         setSession(s);
         saveCachedExamSession(safeCandidate?.id, safeCategory?.id, s);
         setActiveExamSession({
@@ -248,6 +251,7 @@ export default function CBTExamEngine({
           };
           endsAtRef.current = fallbackSession.endsAt;
           clockOffsetRef.current = 0;
+          sessionRef.current = fallbackSession;
           setSession(fallbackSession);
           saveCachedExamSession(safeCandidate?.id, safeCategory?.id, fallbackSession);
           setActiveExamSession({
@@ -280,11 +284,13 @@ export default function CBTExamEngine({
 
     clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
     const answersToSend = answersRef.current || {};
+    const currentSession = sessionRef.current || session;
+    const examIdToSend = currentSession?.examId;
 
     try {
       const result = await api('/exam/submit', {
         method: 'POST',
-        body: { answers: answersToSend, securityStrikes: strikesRef.current, examId: session?.examId }
+        body: { answers: answersToSend, securityStrikes: strikesRef.current, examId: examIdToSend }
       });
       clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
       try {

@@ -220,7 +220,14 @@ function App() {
   }, [currentView]);
 
   // Exam Result State
-  const [lastExamResult, setLastExamResult] = useState(null);
+  const [lastExamResult, setLastExamResult] = useState(() => {
+    try {
+      const stored = sessionStorage.getItem('cbt_last_result');
+      return stored ? JSON.parse(stored) : null;
+    } catch {
+      return null;
+    }
+  });
 
   // Results: the administrator sees the full merit roster; a candidate sees their own past results
   const [meritHistory, setMeritHistory] = useState([]);
@@ -244,6 +251,9 @@ function App() {
 
   // Logout Handler
   const handleLogout = () => {
+    try {
+      sessionStorage.removeItem('cbt_last_result');
+    } catch (e) {}
     logoutUser();
     setActiveCandidate(null);
     setCurrentView('home');
@@ -251,8 +261,21 @@ function App() {
 
   // Exam Completion Handler: submitting is the official and only authorized exit from the exam
   const handleExamSubmit = (resultData) => {
-    clearActiveExamSession(activeCandidate?.id, selectedCategory?.id);
+    const catId = selectedCategory?.id || activeCandidate?.categoryId;
+    clearActiveExamSession(activeCandidate?.id, catId);
     setLastExamResult(resultData);
+    try {
+      sessionStorage.setItem('cbt_last_result', JSON.stringify(resultData));
+    } catch (e) {}
+
+    // Prepend the new result directly to meritHistory so it's immediately available without waiting
+    if (resultData) {
+      setMeritHistory(prev => [
+        resultData,
+        ...(Array.isArray(prev) ? prev.filter(p => (p.submittedAt || p.submitted_at) !== (resultData.submittedAt || resultData.submitted_at)) : [])
+      ]);
+    }
+
     // Immediately refresh merit history so the dashboard summary is up-to-date
     // when the candidate navigates back from the result view.
     if (activeCandidate?.id) {
@@ -420,6 +443,9 @@ function App() {
           candidate={activeCandidate}
           category={safeSelectedCategory}
           onStartExam={() => {
+            try {
+              sessionStorage.removeItem('cbt_last_result');
+            } catch (e) {}
             setActiveExamSession({
               candidateId: activeCandidate?.id || 'demo',
               categoryId: safeSelectedCategory?.id,

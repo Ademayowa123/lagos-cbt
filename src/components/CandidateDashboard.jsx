@@ -81,10 +81,18 @@ export default function CandidateDashboard({
     }
   };
 
-  // Find candidate's previous exam attempts if any
-  const candidateAttempts = meritHistory.filter(
-    m => m.candidate?.username === candidate?.username || m.candidate?.fullName === candidate?.fullName
-  );
+  // Find candidate's previous exam attempts if any, strictly sorted by latest submission date
+  const candidateAttempts = (meritHistory || [])
+    .filter(m => 
+      (m.candidate?.id && candidate?.id && m.candidate?.id === candidate?.id) ||
+      (m.candidate?.username && candidate?.username && m.candidate?.username.toLowerCase() === candidate?.username.toLowerCase()) ||
+      (m.candidate?.fullName && candidate?.fullName && m.candidate?.fullName.toLowerCase() === candidate?.fullName.toLowerCase())
+    )
+    .sort((a, b) => {
+      const timeA = new Date(a.submittedAt || a.submitted_at || 0).getTime();
+      const timeB = new Date(b.submittedAt || b.submitted_at || 0).getTime();
+      return timeB - timeA;
+    });
   const latestAttempt = candidateAttempts[0];
 
   return (

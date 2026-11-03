@@ -506,23 +506,31 @@ route('PUT', '/api/exam/answers', 'candidate', async ({ auth, body }) => {
 });
 
 route('POST', '/api/exam/submit', 'candidate', async ({ auth, body }) => {
-  const ex = await db.getActiveExam(auth.user.id);
-  if (!ex) {
-    // Exam was already auto-finalized (e.g., by a concurrent /exam/current or /exam/start call).
-    // If the client provided the examId, look up that specific exam's result first so we
-    // never accidentally return a previous session's summary.
-    if (body.examId) {
-      const specific = await db.getExamById(body.examId);
-      if (specific && specific.user_id === auth.user.id && specific.status === 'submitted') {
+  let ex = null;
+
+  // 1. If client provided examId, look up that specific exam first
+  if (body?.examId) {
+    const specific = await db.getExamById(body.examId);
+    if (specific && specific.user_id === auth.user.id) {
+      if (specific.status === 'submitted') {
         const resultData = typeof specific.result === 'string' ? JSON.parse(specific.result) : specific.result;
         if (resultData) return resultData;
+      } else if (specific.status === 'active') {
+        ex = specific;
       }
     }
-    // Fall back to the most recently submitted exam as a last resort.
-    const last = await db.getLastSubmittedExam(auth.user.id);
-    if (last) return last;
-    throw new HttpError(404, 'No examination in progress.');
   }
+
+  // 2. If not found by specific examId, look for user's active exam
+  if (!ex) {
+    ex = await db.getActiveExam(auth.user.id);
+  }
+
+  // 3. If still no active exam, do NOT return a stale exam from an old past session!
+  if (!ex) {
+    throw new HttpError(404, 'No examination in progress.', 'NO_ACTIVE_EXAM');
+  }
+
   const inTime = Date.now() <= ex.ends_at + GRACE_MS;
   const snap = parseData(ex.snapshot);
   const valid = new Set(snap.map((q) => String(q.id)));
