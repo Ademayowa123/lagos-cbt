@@ -508,6 +508,17 @@ route('PUT', '/api/exam/answers', 'candidate', async ({ auth, body }) => {
 route('POST', '/api/exam/submit', 'candidate', async ({ auth, body }) => {
   const ex = await db.getActiveExam(auth.user.id);
   if (!ex) {
+    // Exam was already auto-finalized (e.g., by a concurrent /exam/current or /exam/start call).
+    // If the client provided the examId, look up that specific exam's result first so we
+    // never accidentally return a previous session's summary.
+    if (body.examId) {
+      const specific = await db.getExamById(body.examId);
+      if (specific && specific.user_id === auth.user.id && specific.status === 'submitted') {
+        const resultData = typeof specific.result === 'string' ? JSON.parse(specific.result) : specific.result;
+        if (resultData) return resultData;
+      }
+    }
+    // Fall back to the most recently submitted exam as a last resort.
     const last = await db.getLastSubmittedExam(auth.user.id);
     if (last) return last;
     throw new HttpError(404, 'No examination in progress.');

@@ -284,7 +284,7 @@ export default function CBTExamEngine({
     try {
       const result = await api('/exam/submit', {
         method: 'POST',
-        body: { answers: answersToSend, securityStrikes: strikesRef.current }
+        body: { answers: answersToSend, securityStrikes: strikesRef.current, examId: session?.examId }
       });
       clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
       try {

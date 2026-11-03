@@ -253,6 +253,15 @@ function App() {
   const handleExamSubmit = (resultData) => {
     clearActiveExamSession(activeCandidate?.id, selectedCategory?.id);
     setLastExamResult(resultData);
+    // Immediately refresh merit history so the dashboard summary is up-to-date
+    // when the candidate navigates back from the result view.
+    if (activeCandidate?.id) {
+      if (activeCandidate.role === 'admin') {
+        api('/merit').then(setMeritHistory).catch(() => {});
+      } else {
+        api('/me/results').then(setMeritHistory).catch(() => {});
+      }
+    }
     _setCurrentView('result');
     window.location.hash = 'result';
   };
