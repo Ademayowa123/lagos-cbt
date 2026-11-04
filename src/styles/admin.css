@@ -1132,7 +1132,8 @@
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow-x: auto; /* wide tables scroll inside the card instead of being cut off */
+  overflow-y: hidden;
   box-shadow: var(--shadow-sm);
 }
 
@@ -1156,6 +1157,7 @@
   border-bottom: 1px solid var(--border-subtle);
   color: var(--text-main);
   font-size: 0.925rem;
+  overflow-wrap: anywhere; /* long usernames/cadres wrap so the table keeps to the card width */
 }
 
 .data-table tr:hover td {
