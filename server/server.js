@@ -16,7 +16,7 @@ import { get100ExamQuestionsForCategory } from '../src/data/defaultQuestions.js'
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT) || 3001;
-const MAX_ATTEMPTS = Number(process.env.MAX_ATTEMPTS) || 1; // real candidates; demo accounts unlimited
+const MAX_ATTEMPTS = Number(process.env.CANDIDATE_ATTEMPT_LIMIT) || Infinity; // unlimited by default; set CANDIDATE_ATTEMPT_LIMIT to cap attempts (an old MAX_ATTEMPTS value is ignored)
 const MIN_PASSWORD = Number(process.env.MIN_PASSWORD) || 4;
 const SESSION_MS = (Number(process.env.SESSION_HOURS) || 12) * 3600e3;
 const GRACE_MS = (Number(process.env.GRACE_SECONDS) || 15) * 1000; // network grace after the timer ends
@@ -80,6 +80,27 @@ async function ensureSeeded() {
     initialUsers: INITIAL_USERS,
     adminPassword: adminPw
   });
+
+  // Keep stored grade groups in step with the official promotion lists in gradeLevelCategories.js
+  // (categories are only seeded once, so an existing database would otherwise keep the old lists).
+  try {
+    const stored = await db.allCategories();
+    for (const def of DEFAULT_GRADE_CATEGORIES) {
+      const cur = stored.find((c) => c.id === def.id);
+      if (cur && JSON.stringify(cur.gradeLevels) !== JSON.stringify(def.gradeLevels)) {
+        await db.updateCategory(cur.id, { ...cur, gradeLevels: def.gradeLevels });
+      }
+    }
+    // Candidates registered under a promotion that moved group follow it to the new group
+    const regroup = { 'GL 10 to 12': 'group-gl-06-10', 'GL 14 to 15': 'group-gl-12-14' };
+    for (const u of await db.allCandidates()) {
+      const d = parseData(u.data);
+      const wanted = regroup[d.targetGrade];
+      if (wanted && d.categoryId !== wanted) await db.updateUserData(u.id, { ...d, categoryId: wanted });
+    }
+  } catch (err) {
+    console.error('[Category sync]:', err);
+  }
   isSeeded = true;
 }
 
@@ -312,6 +333,7 @@ const route = (method, p, access, fn) => {
 route('GET', '/api/health', 'public', async () => ({
   ok: true,
   database: db.isSupabase ? 'supabase' : 'sqlite',
+  maxAttempts: Number.isFinite(MAX_ATTEMPTS) ? MAX_ATTEMPTS : 'unlimited',
   time: new Date().toISOString()
 }));
 
@@ -457,10 +479,30 @@ route('POST', '/api/me/password', 'user', async ({ auth, body }) => {
 route('GET', '/api/resources', 'public', async () => await db.allResources());
 
 // Candidate Exam Routes
-route('POST', '/api/exam/start', 'candidate', async ({ auth, body }) => {
+// A double start (React dev double-effect, double click, reload) must never create two exams.
+const startQueue = new Map();
+route('POST', '/api/exam/start', 'candidate', async (ctx) => {
+  const key = ctx.auth.user.id;
+  const previous = startQueue.get(key);
+  const run = (async () => {
+    if (previous) await previous.catch(() => {});
+    return startExam(ctx);
+  })();
+  startQueue.set(key, run);
+  try {
+    return await run;
+  } finally {
+    if (startQueue.get(key) === run) startQueue.delete(key);
+  }
+});
+
+async function startExam({ auth, body }) {
   const u = auth.user;
   const cur = await activeExam(u);
-  if (cur) return await examView(cur);
+  if (cur) {
+    await db.voidOtherActiveExams(u.id, cur.id);
+    return await examView(cur);
+  }
   if (!u.is_demo && (await db.getSubmittedAttemptsCount(u.id)) >= MAX_ATTEMPTS) {
     throw new HttpError(403, 'You have already completed this examination.', 'ATTEMPTS_EXHAUSTED');
   }
@@ -478,9 +520,10 @@ route('POST', '/api/exam/start', 'candidate', async ({ auth, body }) => {
     ends_at: now + cat.timeLimitMinutes * 60e3,
     snapshot
   });
+  await db.voidOtherActiveExams(u.id, id);
   const created = await db.getExamById(id);
   return await examView(created);
-});
+}
 
 route('GET', '/api/exam/current', 'candidate', async ({ auth }) => {
   const ex = await activeExam(auth.user);
@@ -506,31 +549,16 @@ route('PUT', '/api/exam/answers', 'candidate', async ({ auth, body }) => {
 });
 
 route('POST', '/api/exam/submit', 'candidate', async ({ auth, body }) => {
-  let ex = null;
-
-  // 1. If client provided examId, look up that specific exam first
-  if (body?.examId) {
-    const specific = await db.getExamById(body.examId);
-    if (specific && specific.user_id === auth.user.id) {
-      if (specific.status === 'submitted') {
-        const resultData = typeof specific.result === 'string' ? JSON.parse(specific.result) : specific.result;
-        if (resultData) return resultData;
-      } else if (specific.status === 'active') {
-        ex = specific;
-      }
+  const ex = await db.getActiveExam(auth.user.id);
+  if (!ex) {
+    // Already finalized (e.g. auto-submitted at the deadline): return THAT exam's result only.
+    // Never fall back to the candidate's most recent result, which belongs to an earlier session.
+    const done = body.examId ? await db.getExamById(String(body.examId)) : null;
+    if (done && done.user_id === auth.user.id && done.status === 'submitted' && done.result) {
+      return parseData(done.result);
     }
+    throw new HttpError(404, 'No examination in progress.');
   }
-
-  // 2. If not found by specific examId, look for user's active exam
-  if (!ex) {
-    ex = await db.getActiveExam(auth.user.id);
-  }
-
-  // 3. If still no active exam, do NOT return a stale exam from an old past session!
-  if (!ex) {
-    throw new HttpError(404, 'No examination in progress.', 'NO_ACTIVE_EXAM');
-  }
-
   const inTime = Date.now() <= ex.ends_at + GRACE_MS;
   const snap = parseData(ex.snapshot);
   const valid = new Set(snap.map((q) => String(q.id)));

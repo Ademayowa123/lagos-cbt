@@ -81,19 +81,26 @@ export default function CandidateDashboard({
     }
   };
 
-  // Find candidate's previous exam attempts if any, strictly sorted by latest submission date
-  const candidateAttempts = (meritHistory || [])
-    .filter(m => 
-      (m.candidate?.id && candidate?.id && m.candidate?.id === candidate?.id) ||
-      (m.candidate?.username && candidate?.username && m.candidate?.username.toLowerCase() === candidate?.username.toLowerCase()) ||
-      (m.candidate?.fullName && candidate?.fullName && m.candidate?.fullName.toLowerCase() === candidate?.fullName.toLowerCase())
-    )
-    .sort((a, b) => {
-      const timeA = new Date(a.submittedAt || a.submitted_at || 0).getTime();
-      const timeB = new Date(b.submittedAt || b.submitted_at || 0).getTime();
-      return timeB - timeA;
-    });
+  // Find candidate's previous exam attempts if any
+  const candidateAttempts = meritHistory.filter(
+    m => m.candidate?.username === candidate?.username || m.candidate?.fullName === candidate?.fullName
+  );
   const latestAttempt = candidateAttempts[0];
+
+  // Last 3 submitted CBT examinations, newest first
+  const recentAttempts = [...candidateAttempts]
+    .filter((m) => m.submittedAt)
+    .sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt))
+    .slice(0, 3);
+
+  const formatSubmitted = (iso) => {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return '-';
+    return {
+      date: d.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' }),
+      time: d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', hour12: true })
+    };
+  };
 
   return (
     <div className="container dashboard-container animate-fade-in">
@@ -386,7 +393,7 @@ export default function CandidateDashboard({
               <span>Latest CBT Performance Record</span>
             </div>
             <span className="dashboard-perf-date">
-              Submitted on: {new Date(latestAttempt.submittedAt).toLocaleDateString()}
+              Submitted on: {formatSubmitted(latestAttempt.submittedAt).date}, {formatSubmitted(latestAttempt.submittedAt).time}
             </span>
           </div>
 
@@ -411,6 +418,41 @@ export default function CandidateDashboard({
                 {latestAttempt.candidate?.targetGrade || candidate?.targetGrade}
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Last 3 CBT examinations with date and time of submission */}
+      {!isAdmin && recentAttempts.length > 0 && (
+        <div className="dashboard-performance-card dashboard-history-card">
+          <div className="dashboard-perf-header">
+            <div className="dashboard-perf-title">
+              <Clock size={18} color="var(--brand-primary)" />
+              <span>Last {recentAttempts.length === 1 ? 'CBT Examination' : `${recentAttempts.length} CBT Examinations`}</span>
+            </div>
+          </div>
+
+          <div className="dashboard-history-list">
+            {recentAttempts.map((attempt, idx) => {
+              const when = formatSubmitted(attempt.submittedAt);
+              return (
+                <div className="dashboard-history-row" key={`${attempt.submittedAt}-${idx}`}>
+                  <div className="dashboard-history-when">
+                    <div className="dashboard-history-date">{when.date}</div>
+                    <div className="dashboard-history-time">{when.time}</div>
+                  </div>
+                  <div className="dashboard-history-grade">
+                    {attempt.candidate?.targetGrade || attempt.category?.name || candidate?.targetGrade}
+                  </div>
+                  <div className={`dashboard-history-score ${attempt.passed ? 'text-emerald' : 'text-danger'}`}>
+                    {attempt.percentage}% <span>({attempt.totalCorrect}/{attempt.totalQuestions})</span>
+                  </div>
+                  <span className={`badge ${attempt.passed ? 'badge-emerald' : 'badge-red'} perf-badge`}>
+                    {attempt.passed ? 'PASSED' : 'NOT MET'}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       )}

@@ -57,6 +57,18 @@ const buildLocalExam = (category) =>
     return { ...q, options: order.map((i) => q.options[i]), correctAnswer: order.indexOf(q.correctAnswer) };
   });
 
+// React (dev StrictMode) and quick re-mounts can run the start effect twice. Share one request
+// while it is pending so the server only ever sees a single start.
+const pendingStarts = new Map();
+function startExamOnce(candidateId, categoryId) {
+  const key = `${candidateId}:${categoryId}`;
+  if (!pendingStarts.has(key)) {
+    const p = api('/exam/start', { method: 'POST', body: { categoryId } }).finally(() => pendingStarts.delete(key));
+    pendingStarts.set(key, p);
+  }
+  return pendingStarts.get(key);
+}
+
 export default function CBTExamEngine({
   candidate,
   category: categoryProp,
@@ -77,8 +89,6 @@ export default function CBTExamEngine({
   const [session, setSession] = useState(() => {
     return getCachedExamSession(safeCandidate?.id, safeCategory?.id);
   });
-  const sessionRef = useRef(session);
-  sessionRef.current = session;
   const [loadError, setLoadError] = useState('');
   const examQuestions = session?.questions || [];
   const category = session?.category || safeCategory;
@@ -196,12 +206,11 @@ export default function CBTExamEngine({
     let cachedAnswers = getCachedAnswers(safeCandidate?.id, safeCategory?.id);
     let cachedFlagged = getCachedFlagged(safeCandidate?.id, safeCategory?.id);
 
-    api('/exam/start', { method: 'POST', body: { categoryId: safeCategory?.id } })
+    startExamOnce(safeCandidate?.id, safeCategory?.id)
       .then((s) => {
         if (cancelled) return;
         endsAtRef.current = s.endsAt;
         clockOffsetRef.current = s.serverNow - Date.now();
-        sessionRef.current = s;
         setSession(s);
         saveCachedExamSession(safeCandidate?.id, safeCategory?.id, s);
         setActiveExamSession({
@@ -228,6 +237,13 @@ export default function CBTExamEngine({
         }
       })
       .catch((err) => {
+        // The server refused on purpose (attempts used up, no questions, ...): show the reason.
+        // A local fallback exam here would be scored locally and could never match a server result.
+        if (!cancelled && err?.status >= 400 && err?.status < 500 && err?.code !== 'NON_JSON' && err?.status !== 401) {
+          clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
+          setLoadError(err.message || 'The examination could not be started.');
+          return;
+        }
         // Resilient fallback: initialize local 100-question session so exam starts even if offline
         if (!cancelled) {
           const rawQ = buildLocalExam(safeCategory);
@@ -251,7 +267,6 @@ export default function CBTExamEngine({
           };
           endsAtRef.current = fallbackSession.endsAt;
           clockOffsetRef.current = 0;
-          sessionRef.current = fallbackSession;
           setSession(fallbackSession);
           saveCachedExamSession(safeCandidate?.id, safeCategory?.id, fallbackSession);
           setActiveExamSession({
@@ -284,13 +299,12 @@ export default function CBTExamEngine({
 
     clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
     const answersToSend = answersRef.current || {};
-    const currentSession = sessionRef.current || session;
-    const examIdToSend = currentSession?.examId;
 
     try {
+      if (session?.isLocal) throw new Error('Local examination: scored on this device.');
       const result = await api('/exam/submit', {
         method: 'POST',
-        body: { answers: answersToSend, securityStrikes: strikesRef.current, examId: examIdToSend }
+        body: { examId: session?.examId, answers: answersToSend, securityStrikes: strikesRef.current }
       });
       clearActiveExamSession(safeCandidate?.id, safeCategory?.id);
       try {
@@ -697,6 +711,12 @@ export default function CBTExamEngine({
           </div>
         </div>
       </header>
+
+      {/* Mobile only: the navbar badge is hidden on small screens, so the status shows here */}
+      <div className="cbt-mobile-progress-note" role="status">
+        <span className="cbt-mobile-progress-dot" aria-hidden="true" />
+        Examination in progress
+      </div>
 
       {/* Main Examination Layout */}
       <main className="cbt-main-grid">

@@ -868,4 +868,36 @@
   }
 }
 
+/* "Examination in progress" status: navbar badge on desktop, slim strip under the header on mobile */
+.cbt-mobile-progress-note {
+  display: none;
+}
 
+@media (max-width: 768px) {
+  .exam-progress-badge-nav {
+    display: none !important;
+  }
+  .cbt-mobile-progress-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    margin: 0.6rem 0.75rem 0;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    color: #f59e0b;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .cbt-mobile-progress-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #f59e0b;
+    animation: pulseGlow 1.8s infinite ease-in-out;
+  }
+}

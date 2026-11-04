@@ -445,7 +445,9 @@ export const db = {
   async getActiveExam(userId) {
     if (!userId) return null;
     if (isSupabaseConfigured) {
-      const { data, error } = await supabase.from('exams').select('*').eq('user_id', userId).eq('status', 'active').maybeSingle();
+      // Newest active exam; never fails when a duplicate active row exists (e.g. from a double start)
+      const { data: rows, error } = await supabase.from('exams').select('*').eq('user_id', userId).eq('status', 'active').order('started_at', { ascending: false }).limit(1);
+      const data = rows && rows[0];
       if (error || !data) return null;
       return {
         ...data,
@@ -455,7 +457,17 @@ export const db = {
         result: stringifyJson(data.result)
       };
     } else {
-      return sqliteDb.prepare("SELECT * FROM exams WHERE user_id=? AND status='active'").get(userId) || null;
+      return sqliteDb.prepare("SELECT * FROM exams WHERE user_id=? AND status='active' ORDER BY started_at DESC LIMIT 1").get(userId) || null;
+    }
+  },
+  // Close any other 'active' exams of this user (duplicates from a double start). They are voided,
+  // not submitted, so they never appear as results or count as attempts.
+  async voidOtherActiveExams(userId, keepId) {
+    if (!userId || !keepId) return;
+    if (isSupabaseConfigured) {
+      await supabase.from('exams').update({ status: 'void' }).eq('user_id', userId).eq('status', 'active').neq('id', keepId);
+    } else {
+      sqliteDb.prepare("UPDATE exams SET status='void' WHERE user_id=? AND status='active' AND id<>?").run(userId, keepId);
     }
   },
 
