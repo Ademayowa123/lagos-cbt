@@ -25,9 +25,9 @@ const BASE_QUESTIONS = [
     question: "According to Chapter 2, recruitment activities in the Public Service should principally be based on what?",
     options: [
       "Merit, gender equality, social inclusion and service needs",
-      "Family connections and personal recommendations",
-      "Political sponsorship and informal interviews",
-      "Length of residence alone"
+      "Merit, seniority, residence and the recommendation of serving officers",
+      "Qualifications, length of service, family background and referee reports",
+      "Merit, age bracket, experience and sponsorship by a senior officer"
     ],
     correctAnswer: 0,
     explanation: "Rule 020101 specifies that recruitment into the Public Service must be strictly anchored on merit, gender equality, social inclusion, and demonstrable service needs.",
@@ -54,9 +54,9 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 2, Rule 020101",
     question: "Which instrument may formally establish an officer's appointment under Rule 020101?",
     options: [
-      "A colleague's recommendation alone",
-      "A verbal assurance from a contractor",
-      "An unsigned attendance sheet",
+      "A verbal directive from the Permanent Secretary confirmed by the Head of Service",
+      "A circular issued by the Office of the Head of Service",
+      "A certificate of fitness issued by a government medical officer",
       "An authorised appointment letter or formal agreement"
     ],
     correctAnswer: 3,
@@ -69,10 +69,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 2, Rule 020104",
     question: "Who ordinarily appoints officers to posts graded GL 07-10 in the Civil Service?",
     options: [
-      "The Junior Staff Committee acting independently",
+      "The Head of Service or another empowered officer",
       "The State Civil Service Commission or another empowered body",
-      "The local revenue collection office",
-      "The officer's professional association"
+      "The Permanent Secretary of the employing ministry or department",
+      "The Governor on the advice of the Executive Council"
     ],
     correctAnswer: 1,
     explanation: "Under the Constitution and service regulations, the Civil Service Commission appoints officers to senior posts from GL 07 to 10.",
@@ -130,9 +130,9 @@ const BASE_QUESTIONS = [
     question: "What qualification is specified for the GL 07-10 entry examination, subject to the Schemes of Service?",
     options: [
       "An appropriate Honours Degree or Higher National Diploma",
-      "No educational qualification",
-      "A primary school certificate alone",
-      "Any informal apprenticeship certificate"
+      "An appropriate Ordinary National Diploma with five years' experience",
+      "A Nigeria Certificate in Education with at least a Merit pass",
+      "Five credits at SSCE level including English Language and Mathematics"
     ],
     correctAnswer: 0,
     explanation: "Entry on GL 07-10 requires a minimum of a recognized University Honours Degree or Higher National Diploma (HND).",
@@ -189,10 +189,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 2, Rule 020108",
     question: "Which form is prescribed for the official Staff Record of Service?",
     options: [
-      "General Form 57",
-      "Form Gen. 74",
+      "LS/ESTAB Form No. 4",
+      "LS/ESTAB Form No. 6",
       "LS/ESTAB Form No. 1",
-      "Treasury Form 15"
+      "LS/ESTAB Form No. 9"
     ],
     correctAnswer: 2,
     explanation: "LS/ESTAB Form No. 1 is the prescribed document for staff records of service.",
@@ -295,9 +295,9 @@ const BASE_QUESTIONS = [
     question: "Which examination is specified for Clerical Grade Officers on probation?",
     options: [
       "The Combined Promotion/Confirmation Examination",
-      "The judicial appointment examination",
-      "The pension valuation examination",
-      "The annual procurement examination only"
+      "The Senior Staff Qualifying Examination",
+      "The Civil Service Commission Aptitude Test",
+      "The Higher Clerical Proficiency Examination"
     ],
     correctAnswer: 0,
     explanation: "Clerical cadre staff on probation take the Combined Confirmation/Promotion Examination.",
@@ -325,9 +325,9 @@ const BASE_QUESTIONS = [
     question: "What is secondment under Public Service Rules Chapter 2?",
     options: [
       "Temporary release to another approved body or recognised international organisation",
-      "Automatic termination following study",
-      "Permanent release from one scheduled service to another",
-      "Movement within a cadre due to added qualifications"
+      "Permanent release to another approved body or recognised international organisation",
+      "Temporary posting to another department within the same ministry",
+      "Temporary release on full pay to pursue a course of study abroad"
     ],
     correctAnswer: 0,
     explanation: "Secondment is the formal temporary release of an officer to an approved body or agency.",
@@ -339,9 +339,9 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 2, Rule 020502",
     question: "What is transfer under Public Service Rules Chapter 2?",
     options: [
-      "Movement to a higher step within the same salary scale",
-      "Temporary absence for annual leave",
-      "Temporary release for an assignment only",
+      "Temporary release from one scheduled service to another",
+      "Permanent movement between two departments in the same scheduled service",
+      "Permanent release from a scheduled service to an unscheduled body",
       "Permanent release from one scheduled service to another"
     ],
     correctAnswer: 3,
@@ -355,9 +355,9 @@ const BASE_QUESTIONS = [
     question: "What is conversion under Public Service Rules Chapter 2?",
     options: [
       "Movement from one cadre to another on obtaining prerequisite additional qualifications",
-      "Permanent retirement from service",
-      "Temporary release to a foreign organisation",
-      "Movement upward within the same cadre solely by increment"
+      "Permanent release from one scheduled service to another without any change of cadre",
+      "Movement from one grade level to the next higher grade level in the same cadre",
+      "Movement from one department to another in the same cadre after additional experience"
     ],
     correctAnswer: 0,
     explanation: "Conversion refers to movement between different professional cadres upon obtaining required qualifications.",
@@ -444,10 +444,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 2, Rule 020810",
     question: "What is the general statutory retirement ceiling in this edition of the Public Service Rules?",
     options: [
-      "55 years of age or 20 years of service",
+      "60 years of age or 30 years of pensionable service, whichever is earlier",
       "60 years of age or 35 years of pensionable service, whichever is earlier",
-      "65 years of age and 40 years of service in every case",
-      "70 years of age regardless of service"
+      "65 years of age or 35 years of pensionable service, whichever is earlier",
+      "60 years of age or 35 years of pensionable service, whichever is later"
     ],
     correctAnswer: 1,
     explanation: "Retirement is compulsory on attaining 60 years of age or 35 years of pensionable service, whichever is earlier.",
@@ -478,9 +478,9 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 4, Rule 040201",
     question: "Under Chapter 4's general principles, interdiction should ordinarily last no longer than what period?",
     options: [
-      "Six months in every case",
-      "Two years without review",
-      "One week in every case",
+      "One month, except in peculiar cases",
+      "Three months, except in peculiar cases",
+      "Six months, except in peculiar cases",
       "Two months, except in peculiar cases"
     ],
     correctAnswer: 3,
@@ -553,9 +553,9 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 4, Rule 040304",
     question: "Before removal proceedings for inefficiency, which warning requirement is stated as an alternative to loss/deferment of increment?",
     options: [
-      "Five newspaper notices",
-      "One anonymous complaint",
-      "One verbal warning from a colleague",
+      "Two or more previous written warnings",
+      "Five or more previous written warnings",
+      "One previous written warning and a query",
       "Three or more previous written warnings"
     ],
     correctAnswer: 3,
@@ -568,9 +568,9 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 4, Rule 040401",
     question: "How is misconduct defined under Rule 040401?",
     options: [
-      "Every unsuccessful promotion attempt",
-      "An officer's refusal to disclose a password to a stranger",
-      "Any request for approved leave",
+      "A series of omissions that cumulatively show an inability to discharge duties",
+      "A general decline in standards of performance established through appraisal",
+      "A breach of the Constitution punishable only by the courts",
       "A specific act of wrongdoing or improper behaviour that can be investigated and proved"
     ],
     correctAnswer: 3,
@@ -648,9 +648,9 @@ const BASE_QUESTIONS = [
     question: "What is leave under Rule 120101?",
     options: [
       "Authorised absence from duty for a specified period",
-      "Any absence chosen by an officer",
-      "Automatic release from all public-service rules",
-      "Permanent termination of appointment"
+      "An approved period of reduced duty hours granted to an officer on request",
+      "Unauthorised absence from duty that is later regularised by the Permanent Secretary",
+      "A period of paid rest to which every officer is entitled after each promotion"
     ],
     correctAnswer: 0,
     explanation: "Leave is an authorized absence from official duties for a specified timeframe.",
@@ -767,10 +767,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 12, Rule 120236",
     question: "What is the maximum paternity leave specified in this edition?",
     options: [
-      "30 working days",
+      "5 consecutive days",
       "10 consecutive days",
-      "12 weeks",
-      "24 weeks"
+      "7 consecutive days",
+      "14 consecutive days"
     ],
     correctAnswer: 1,
     explanation: "Paternity leave is granted for ten (10) consecutive days upon the spouse's delivery.",
@@ -782,10 +782,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Public Service Rules (PSR 2015), Chapter 12, Rule 120239",
     question: "What is the minimum grade for sabbatical leave under Rule 120239?",
     options: [
-      "GL 01",
-      "GL 04",
+      "GL 10 or equivalent",
+      "GL 12 or equivalent",
       "GL 15 or equivalent",
-      "GL 08"
+      "GL 14 or equivalent"
     ],
     correctAnswer: 2,
     explanation: "Sabbatical leave is available to senior officers on Grade Level 15 and above.",
@@ -846,10 +846,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 1, FR 101",
     question: "According to FR 101, what are Financial Authorities?",
     options: [
-      "Informal departmental notes",
+      "Rules that fix the salary scales and allowances of public officers",
       "Legal instruments that empower and guide public officers in carrying out financial transactions",
-      "Commercial bank credit cards",
-      "Private vendor contracts"
+      "Books of account in which public officers record receipts and payments of government",
+      "Officially approved forms bearing Treasury numbers used by ministries"
     ],
     correctAnswer: 1,
     explanation: "FR 101 defines financial authorities as legal instruments empowering public officers to receive, safe-keep, and disburse public funds and stores.",
@@ -862,9 +862,9 @@ const BASE_QUESTIONS = [
     question: "Under FR 103, no payments shall be made from public funds except on the authority of what?",
     options: [
       "A warrant duly issued and signed by the Minister of Finance",
-      "An oral request from an accountant",
-      "A contractor's commercial invoice",
-      "A personal voucher from a cashier"
+      "A circular duly issued and signed by the Head of Service",
+      "An authority duly issued and signed by the Accountant-General",
+      "A resolution duly passed and signed by the Executive Council"
     ],
     correctAnswer: 0,
     explanation: "FR 103 mandates that no payment shall be made except on the authority of a warrant signed by the Minister of Finance.",
@@ -876,10 +876,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 1, FR 106",
     question: "Who is designated as the Head of the State Treasury and Accounting Services under Lagos State Financial Regulations (FR 106)?",
     options: [
-      "The State Auditor-General",
+      "The Auditor-General of Lagos State / Permanent Secretary, Office of the Auditor-General",
       "The Accountant-General of Lagos State / Permanent Secretary State Treasury Office (STO)",
-      "The Chairman of the Civil Service Commission",
-      "The Director of Budgets"
+      "The Commissioner for Finance / Permanent Secretary, Ministry of Finance",
+      "The Head of the Civil Service of Lagos State / Permanent Secretary, Establishments"
     ],
     correctAnswer: 1,
     explanation: "FR 106 designates the Accountant-General of Lagos State (Permanent Secretary State Treasury Office) as the Chief Accounting Officer and Head of State Treasury Services.",
@@ -891,10 +891,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 1, FR 111",
     question: "Under Financial Regulation 111, the term 'Accounting Officer' means who?",
     options: [
-      "The Honourable Minister",
+      "The Commissioner or Political Head of the ministry",
       "The Permanent Secretary or Head of Extra-Ministerial Office",
-      "The Director of Finance and Accounts",
-      "The Chief Internal Auditor"
+      "The Accountant-General or Head of Finance and Accounts of the ministry",
+      "The Director of Administration of the ministry or extra-ministerial office"
     ],
     correctAnswer: 1,
     explanation: "FR 111 defines the Accounting Officer as the Permanent Secretary of a ministry or head of an extra-ministerial office.",
@@ -921,10 +921,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 1, FR 125",
     question: "Under FR 125, is an officer relieved of pecuniary responsibility when delegating functions to a subordinate?",
     options: [
-      "Yes, completely relieved",
+      "Yes; delegating in writing transfers full pecuniary responsibility to the subordinate",
       "No; an officer delegating functions is not thereby relieved of that responsibility",
-      "Relieved after 30 days",
-      "Only if the subordinate signs a bond"
+      "Yes, but only where the subordinate is on a higher grade level than the officer",
+      "No, but the officer is relieved after the subordinate's first annual audit"
     ],
     correctAnswer: 1,
     explanation: "FR 125 affirms that delegation does not relieve an officer of their statutory financial responsibility.",
@@ -939,7 +939,7 @@ const BASE_QUESTIONS = [
       "The Development Fund",
       "The Consolidated Revenue Fund (CRF)",
       "The Contingencies Fund",
-      "The Personal Advances Fund"
+      "The Federation Account"
     ],
     correctAnswer: 1,
     explanation: "FR 302 provides that recurrent expenditure is paid from the Consolidated Revenue Fund under warrant signed by the Minister of Finance.",
@@ -951,10 +951,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 3, FR 303",
     question: "A Provisional General Warrant under FR 303 authorizes expenditure for what maximum duration pending the Appropriation Act?",
     options: [
-      "Twelve months",
-      "Three months",
+      "A period not exceeding three (3) months",
+      "A period not exceeding nine (9) months",
       "A period not exceeding six (6) months",
-      "One month"
+      "A period not exceeding twelve (12) months"
     ],
     correctAnswer: 2,
     explanation: "FR 303 limits a Provisional General Warrant to a period not exceeding six (6) months.",
@@ -981,10 +981,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 3, FR 316(iii)",
     question: "Under FR 316(iii), is virement permitted between a Recurrent Expenditure Head and a Capital Expenditure Head?",
     options: [
-      "Yes, freely permitted",
-      "Permitted with Auditor-General approval only",
+      "Virement from Recurrent to Capital is allowed with the approval of the Accountant-General",
+      "Virement between Recurrent and Capital is allowed only within the same Head of Expenditure",
       "Virement from Recurrent to Capital or vice versa shall not be allowed",
-      "Permitted in the last month of the year"
+      "Virement from Capital to Recurrent is allowed, but not from Recurrent to Capital"
     ],
     correctAnswer: 2,
     explanation: "FR 316(iii) explicitly forbids virement between Recurrent and Capital expenditure heads.",
@@ -1026,10 +1026,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 4, FR 405",
     question: "When an Accounting Officer authorizes another officer to incur expenditure on his behalf, which document is issued under FR 405?",
     options: [
-      "Treasury Form 15",
+      "General Warrant supported by the Annual Estimates",
       "Authority to Incur Expenditure (A.I.E) supported by cash backing",
-      "Receipt Book Issue Note",
-      "Stores Issue Voucher"
+      "Cheque Order Form supported by a copy of the vote book",
+      "Provisional Warrant supported by the Appropriation Law"
     ],
     correctAnswer: 1,
     explanation: "FR 405 provides for the issuance of an Authority to Incur Expenditure (A.I.E) backed with cash allocation.",
@@ -1041,10 +1041,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 4, FR 407",
     question: "Under FR 407, all vouchers, indents, and contracts must be stamped with what before payment is authorized?",
     options: [
-      "PAID IN FULL",
+      "RECORDED IN COMMITMENT REGISTER",
       "ENTERED IN VOTE BOOK",
-      "TREASURY CLEARED",
-      "CHECKED AND PASSED"
+      "PASSED FOR PAYMENT",
+      "CHECKED AND VERIFIED"
     ],
     correctAnswer: 1,
     explanation: "FR 407 requires all commitment documents to be stamped 'ENTERED IN VOTE BOOK' and initialled.",
@@ -1056,10 +1056,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 4, FR 411",
     question: "What is the minimum rank of an officer authorized to sign payment vouchers under FR 411?",
     options: [
-      "Clerical Officer (GL 04)",
+      "Accountant II or Higher Executive Officer (Accounts) - GL 08",
       "Accountant I or Senior Executive Officer (Accounts) - GL 09",
-      "Assistant Executive Officer on GL 06",
-      "Storekeeper"
+      "Executive Officer (Accounts) - GL 07",
+      "Higher Accounts Clerk - GL 06"
     ],
     correctAnswer: 1,
     explanation: "FR 411 states officers signing payment vouchers shall not be below the rank of Accountant I or Senior Executive Officer (Accounts).",
@@ -1071,10 +1071,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 4, FR 413",
     question: "What happens to recurrent expenditure warrant authorities at the end of the financial year under FR 413?",
     options: [
-      "They roll over indefinitely",
+      "They remain valid for the first quarter of the next year and unspent balances are revoted",
       "They lapse at the end of the financial year and unspent balances cannot be revoted",
-      "They are converted to an imprest",
-      "They transfer to commercial banks"
+      "They lapse at the end of the financial year but unspent balances are automatically revoted",
+      "They remain valid until the Accountant-General cancels them in writing"
     ],
     correctAnswer: 1,
     explanation: "FR 413 provides that all recurrent expenditure warrants lapse at the end of the financial year; unspent funds cannot be revoted.",
@@ -1086,10 +1086,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 6, FR 604 & FR 3008",
     question: "Under FR 604 and 3008, what is strictly forbidden in preparing payment vouchers and accounting documents?",
     options: [
-      "Using ballpoint pen",
-      "Writing amounts in words and figures",
+      "Writing in black ink, initialling corrections, and using a ruler to cross out errors",
+      "Typing particulars, signing in ink, and using a rubber stamp for certificates",
       "Writing in pencil, erasures, and using correction fluid (Tippex / Liquid Paper)",
-      "Typing the vouchers"
+      "Writing in ballpoint pen, cancelling errors with a single line, and initialling them"
     ],
     correctAnswer: 2,
     explanation: "FR 604 and FR 3008 strictly prohibit pencil writing, erasures, and correction fluid on vouchers and accounting books.",
@@ -1101,10 +1101,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 6, FR 606",
     question: "What rule governs the signing of original payment vouchers under FR 606?",
     options: [
-      "Facsimile signature stamps are encouraged",
+      "Originals and duplicates shall be signed in pencil; facsimile signature stamps shall be used for convenience",
       "Only originals shall be signed in full in ink or ball pens; facsimile signature stamps shall NOT be used",
-      "Signatures are only needed on copies",
-      "Signatures can be written in pencil"
+      "Only duplicates shall be signed in full in ink; facsimile signature stamps may be used on originals",
+      "Originals may be signed by an initial in ink; facsimile signature stamps are permitted for senior officers"
     ],
     correctAnswer: 1,
     explanation: "FR 606 mandates full signatures in ink on originals and forbids facsimile signature stamps.",
@@ -1116,10 +1116,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 6, FR 609",
     question: "Under FR 609, what is the maximum duration a payment voucher may be held in the Checking Section?",
     options: [
-      "7 days",
+      "Not more than twenty-four (24) hours",
       "Not more than forty-eight (48) hours",
-      "14 days",
-      "One month"
+      "Not more than seventy-two (72) hours",
+      "Not more than seven (7) days"
     ],
     correctAnswer: 1,
     explanation: "FR 609(iii) requires payment vouchers in the checking section to be dealt with within 48 hours.",
@@ -1132,9 +1132,9 @@ const BASE_QUESTIONS = [
     question: "Under FR 611, what is the validity period of a signed payment voucher before it becomes stale?",
     options: [
       "Not more than three (3) months",
-      "Six months",
-      "One year",
-      "Thirty days"
+      "Not more than one (1) month",
+      "Not more than six (6) months",
+      "Not more than twelve (12) months"
     ],
     correctAnswer: 0,
     explanation: "FR 611(c) states that payment vouchers signed by the controlling officer are valid for not more than three (3) months.",
@@ -1146,10 +1146,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 6, FR 614",
     question: "Where a payee on a voucher is an illiterate, how must the payment be attested under FR 614?",
     options: [
-      "The paying officer witnesses the mark alone",
+      "The mark must be witnessed by the paying officer and one other literate official",
       "The mark must be witnessed by a literate official other than the paying officer",
-      "Payment cannot be made to an illiterate",
-      "Payment must be made by bank draft"
+      "The mark must be witnessed by a relative of the payee who can read and write",
+      "The mark must be countersigned by the officer controlling the vote"
     ],
     correctAnswer: 1,
     explanation: "FR 614 requires an illiterate payee's mark to be witnessed by a literate official other than the paying officer.",
@@ -1161,10 +1161,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 6, FR 632 & Chapter 31, FR 3128",
     question: "Under FR 632 and 3128, how are public payments made and what is the sanction for making unauthorized cash/cheque payments?",
     options: [
-      "Payment is exclusively by cash",
+      "Cheques are preferred, and cash is allowed up to a limit set by the Accountant-General; violation is Minor Misconduct",
       "The use of cheques and cash is prohibited under the e-payment policy; violation is Gross Misconduct",
-      "Payment can be made in any currency",
-      "Cheques may be issued without crossing"
+      "Cash and cheques may be used with the approval of the Accounting Officer; violation is General Inefficiency",
+      "Cash payments are allowed to individuals but prohibited for firms; violation is Gross Misconduct"
     ],
     correctAnswer: 1,
     explanation: "FR 632 and FR 3128 prohibit cash/cheque payments under the e-payment framework; violation is Gross Misconduct.",
@@ -1177,9 +1177,9 @@ const BASE_QUESTIONS = [
     question: "Under FR 2001, which official log book must be maintained for each government vehicle?",
     options: [
       "Vehicle Log-Book (Gen. 59)",
-      "Treasury Form 14",
-      "Form Gen. 74",
-      "Stores Form 15"
+      "Vehicle Log-Book (Gen. 51)",
+      "Vehicle Log-Book (Gen. 62)",
+      "Vehicle Log-Book (Gen. 73)"
     ],
     correctAnswer: 0,
     explanation: "FR 2001(c) prescribes the Vehicle Log-Book (Gen. 59) for journey authorizations and monitoring.",
@@ -1191,10 +1191,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 20, FR 2002",
     question: "What does FR 2002 state regarding the use of official government transport?",
     options: [
-      "Official transport may be used for private family shopping on weekends",
+      "Official transport may be used for private journeys if the officer pays the prescribed rate",
       "Official transport is to be used on all occasions to facilitate government business but shall not be used for private journeys",
-      "Drivers may operate commercial transport after office hours",
-      "Private journeys are allowed with supervisor's verbal consent"
+      "Official transport is to be used only for journeys outside the station; local journeys use private cars",
+      "Official transport may be used for private journeys with the Permanent Secretary's approval"
     ],
     correctAnswer: 1,
     explanation: "FR 2002 states official transport must be used solely to facilitate government business and strictly not for private journeys.",
@@ -1221,10 +1221,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 20, FR 2014",
     question: "Who is designated under FR 2014 to inspect and assess damage to a government vehicle involved in an accident?",
     options: [
-      "The driver's personal mechanic",
+      "A Transport Officer requested from the Ministry of Transportation",
       "A Mechanical Engineer requested from the Ministry of Works",
-      "The local traffic warden",
-      "The storekeeper"
+      "A motor assessor requested from the vehicle's insurance company",
+      "A garage manager requested from the approved repairer"
     ],
     correctAnswer: 1,
     explanation: "FR 2014 requires a Mechanical Engineer from the Ministry of Works to inspect vehicle damage.",
@@ -1237,9 +1237,9 @@ const BASE_QUESTIONS = [
     question: "Under Section 23 of the Road Traffic Act and FR Chapter 20, within what time must a vehicle accident be reported to the nearest Police Station?",
     options: [
       "Within 24 hours of occurrence",
-      "Within seven days",
-      "At the end of the month",
-      "Within thirty days"
+      "Within 12 hours of occurrence",
+      "Within 48 hours of occurrence",
+      "Within 7 days of occurrence"
     ],
     correctAnswer: 0,
     explanation: "Section 23 of the Road Traffic Act mandates reporting the accident to the nearest Police Station within 24 hours.",
@@ -1251,10 +1251,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Lagos State Financial Regulations / Treasury Guidelines, Chapter 25, FR 2501",
     question: "What is a loss or shortage of funds defined as under FR 2501?",
     options: [
-      "An approved budgetary variance",
+      "A shortfall between estimated and actual revenue at the end of the financial year due to under-collection",
       "A depletion of government fund at a given time due to misappropriation, falsification, conversion, theft or negligence",
-      "An unspent balance at the end of the year",
-      "A routine bank charge"
+      "A delay in the remittance of collected revenue to the Treasury by a revenue collector",
+      "An excess of expenditure over the approved provision of a sub-head at any given time"
     ],
     correctAnswer: 1,
     explanation: "FR 2501 defines loss of funds as a depletion arising from misappropriation, falsification, theft, conversion, or negligence.",
@@ -1267,9 +1267,9 @@ const BASE_QUESTIONS = [
     question: "Where a cash loss of N50,000 or below occurs without fraud or theft, what power does an Accounting Officer have under FR 2502?",
     options: [
       "Surcharge the officer responsible up to the full amount, provided the officer is not above Grade Level 10",
-      "Dismiss the officer without hearing",
-      "Ignore the loss if it falls in the current quarter",
-      "Report directly to the President"
+      "Surcharge the officer responsible up to half the amount, provided the officer is not above Grade Level 10",
+      "Surcharge the officer responsible up to the full amount, provided the officer is not above Grade Level 12",
+      "Write off the loss without surcharge, provided the officer is not above Grade Level 10"
     ],
     correctAnswer: 0,
     explanation: "FR 2502 empowers Accounting Officers to surcharge officers up to GL 10 for non-fraudulent cash losses of N50,000 or below.",
@@ -1282,9 +1282,9 @@ const BASE_QUESTIONS = [
     question: "On discovery of a loss or shortage of government funds, which statutory form must be initiated under FR 2504?",
     options: [
       "Treasury Form 146 in quintuplicate",
-      "Treasury Form 15A",
-      "Treasury Book 6A",
-      "Form Gen. 59"
+      "Treasury Form 146 in triplicate",
+      "Treasury Form 164 in quintuplicate",
+      "Treasury Form 416 in duplicate"
     ],
     correctAnswer: 0,
     explanation: "FR 2504 requires the officer in-charge to initiate action immediately on Treasury Form 146 in quintuplicate.",
@@ -1297,9 +1297,9 @@ const BASE_QUESTIONS = [
     question: "Under FR 2524, to which account is a discovered loss of funds initially charged pending investigation?",
     options: [
       "Below-the-line Account 1800 (Advances Non-Personal)",
-      "Personal Emoluments Vote",
-      "Consolidated Revenue Fund",
-      "Contingencies Fund"
+      "Below-the-line Account 1700 (Advances Personal)",
+      "Below-the-line Account 2100 (Suspense Deposits)",
+      "Below-the-line Account 1900 (Imprest Clearing)"
     ],
     correctAnswer: 0,
     explanation: "FR 2524 specifies charging the loss to Below-the-line Account 1800 (Advances Non-Personal) pending investigation.",
@@ -1312,9 +1312,9 @@ const BASE_QUESTIONS = [
     question: "What is the statutory composition of the Permanent Board of Survey and Enquiry under FR 2534?",
     options: [
       "Not fewer than 24 members; President not below salary Grade Level 15 and other members not below GL 12",
-      "Two junior officers on GL 04",
-      "External commercial auditors only",
-      "Five storekeepers"
+      "Not fewer than 12 members; President not below salary Grade Level 15 and other members not below GL 12",
+      "Not fewer than 24 members; President not below salary Grade Level 17 and other members not below GL 14",
+      "Not fewer than 24 members; President not below salary Grade Level 14 and other members not below GL 10"
     ],
     correctAnswer: 0,
     explanation: "FR 2534 requires a minimum of 24 members, with the President not below GL 15 and others not below GL 12.",
@@ -1327,9 +1327,9 @@ const BASE_QUESTIONS = [
     question: "Under FR 2536, what fair hearing right is guaranteed to an officer under investigation by a Board of Enquiry?",
     options: [
       "Right to be present, question witnesses, and be supplied with copies of documentary evidence",
-      "Right to unilaterally dismiss the panel",
-      "Right to withhold all office keys",
-      "Right to destroy relevant payment vouchers"
+      "Right to be present and be represented by counsel, but not to question witnesses",
+      "Right to receive the Board's report before it is submitted, but not to be present",
+      "Right to be present and to nominate a member of the Board to represent his interests"
     ],
     correctAnswer: 0,
     explanation: "FR 2536 mandates that the officer is entitled to be present, cross-examine witnesses, and inspect all evidence beforehand.",
@@ -1346,9 +1346,9 @@ const BASE_QUESTIONS = [
     question: "Under the Public Procurement Law, what certificate must be obtained from the Bureau/Agency before a contract falling within review thresholds can be validly awarded?",
     options: [
       "Certificate of 'No Objection' to award contract",
-      "Certificate of Temporary Clearance",
-      "Auditor's Internal Query",
-      "Treasury Form 15A"
+      "Certificate of 'Completion' of the procurement process",
+      "Certificate of 'Fitness' of the successful bidder to receive payment",
+      "Certificate of 'Compliance' with the procurement plan"
     ],
     correctAnswer: 0,
     explanation: "Contracts above statutory review thresholds require a Certificate of 'No Objection' to award contract.",
@@ -1361,9 +1361,9 @@ const BASE_QUESTIONS = [
     question: "What is the maximum statutory mobilization fee payable to a contractor under public procurement guidelines?",
     options: [
       "Shall not exceed 15% of the contract sum, backed by a bank guarantee from a reputable financial institution",
-      "50% of the contract sum in cash",
-      "100% advance payment without guarantee",
-      "35% without any bank guarantee"
+      "Shall not exceed 25% of the contract sum, backed by a bank guarantee from a reputable financial institution",
+      "Shall not exceed 15% of the contract sum, backed by a personal guarantee from the contractor's directors",
+      "Shall not exceed 10% of the contract sum, paid without any guarantee after award"
     ],
     correctAnswer: 0,
     explanation: "Mobilization fees are capped at 15% and must be secured with an unconditional bank guarantee.",
@@ -1375,10 +1375,10 @@ const BASE_QUESTIONS = [
     resourceMaterial: "Civil Service Leadership & Management Handbook, Section on Delegation of Authority",
     question: "In management and leadership principles, what does effective 'Delegation of Authority' require?",
     options: [
-      "Transferring blame while withholding decision-making authority",
+      "Entrusting responsibility and authority while transferring ultimate accountability to the subordinate",
       "Entrusting responsibility and commensurate authority while retaining ultimate managerial accountability",
-      "Completely abandoning oversight of the delegated schedule",
-      "Delegating only to officers outside the public service"
+      "Entrusting responsibility without authority so that the manager retains full control of resources",
+      "Entrusting only routine tasks while reserving all decisions and accountability to the manager"
     ],
     correctAnswer: 1,
     explanation: "Delegation involves transferring responsibility and authority while the delegator maintains ultimate accountability.",
