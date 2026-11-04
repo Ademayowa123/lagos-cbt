@@ -79,9 +79,6 @@ export default function Navbar({
                 <span style={{ fontWeight: 800, letterSpacing: '-0.02em', fontSize: '1.05rem', color: 'var(--text-main)' }}>
                   LAGOS-CBT
                 </span>
-                <span className="badge badge-emerald" style={{ fontSize: '0.65rem', padding: '0.15rem 0.45rem' }}>
-                  YEAR 2027
-                </span>
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--text-muted)', fontWeight: 500 }}>
                 Lagos State Civil Service Commission
