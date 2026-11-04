@@ -96,6 +96,20 @@ const stringifyJson = (val) => {
   return typeof val === 'string' ? val : JSON.stringify(val);
 };
 
+
+// Supabase returns at most 1000 rows per request (the project's max-rows setting), so lists that can
+// grow past that must be read page by page. Always order the query by a unique column.
+async function fetchAllRows(buildQuery, pageSize = 1000) {
+  const rows = [];
+  for (;;) {
+    const { data, error } = await buildQuery().range(rows.length, rows.length + pageSize - 1);
+    if (error) return { data: null, error };
+    if (!data || data.length === 0) break;
+    rows.push(...data);
+  }
+  return { data: rows, error: null };
+}
+
 // -------------------------------------------------------------
 // Database Operations Interface
 // -------------------------------------------------------------
@@ -277,7 +291,7 @@ export const db = {
 
   async allCandidates() {
     if (isSupabaseConfigured) {
-      const { data, error } = await supabase.from('users').select('*').eq('role', 'candidate').order('created_at', { ascending: true });
+      const { data, error } = await fetchAllRows(() => supabase.from('users').select('*').eq('role', 'candidate').order('created_at', { ascending: true }).order('id', { ascending: true }));
       if (error || !data) return [];
       return data.map(u => ({ ...u, is_demo: u.is_demo ? 1 : 0 }));
     } else {
@@ -343,7 +357,7 @@ export const db = {
   // --- Questions Bank ---
   async allQuestions() {
     if (isSupabaseConfigured) {
-      const { data, error } = await supabase.from('questions').select('data');
+      const { data, error } = await fetchAllRows(() => supabase.from('questions').select('data').order('id', { ascending: true }));
       if (error || !data) return [];
       return data.map(r => parseJson(r.data));
     } else {
@@ -548,7 +562,7 @@ export const db = {
 
   async getAllSubmittedExamsForMerit(includeDemo = false) {
     if (isSupabaseConfigured) {
-      const { data, error } = await supabase.from('exams').select('result, users!inner(is_demo)').eq('status', 'submitted');
+      const { data, error } = await fetchAllRows(() => supabase.from('exams').select('result, users!inner(is_demo)').eq('status', 'submitted').order('id', { ascending: true }));
       if (error || !data) return [];
       return data
         .filter(r => includeDemo || !r.users?.is_demo)
